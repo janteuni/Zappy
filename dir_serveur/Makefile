@@ -6,12 +6,12 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/04 11:38:54 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/04 11:43:14 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME				= server
+NAME				= serveur
 
 CC					= clang
 FLAG				= -Wall -Werror -Wextra -pedantic
