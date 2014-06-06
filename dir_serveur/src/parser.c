@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:51:20 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 16:32:11 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 20:02:09 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int					st_wrong_params(void)
 int					st_valid_flag(char *arg)
 {
 	if (ft_strlen(arg) == 2 && (arg[1] == 'p'
-			|| arg[1] == 'x' || arg[1] == 'y'|| arg[1] == 'n'
+			|| arg[1] == 'x' || arg[1] == 'y' || arg[1] == 'n'
 			|| arg[1] == 'c' || arg[1] == 't'))
 		return (OK);
 	return (ERR);

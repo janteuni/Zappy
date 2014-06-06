@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:07:56 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:57:56 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@ void				ft_treat_cmd(char *rcv, t_env *env, int cs)
 			ft_place_me(env, cs);
 	}
 	else
-		ft_reply_in_buff(env, cs, "Cmd not implemented yet.");
+	{
+		if (ft_function_cmd(env, cs, rcv) == ERR)
+			ft_reply_in_buff(env, cs, "Cmd not implemented yet.");
+	}
 }

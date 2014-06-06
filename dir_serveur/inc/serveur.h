@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:08:07 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:52:00 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
+# define NB_CMDS	3
 
 # define WIDTH		env->width
 # define HEIGHT		env->height
@@ -45,6 +46,11 @@
 # define PHIRAS		5
 # define THYSTAME	6
 
+typedef struct		s_cmd
+{
+	char			*name;
+	void			(*fn)();
+}					t_cmd;
 
 typedef struct		s_pos
 {
@@ -128,4 +134,9 @@ void				ft_print_map(t_env *env, int k);
 int					ft_init_map(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
+
+void				ft_treat_avance(t_env *env, int cs, char *rcv);
+void				ft_treat_left(t_env *env, int cs, char *rcv);
+void				ft_treat_right(t_env *env, int cs, char *rcv);
+int					ft_function_cmd(t_env *env, int cs, char *rcv);
 #endif

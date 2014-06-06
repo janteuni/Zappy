@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:05:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:20:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 20:00:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		st_my_position(t_env *env, int cs)
 int				ft_place_me(t_env *env, int cs)
 {
 	srand(time(0));
-	env->fd_socket[cs].pos.x = rand() % WIDTH ;
+	env->fd_socket[cs].pos.x = rand() % WIDTH;
 	env->fd_socket[cs].pos.y = rand() % HEIGHT;
 	env->fd_socket[cs].pos.o = N;
 	st_my_position(env, cs);

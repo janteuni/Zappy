@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_map.c                                     :+:      :+:    :+:   */
+/*   ft_treat_right.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/06 18:03:39 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:59:26 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/06 19:52:52 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/06 19:53:05 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-void				ft_print_map(t_env *env, int k)
+void				ft_treat_right(t_env *env, int cs, char *rcv)
 {
-	int				i;
-	int				j;
-
-	i = 0;
-	while (i < HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			printf("%d", env->map[i][j][k]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	printf("treat_right not implemented yet\n");
+	(void)env;
+	(void)cs;
+	(void)rcv;
 }

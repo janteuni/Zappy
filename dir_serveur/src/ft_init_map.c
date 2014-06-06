@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 17:03:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 18:30:23 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 20:04:16 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ int					ft_init_map(t_env *env)
 				ft_exit("error malloc");
 			k = 0;
 			while (k < 7)
-			{
-				env->map[i][j][k] = rand() % 8;
-				k++;
-			}
+				env->map[i][j][k++] = rand() % 8;
 			j++;
 		}
 		i++;

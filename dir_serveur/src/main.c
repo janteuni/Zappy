@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 18:35:53 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 20:05:13 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,19 @@
 #include <unistd.h>
 #include "serveur.h"
 
-int			init_env(t_env *env)
+static void		finish_init(t_env *env)
+{
+	env->teams = NULL;
+	env->max_team = 0;
+	env->width = 0;
+	env->height = 0;
+	env->time = 0;
+	env->nb_player = 0;
+	env->port = 0;
+	env->map = NULL;
+}
+
+int				init_env(t_env *env)
 {
 	int				i;
 	struct rlimit	rlp;
@@ -33,18 +45,11 @@ int			init_env(t_env *env)
 		clean_fd(&env->fd_socket[i]);
 		i++;
 	}
-	env->teams = NULL;
-	env->max_team = 0;
-	env->width = 0;
-	env->height = 0;
-	env->time = 0;
-	env->nb_player = 0;
-	env->port = 0;
-	env->map = NULL;
+	finish_init(env);
 	return (OK);
 }
 
-void		print_params(t_env *env)
+void			print_params(t_env *env)
 {
 	int	i;
 
@@ -53,17 +58,16 @@ void		print_params(t_env *env)
 	printf("time : %d\n", env->time);
 	printf("nb_player : %d\n", env->nb_player);
 	printf("--------------------TEANS-------------------\n");
-	printf("max_team: %d\n",env->max_team);
+	printf("max_team: %d\n", env->max_team);
 	while (i < env->max_team)
 	{
 		printf("name %s\n", env->teams[i].name);
 		i++;
 	}
 	printf("--------------------------------------------\n");
-
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_env	*env;
 
