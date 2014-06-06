@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:05:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:17:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:20:19 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void		st_my_position(t_env *env, int cs)
 	char		*tmp;
 	char		*itoa;
 
-	ret = ft_strjoin(ft_itoa(env->nb_player), "\n");
+	itoa = ft_itoa(env->nb_player);
+	ret = ft_strjoin(itoa, "\n");
+	ft_memdel((void **)&itoa);
 	itoa = ft_itoa(env->fd_socket[cs].pos.x);
 	tmp = ft_strjoin(ret, itoa);
 	ft_memdel((void **)&ret);
