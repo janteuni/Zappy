@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_fd.c                                         :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 18:25:22 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/06 15:32:09 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/06 15:33:07 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "serveur.h"
 
-void	clean_fd(t_fd *fd)
+int				ft_exit(char *err)
 {
-	fd->type = FREE;
-	fd->my_cs = 0;
-	fd->buf_offset = 0;
-	fd->fct_read = NULL;
-	fd->fct_write = NULL;
-	ft_memdel((void **)&fd->my_team);
-	if (fd->line)
-		ft_lstdel(&fd->line, ft_del);
-	if (fd->line_read)
-		ft_lstdel(&fd->line_read, ft_del);
+	ft_putendl_fd(err, 2);
+	exit(-1);
 }

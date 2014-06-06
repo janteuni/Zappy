@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 11:20:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 18:38:30 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void			server_accept(t_env *env)
 	env->fd_socket[cs].buf_offset = 0;
 	env->fd_socket[cs].line = NULL;
 	env->fd_socket[cs].line_read = NULL;
+	env->fd_socket[cs].my_team = NULL;
+	ft_reply_in_buff(env, cs, "BIENVENUE");
 }

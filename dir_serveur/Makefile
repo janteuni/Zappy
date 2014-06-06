@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/06 11:16:56 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/06 19:08:23 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_loop.c \
 					  $(DIR_SRC)/ft_null.c \
 					  $(DIR_SRC)/ft_del.c \
+					  $(DIR_SRC)/ft_exit.c \
 					  $(DIR_SRC)/ft_receive.c \
 					  $(DIR_SRC)/ft_stock_line.c \
 					  $(DIR_SRC)/ft_reply_in_buff.c \
@@ -38,6 +39,11 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/init_fd.c \
 					  $(DIR_SRC)/parser.c \
 					  $(DIR_SRC)/server_accept.c \
+					  $(DIR_SRC)/ft_pars_flag.c \
+					  $(DIR_SRC)/ft_print_map.c \
+					  $(DIR_SRC)/ft_init_map.c \
+					  $(DIR_SRC)/ft_add_me_team.c \
+					  $(DIR_SRC)/ft_place_me.c \
 
 # ---------------------------------------------------------------------------- #
 

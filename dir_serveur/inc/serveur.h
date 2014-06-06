@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 11:17:24 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:08:07 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,30 @@
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
 
+# define WIDTH		env->width
+# define HEIGHT		env->height
+
+# define N			1
+# define E			2
+# define S			3
+# define O			4
+
+# define FOOD		0
+# define LINEMATE	1
+# define DERAUMERE	2
+# define SIBUR		3
+# define MENDIANE	4
+# define PHIRAS		5
+# define THYSTAME	6
+
+
+typedef struct		s_pos
+{
+	int				x;
+	int				y;
+	int				o;
+}					t_pos;
+
 typedef struct		s_fd
 {
 	int				my_cs;
@@ -40,18 +64,41 @@ typedef struct		s_fd
 	int				buf_offset;
 	t_list			*line;
 	t_list			*line_read;
+	char			*my_team;
+	t_pos			pos;
+	t_list			*inventory;
+
 }					t_fd;
+
+typedef struct		s_player
+{
+	int				sock;
+}					t_player;
+
+typedef struct		s_team
+{
+	char			*name;
+	int				nb_player;
+	t_list			*players;
+}					t_team;
 
 typedef struct		s_env
 {
+	int				width;
+	int				height;
+	int				time;
+	int				nb_player;
 	int				port;
 	int				sock_server;
 	int				max_fd;
 	int				max;
 	int				r;
+	t_team			*teams;
+	int				max_team;
 	t_fd			*fd_socket;
 	fd_set			fd_read;
 	fd_set			fd_write;
+	int				***map;
 }					t_env;
 
 t_env				*get_env(void);
@@ -75,4 +122,10 @@ void				ft_null(void *d, size_t s);
 void				del_list(t_list **begin, t_list *to_del);
 int					push_str(char *msg, t_fd *client, char *cst_emitter);
 void				ft_del(void *d, size_t s);
+int					ft_exit(char *err);
+int					ft_pars_flag(int *i, char **argv, int argc, t_env *env);
+void				ft_print_map(t_env *env, int k);
+int					ft_init_map(t_env *env);
+int					ft_add_me_team(t_env *env, int cs, char *rcv);
+int					ft_place_me(t_env *env, int cs);
 #endif

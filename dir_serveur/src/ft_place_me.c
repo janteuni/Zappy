@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_place_me.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/06/06 19:05:00 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/06 19:17:52 by janteuni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+#include <time.h>
+#include "serveur.h"
+
+static void		st_my_position(t_env *env, int cs)
+{
+	char		*ret;
+	char		*tmp;
+	char		*itoa;
+
+	ret = ft_strjoin(ft_itoa(env->nb_player), "\n");
+	itoa = ft_itoa(env->fd_socket[cs].pos.x);
+	tmp = ft_strjoin(ret, itoa);
+	ft_memdel((void **)&ret);
+	ft_memdel((void **)&itoa);
+	itoa = ft_itoa(env->fd_socket[cs].pos.y);
+	ret = ft_strjoin(tmp, " ");
+	ft_memdel((void **)&tmp);
+	tmp = ft_strjoin(ret, itoa);
+	ft_reply_in_buff(env, cs, tmp);
+	ft_memdel((void **)&tmp);
+	ft_memdel((void **)&ret);
+	ft_memdel((void **)&itoa);
+}
+
+int				ft_place_me(t_env *env, int cs)
+{
+	srand(time(0));
+	env->fd_socket[cs].pos.x = rand() % WIDTH ;
+	env->fd_socket[cs].pos.y = rand() % HEIGHT;
+	env->fd_socket[cs].pos.o = N;
+	st_my_position(env, cs);
+	return (OK);
+}

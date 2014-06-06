@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 11:22:13 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/06 19:07:56 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void				ft_treat_cmd(char *rcv, t_env *env, int cs)
 {
-	(void)env;
-	(void)cs;
 	printf("%s\n", rcv);
+	if (env->fd_socket[cs].my_team == NULL)
+	{
+		if (ft_add_me_team(env, cs, rcv) == OK)
+			ft_place_me(env, cs);
+	}
+	else
+		ft_reply_in_buff(env, cs, "Cmd not implemented yet.");
 }
