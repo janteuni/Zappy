@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/04 11:43:14 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/06 11:16:56 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,25 @@ INCS				= -I inc -I ./inc -I ../libft/inc
 LIBS				= -L ../libft -lft
 
 SRC					= $(DIR_SRC)/main.c \
+					  $(DIR_SRC)/check_fd.c \
+					  $(DIR_SRC)/clean_fd.c \
+					  $(DIR_SRC)/client_read.c \
+					  $(DIR_SRC)/client_write.c \
+					  $(DIR_SRC)/create_server.c \
+					  $(DIR_SRC)/do_select.c \
+					  $(DIR_SRC)/error.c \
+					  $(DIR_SRC)/ft_loop.c \
+					  $(DIR_SRC)/ft_null.c \
+					  $(DIR_SRC)/ft_del.c \
+					  $(DIR_SRC)/ft_receive.c \
+					  $(DIR_SRC)/ft_stock_line.c \
+					  $(DIR_SRC)/ft_reply_in_buff.c \
+					  $(DIR_SRC)/ft_treat_cmd.c \
+					  $(DIR_SRC)/ft_treat_msg.c \
+					  $(DIR_SRC)/get_env.c \
+					  $(DIR_SRC)/init_fd.c \
+					  $(DIR_SRC)/parser.c \
+					  $(DIR_SRC)/server_accept.c \
 
 # ---------------------------------------------------------------------------- #
 
