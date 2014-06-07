@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 18:40:02 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/07 21:07:08 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ int					main(int ac, char **av)
 		return (ERR);
 	if (ft_confirm_connection(env) == ERR)
 		return (error("Failed to connect"));
-
-	/*ft_loop(env);*/
+	ft_loop(env);
 	close(env->socket);
-	while(1);
 	return (OK);
 }

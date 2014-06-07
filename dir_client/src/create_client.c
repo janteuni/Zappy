@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:52 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/07 18:51:51 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/07 21:05:31 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 int						ft_get_hostbyname(t_env *env)
 {
 	struct hostent		*hp;
-	struct hostent		*hp;
 	struct in_addr		**addr_list;
+	char				*tmp;
 
 	addr_list = NULL;
 	printf("can't parse IP address %s\n", env->addr);
@@ -30,7 +30,9 @@ int						ft_get_hostbyname(t_env *env)
 		return (ERR);
 	}
 	addr_list = (struct in_addr **)hp->h_addr_list;
+	tmp = env->addr;
 	env->addr = inet_ntoa(*addr_list[0]);
+	ft_strdel(&tmp);
 	return (OK);
 }
 

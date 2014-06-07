@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/07 18:18:45 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/07 21:07:41 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@
 # define OK			0
 # define ERR		-1
 
-# define SERVER		0
-# define CLIENT		1
-# define FREE		2
-
-# define BUF_SIZE	50
-# define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
-# define MSG_NULL	-1
+# define BUF_SIZE	50
+# define INV_BUF	1024
+
+# define INV_SIZE	7
+# define FOOD		0
+# define LINEMATE	1
+# define DERAUMERE	2
+# define SIBUR		3
+# define MENDIANE	4
+# define PHIRAS		5
+# define THYSTAME	6
+
 
 typedef struct		s_info
 {
@@ -44,7 +49,8 @@ typedef struct		s_env
 	int				port;
 	int				socket;
 	t_info			myinfo;
-
+	int				dead;
+	int				inv[INV_SIZE];
 }					t_env;
 
 t_env				*get_env(void);
@@ -55,5 +61,16 @@ int					create_client(t_env *env);
 **			ft_parse.c
 */
 int					ft_parse(int ac, char **av, t_env *env);
+
+/*
+**			ft_loop.c
+*/
+int					ft_loop(t_env *env);
+int					ft_get_inventory(t_env *env);
+
+/*
+**			ft_get_inventory.c
+*/
+int					ft_get_inventory(t_env *env);
 
 #endif
