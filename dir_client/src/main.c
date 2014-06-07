@@ -6,53 +6,71 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:42:12 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/07 18:40:02 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/socket.h>
 #include <stdlib.h>
 #include <sys/resource.h>
 #include <unistd.h>
 #include "client.h"
 
-int			init_env(t_env *env)
+static int			ft_treat_msg(t_env *env, char *buf)
 {
-	/*int				i;
-	struct rlimit	rlp;*/
+	char			**msgs;
+	char			**coords;
 
-	/*i = 0;*/
-	/*env->fd_socket = NULL;*/
-	/*if (getrlimit(RLIMIT_NOFILE, &rlp) == -1)
-		return (error("getrlimit failed"));
-	env->max_fd = rlp.rlim_cur;*/
-	/*if (!(env->fd_socket = (t_fd *)malloc(sizeof(t_fd))))
-		return (error("malloc failed"));*/
-	/*while (i < env->max_fd)
-	{
-		clean_fd(&env->fd_socket[i]);
-		i++;
-	}*/
-	clean_fd(env);
+	msgs = ft_strsplit(buf, '\n');
+	if (ft_tab_len(msgs) < 2)
+		return (error(msgs[0]));
+	env->myinfo.client_nb = ft_atoi(msgs[0]);
+	coords = ft_strsplit(msgs[1], ' ');
+	if (ft_tab_len(coords) < 2)
+		return (error("Failed to receive coordinates"));
+	env->myinfo.x = ft_atoi(coords[0]);
+	env->myinfo.y = ft_atoi(coords[1]);
+	printf("client_nb %d, x %d y %d\n",env->myinfo.client_nb, env->myinfo.x, env->myinfo.y );
+	ft_free_tab((void ***)&msgs);
+	ft_free_tab((void ***)&coords);
 	return (OK);
 }
 
-int			main(int ac, char **av)
+int					ft_confirm_connection(t_env *env)
 {
-	t_env	*env;
+	char			buf[BUF_SIZE + 1];
+	int				n;
+	char			*str;
+
+	ft_bzero(buf, BUF_SIZE + 1);
+	recv(env->socket, buf, BUF_SIZE, 0);
+	if (ft_strcmp("BIENVENUE\n", buf))
+		return (ERR);
+	str = ft_strjoin(env->team, "\n");
+	if ((n = send(env->socket, str, ft_strlen(str), 0)) < 0)
+		return (error("Failed to send teamname"));
+	ft_bzero(buf, BUF_SIZE + 1);
+	recv(env->socket, buf, BUF_SIZE, 0);
+	free(str);
+	if (ft_treat_msg(env, buf) < 0)
+		return (ERR);
+	return (OK);
+}
+
+int					main(int ac, char **av)
+{
+	t_env			*env;
 
 	env = get_env();
-	/*if (ft_parse(ac, av, env) < 0)
-	{
-		ft_free_env(env);
-		return (ERR)
-		}*/
-	if (init_env(env) == ERR)
-		return (ERR);
 	if (ft_parse(ac, av, env) == ERR)
 		return (ERR);
 	if (create_client(env) == ERR)
 		return (ERR);
-	ft_loop(env);
+	if (ft_confirm_connection(env) == ERR)
+		return (error("Failed to connect"));
+
+	/*ft_loop(env);*/
 	close(env->socket);
+	while(1);
 	return (OK);
 }

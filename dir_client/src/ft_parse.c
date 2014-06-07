@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:41:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/06 16:44:45 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/07 13:07:08 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -42,10 +42,10 @@ int					ft_read_params(int ac, int i, char **av, t_env *env)
 		if ( i + 1 == ac || (env->port = ft_atoi(av[i + 1])) < 1)
 			return (error("Please enter a valid port"));
 	}
-	else if (!ft_strcmp(av[i], "-h") && !env->host)
+	else if (!ft_strcmp(av[i], "-h") && !env->addr)
 	{
 		if ( i + 1 < ac )
-			env->host = av[i + 1];
+			env->addr = av[i + 1];
 	}
 	else
 	{
@@ -71,7 +71,7 @@ int					ft_parse(int ac, char **av, t_env *env)
 			return (ERR);
 		i +=2;
 	}
-	env->host = (!env->host ? ft_strdup("localhost") : env->host);
-	printf("TEAM = [%s]\nPORT = [%d]\nHOST = [%s] \n",env->team, env->port, env->host );
+	env->addr = (!env->addr ? ft_strdup("localhost") : env->addr);
+	printf("TEAM = [%s]\nPORT = [%d]\nADDR = [%s] \n",env->team, env->port, env->addr );
 	return (0);
 }
