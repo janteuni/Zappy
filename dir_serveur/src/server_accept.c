@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 12:00:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 12:28:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void		st_init_inventory(t_env *env, int cs)
 {
 	int			i;
 
-	i = 0;
+	i = 1;
+
+	env->fd_socket[cs].inventory[FOOD] = 10;
 	while (i < NB_STUFF)
 	{
 		env->fd_socket[cs].inventory[i] = 0;

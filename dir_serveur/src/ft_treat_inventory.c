@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 11:36:48 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 12:23:05 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 12:27:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void				ft_treat_inventory(t_env *env, int cs, char *rcv)
 	char			*tmp;
 	char			*itoa;
 
-	i = 1;
+	i = 0;
 	ret = NULL;
 	tmp = NULL;
 	itoa = NULL;
