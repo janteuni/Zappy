@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:52:00 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 12:23:09 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@
 # define CLIENT		1
 # define FREE		2
 
-# define BUF_SIZE	50
+# define BUF_SIZE	1024
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
-# define NB_CMDS	3
+# define NB_CMDS	4
+# define NB_STUFF	7
 
 # define WIDTH		env->width
 # define HEIGHT		env->height
+# define POSX(CS)	env->fd_socket[CS].pos.x
+# define POSY(CS)	env->fd_socket[CS].pos.y
+# define OR(CS)		env->fd_socket[CS].pos.o
 
 # define N			1
 # define E			2
@@ -72,8 +76,7 @@ typedef struct		s_fd
 	t_list			*line_read;
 	char			*my_team;
 	t_pos			pos;
-	t_list			*inventory;
-
+	int				inventory[NB_STUFF];
 }					t_fd;
 
 typedef struct		s_player
@@ -105,6 +108,7 @@ typedef struct		s_env
 	fd_set			fd_read;
 	fd_set			fd_write;
 	int				***map;
+	char			stuff[NB_STUFF][11];
 }					t_env;
 
 t_env				*get_env(void);
@@ -135,6 +139,7 @@ int					ft_init_map(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 
+void				ft_treat_inventory(t_env *env, int cs, char *rcv);
 void				ft_treat_avance(t_env *env, int cs, char *rcv);
 void				ft_treat_left(t_env *env, int cs, char *rcv);
 void				ft_treat_right(t_env *env, int cs, char *rcv);

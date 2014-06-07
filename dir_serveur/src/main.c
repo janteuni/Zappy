@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 20:05:13 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 12:23:08 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ static void		finish_init(t_env *env)
 	env->nb_player = 0;
 	env->port = 0;
 	env->map = NULL;
+	ft_strcpy(env->stuff[FOOD], "food");
+	ft_strcpy(env->stuff[LINEMATE], "linemate");
+	ft_strcpy(env->stuff[DERAUMERE], "deraumere");
+	ft_strcpy(env->stuff[SIBUR], "sibur");
+	ft_strcpy(env->stuff[MENDIANE], "mendiane");
+	ft_strcpy(env->stuff[PHIRAS], "phiras");
+	ft_strcpy(env->stuff[THYSTAME], "thystame");
 }
 
 int				init_env(t_env *env)

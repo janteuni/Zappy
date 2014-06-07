@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 18:38:30 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 12:00:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 #include <arpa/inet.h>
 #include <stdlib.h>
 #include "serveur.h"
+
+void		st_init_inventory(t_env *env, int cs)
+{
+	int			i;
+
+	i = 0;
+	while (i < NB_STUFF)
+	{
+		env->fd_socket[cs].inventory[i] = 0;
+		i++;
+	}
+}
 
 void			server_accept(t_env *env)
 {
@@ -36,5 +48,6 @@ void			server_accept(t_env *env)
 	env->fd_socket[cs].line = NULL;
 	env->fd_socket[cs].line_read = NULL;
 	env->fd_socket[cs].my_team = NULL;
+	st_init_inventory(env, cs);
 	ft_reply_in_buff(env, cs, "BIENVENUE");
 }

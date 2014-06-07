@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:52:52 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:53:05 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 11:22:47 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void				ft_treat_right(t_env *env, int cs, char *rcv)
 {
-	printf("treat_right not implemented yet\n");
-	(void)env;
-	(void)cs;
 	(void)rcv;
+	if (OR(cs) == N)
+		OR(cs) = E;
+	else if (OR(cs) == E)
+		OR(cs) = S;
+	else if (OR(cs) == S)
+		OR(cs) = O;
+	else if (OR(cs) == O)
+		OR(cs) = N;
 }
