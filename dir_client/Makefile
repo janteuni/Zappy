@@ -6,7 +6,7 @@
 #    By: fbeck <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/06 16:16:30 by fbeck             #+#    #+#              #
-#    Updated: 2014/06/06 19:33:07 by fbeck            ###   ########.fr        #
+#    Updated: 2014/06/07 17:26:04 by fbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,25 +18,9 @@ INCS				= -I inc -I ./inc -I ../libft/inc
 LIBS				= -L ../libft -lft
 
 SRC					= $(DIR_SRC)/main.c \
-					  $(DIR_SRC)/check_fd.c \
-					  $(DIR_SRC)/clean_fd.c \
-					  $(DIR_SRC)/client_read.c \
-					  $(DIR_SRC)/client_write.c \
 					  $(DIR_SRC)/create_client.c \
-					  $(DIR_SRC)/do_select.c \
 					  $(DIR_SRC)/error.c \
-					  $(DIR_SRC)/ft_loop.c \
-					  $(DIR_SRC)/ft_null.c \
-					  $(DIR_SRC)/ft_del.c \
-					  $(DIR_SRC)/ft_receive.c \
-					  $(DIR_SRC)/ft_stock_line.c \
-					  $(DIR_SRC)/ft_reply_in_buff.c \
-					  $(DIR_SRC)/ft_treat_cmd.c \
-					  $(DIR_SRC)/ft_treat_msg.c \
 					  $(DIR_SRC)/get_env.c \
-					  $(DIR_SRC)/init_fd.c \
-					  $(DIR_SRC)/parser.c \
-					  $(DIR_SRC)/server_accept.c \
 					  $(DIR_SRC)/ft_parse.c \
 
 # ---------------------------------------------------------------------------- #
