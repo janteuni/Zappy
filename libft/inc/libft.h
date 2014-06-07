@@ -6,7 +6,7 @@
 /*   By: mpillet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 12:24:11 by mpillet           #+#    #+#             */
-/*   Updated: 2014/03/27 11:08:32 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/06/07 18:07:17 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_isblank(char c);
 char		*ft_strtrim(char const *s);
 char		**ft_strsplit(char const *s, char c);
+char		**ft_super_split(char const *s);
 char		*ft_itoa(int n);
 int			ft_startswith(const char *str, const char *s);
 char		*ft_lpad(char *input, size_t len, char c);
