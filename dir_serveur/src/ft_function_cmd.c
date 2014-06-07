@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 19:59:57 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 18:32:48 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void			st_assign(t_cmd cmds[])
 	cmds[1].name = "gauche";
 	cmds[2].fn = ft_treat_right;
 	cmds[2].name = "droite";
-/*	cmds[3].fn = treat_inventory;
+	cmds[3].fn = ft_treat_inventory;
 	cmds[3].name = "inventaire";
-	cmds[4].fn = treat_vision;
+	cmds[4].fn = ft_treat_vision;
 	cmds[4].name = "voir";
-	cmds[5].fn = treat_get;
+	cmds[5].fn = ft_treat_get;
 	cmds[5].name = "prend";
-	cmds[6].fn = treat_put;
+/*	cmds[6].fn = treat_put;
 	cmds[6].name = "pose";
 	cmds[7].fn = treat_expulse;
 	cmds[7].name = "expulse";
@@ -44,17 +44,22 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv)
 {
 	int				i;
 	static t_cmd	cmds[NB_CMDS];
+	char			**split;
 
+	split = NULL;
+	split = ft_super_split(rcv);
 	st_assign(cmds);
 	i = 0;
 	while (i < NB_CMDS)
 	{
-		if (0 == ft_strcmp(cmds[i].name, rcv))
+		if (0 == ft_strcmp(cmds[i].name, split[0]))
 		{
 			cmds[i].fn(env, cs, rcv);
+			ft_free_tab((void ***)&split);
 			return (OK);
 		}
 		++i;
 	}
+	ft_free_tab((void ***)&split);
 	return (ERR);
 }
