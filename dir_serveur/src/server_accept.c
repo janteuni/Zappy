@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 12:28:22 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 15:40:03 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void		st_init_inventory(t_env *env, int cs)
 	int			i;
 
 	i = 1;
-
 	env->fd_socket[cs].inventory[FOOD] = 10;
 	while (i < NB_STUFF)
 	{
@@ -50,6 +49,8 @@ void			server_accept(t_env *env)
 	env->fd_socket[cs].line = NULL;
 	env->fd_socket[cs].line_read = NULL;
 	env->fd_socket[cs].my_team = NULL;
+	env->fd_socket[cs].level = 1;
 	st_init_inventory(env, cs);
 	ft_reply_in_buff(env, cs, "BIENVENUE");
+	printf("ok\n");
 }

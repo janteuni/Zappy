@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 18:25:22 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 15:29:00 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	clean_fd(t_fd *fd)
 	fd->buf_offset = 0;
 	fd->fct_read = NULL;
 	fd->fct_write = NULL;
-	ft_memdel((void **)&fd->my_team);
+	/*ft_memdel((void **)&fd->my_team);*/
 	if (fd->line)
 		ft_lstdel(&fd->line, ft_del);
 	if (fd->line_read)

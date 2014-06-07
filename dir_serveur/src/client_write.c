@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 18:15:48 by janteuni          #+#    #+#             */
-/*   Updated: 2014/05/24 13:04:23 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 15:23:34 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void			client_write(t_env *env, int cs)
 
 	tmp = NULL;
 	join = NULL;
+	printf("write\n");
 	list = env->fd_socket[cs].line;
 	if (list != NULL)
 	{

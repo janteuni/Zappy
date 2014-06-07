@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 12:23:09 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 13:20:30 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
-# define NB_CMDS	4
+# define NB_CMDS	5
 # define NB_STUFF	7
 
 # define WIDTH		env->width
@@ -36,6 +36,7 @@
 # define POSX(CS)	env->fd_socket[CS].pos.x
 # define POSY(CS)	env->fd_socket[CS].pos.y
 # define OR(CS)		env->fd_socket[CS].pos.o
+# define LEVEL(CS)	env->fd_socket[CS].level
 
 # define N			1
 # define E			2
@@ -77,6 +78,7 @@ typedef struct		s_fd
 	char			*my_team;
 	t_pos			pos;
 	int				inventory[NB_STUFF];
+	int				level;
 }					t_fd;
 
 typedef struct		s_player
@@ -140,6 +142,7 @@ int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 
 void				ft_treat_inventory(t_env *env, int cs, char *rcv);
+void				ft_treat_vision(t_env *env, int cs, char *rcv);
 void				ft_treat_avance(t_env *env, int cs, char *rcv);
 void				ft_treat_left(t_env *env, int cs, char *rcv);
 void				ft_treat_right(t_env *env, int cs, char *rcv);
