@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 15:40:03 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 15:51:07 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ void			server_accept(t_env *env)
 	env->fd_socket[cs].fct_read = client_read;
 	env->fd_socket[cs].fct_write = client_write;
 	env->fd_socket[cs].buf_offset = 0;
+	env->fd_socket[cs].level = 1;
 	env->fd_socket[cs].line = NULL;
 	env->fd_socket[cs].line_read = NULL;
 	env->fd_socket[cs].my_team = NULL;
-	env->fd_socket[cs].level = 1;
 	st_init_inventory(env, cs);
 	ft_reply_in_buff(env, cs, "BIENVENUE");
-	printf("ok\n");
 }

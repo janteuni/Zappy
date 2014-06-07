@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 13:20:30 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 15:53:35 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct		s_pos
 
 typedef struct		s_fd
 {
+	int				level;
 	int				my_cs;
 	int				type;
 	void			(*fct_read)();
@@ -78,7 +79,6 @@ typedef struct		s_fd
 	char			*my_team;
 	t_pos			pos;
 	int				inventory[NB_STUFF];
-	int				level;
 }					t_fd;
 
 typedef struct		s_player
