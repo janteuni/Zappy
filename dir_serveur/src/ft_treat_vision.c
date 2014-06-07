@@ -6,13 +6,13 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 17:22:41 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/07 19:11:47 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
+static void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 {
 	pos->x = POSX(cs);
 	pos->y = POSY(cs);
@@ -38,7 +38,39 @@ void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 	}
 }
 
-char				*ft_list_case(t_pos pos, t_env *env)
+static char				*st_list_player(t_pos pos, t_env *env, int cs, char *final)
+{
+	char			*ret;
+	char			*tmp;
+	int				i;
+
+	i = 0;
+	tmp = NULL;
+	ret = NULL;
+	while (i < env->max_fd)
+	{
+		if (env->fd_socket[i].type == CLIENT && i != cs)
+		{
+			if (POSY(i) == pos.y && POSX(i) == pos.x)
+			{
+				ret = ft_strjoin(tmp, env->fd_socket[i].my_team);
+				if (tmp)
+					ft_memdel((void **)&tmp);
+				tmp = ft_strjoin(ret, " ");
+				ft_memdel((void **)&ret);
+			}
+		}
+		i++;
+	}
+	if (tmp)
+	{
+		ret = ft_strjoin(final, tmp);
+		ft_memdel((void **)&tmp);
+	}
+	return (ret);
+}
+
+static char				*ft_list_case(t_pos pos, t_env *env, int cs)
 {
 	int				i;
 	int				j;
@@ -63,8 +95,12 @@ char				*ft_list_case(t_pos pos, t_env *env)
 		}
 		i++;
 	}
-	ret[ft_strlen(ret) - 1] = '\0';
-	return (ret);
+	tmp = st_list_player(pos, env, cs, ret);
+	if (!tmp)
+		tmp = ft_strdup(ret);
+	ft_memdel((void **)&ret);
+	tmp[ft_strlen(tmp) - 1] = '\0';
+	return (tmp);
 }
 
 void				ft_treat_vision(t_env *env, int cs, char *rcv)
@@ -85,7 +121,7 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 		j = 0;
 		while (j < (i * 2) + 1)
 		{
-			carre = ft_list_case(pos_case, env);
+			carre = ft_list_case(pos_case, env, cs);
 			final = ft_strjoin(tmp, carre);
 			if (tmp)
 				ft_memdel((void **)&tmp);
