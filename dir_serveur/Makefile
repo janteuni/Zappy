@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/08 12:46:52 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/08 14:55:52 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_init_map.c \
 					  $(DIR_SRC)/ft_add_me_team.c \
 					  $(DIR_SRC)/ft_place_me.c \
+					  $(DIR_SRC)/ft_init_incantation.c \
 					  $(DIR_SRC)/ft_function_cmd.c \
 					  $(DIR_SRC)/ft_treat_avance.c \
 					  $(DIR_SRC)/ft_treat_left.c \
