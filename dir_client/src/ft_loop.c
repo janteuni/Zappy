@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/07 20:59:05 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/08 19:48:03 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int					ft_loop(t_env *env)
 	{
 		ft_get_inventory(env);
 		ft_print_inv(env);
+		ft_look(env);
+		env->dead = 1;
 		/*ft_takemove(env);*/
 	}
 	return (OK);
