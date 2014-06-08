@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 12:23:08 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/08 14:56:02 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int				init_env(t_env *env)
 		i++;
 	}
 	finish_init(env);
+	ft_init_incantation(env);
 	return (OK);
 }
 

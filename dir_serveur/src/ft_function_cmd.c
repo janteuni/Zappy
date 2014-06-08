@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 18:51:07 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/08 12:47:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static void			st_assign(t_cmd cmds[])
 	cmds[5].name = "prend";
 	cmds[6].fn = ft_treat_put;
 	cmds[6].name = "pose";
-/*	cmds[7].fn = treat_expulse;
+	cmds[7].fn = ft_treat_expulse;
 	cmds[7].name = "expulse";
-	cmds[8].fn = treat_broadcast;
+	cmds[8].fn = ft_treat_broadcast;
 	cmds[8].name = "broadcast";
-	cmds[9].fn = treat_incantation;
+	cmds[9].fn = ft_treat_incantation;
 	cmds[9].name = "incantation";
-	cmds[10].fn = treat_fork;
+/*	cmds[10].fn = treat_fork;
 	cmds[10].name = "fork";
 	cmds[11].fn = treat_connect_nbr;
 	cmds[11].name = "connect_nbr";*/
