@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 18:37:38 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/08 12:47:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
-# define NB_CMDS	7
+# define NB_CMDS	10
 # define NB_STUFF	7
 
 # define WIDTH		env->width
@@ -141,6 +141,9 @@ int					ft_init_map(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 
+void				ft_treat_expulse(t_env *env, int cs, char *rcv);
+void				ft_treat_incantation(t_env *env, int cs, char *rcv);
+void				ft_treat_broadcast(t_env *env, int cs, char *rcv);
 void				ft_treat_inventory(t_env *env, int cs, char *rcv);
 void				ft_treat_put(t_env *env, int cs, char *rcv);
 void				ft_treat_get(t_env *env, int cs, char *rcv);
