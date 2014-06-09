@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_del.c                                           :+:      :+:    :+:   */
+/*   ft_messages_add.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/06 11:15:50 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:19:27 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/09 14:18:44 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/09 15:24:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <sys/time.h>
 #include "serveur.h"
 
-void	ft_del_mess(void *d, size_t s)
+void				ft_messages_add(t_env *env, int cs, char *msg, int t)
 {
-	t_list		*del;
+	t_message		new_message;
+	long int		timestamp;
+	struct timeval	tv;
 
-	del = (t_list *)d;
-/*	ft_memdel((void **)&((t_message *)del->content)->msg);*/
-	ft_memdel((void **)&d);
-	(void)s;
-}
-
-void	ft_del(void *d, size_t s)
-{
-	ft_memdel((void **)&d);
-	(void)s;
+	gettimeofday(&tv, NULL);
+	timestamp = (1000000 * tv.tv_sec + tv.tv_usec) + ((t / env->time) * 1000000);
+	new_message.msg = msg;
+	new_message.cs = cs;
+	new_message.timestamp = timestamp;
+	ft_lstpush(&env->messages, ft_lstnew(&new_message, sizeof(new_message)));
 }

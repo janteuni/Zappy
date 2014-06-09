@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 10:30:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 10:37:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 15:25:13 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void				ft_loop(t_env *env)
 {
 	while (1)
 	{
+		ft_messages_select(env);
 		init_fd(env);
 		do_select(env);
 		check_fd(env);

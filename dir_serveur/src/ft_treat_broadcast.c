@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:42:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:10:12 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 15:32:51 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void				ft_treat_broadcast(t_env *env, int cs, char *rcv)
 		while (rcv[i] == ' ')
 			i++;
 		st_contact_all(rcv, i, env, cs);
-		ft_reply_in_buff(env, cs, "ok");
+		ft_messages_add(env, cs, "ok", 7);
 	}
 	else
-		ft_reply_in_buff(env, cs, "ko");
+		ft_messages_add(env, cs, "ko", 7);
 	ft_free_tab((void ***)&split);
 }
