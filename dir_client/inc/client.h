@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/08 18:21:56 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/09 18:01:57 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MAX(a,b)	((a > b) ? a : b)
 # define BUF_SIZE	50
 # define INV_BUF	1024
-# define LOOK_BUF	4096
+# define BIG_BUF	4095
 
 # define INV_SIZE	7
 # define SEE_SIZE	8
@@ -36,13 +36,31 @@
 # define THYSTAME	6
 # define PLAYERS	7
 
-typedef struct		s_info
-{
-	int				client_nb;
-	int				x;
-	int				y;
+# define NB_CMDS	12
+# define AVANCE		0
+# define DROITE		1
+# define GAUCHE		2
+# define VOIR		3
+# define INVENT		4
+# define PREND		5
+# define POSE		6
+# define EXPUL		7
+# define BROAD		8
+# define INCANT		9
+# define FORK		10
+# define CON_NB		11
+# define SUCCESS	0
+# define FAIL		1
 
-}					t_info;
+# define DEAD		"mort"
+# define MOVE		"deplacement"
+# define MSG		"message"
+# define ELEV		"elevation en cours"
+# define OK			"ok"
+# define KO			"ko"
+# define LIST		"{"
+
+
 
 typedef struct		s_env
 {
@@ -50,9 +68,14 @@ typedef struct		s_env
 	char			*addr;
 	int				port;
 	int				socket;
-	t_info			myinfo;
+	int				*cmds;
+	char			**replies;
+	fd_set			readfd;
 	int				dead;
 	int				level;
+	int				client_nb;
+	int				x;
+	int				y;
 	int				inv[INV_SIZE];
 }					t_env;
 

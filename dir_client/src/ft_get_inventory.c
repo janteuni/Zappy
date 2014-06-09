@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 20:58:40 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/08 15:26:24 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/09 18:00:22 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ static void			ft_read_inventory(t_env *env, char **s, int i)
 	}
 }
 
+int					ft_recv_inventory(t_env *env, char *str)
+{
+	char			**split;
+
+	printf("%s\n", buf);
+	split = ft_strsplit(buf, ',');
+	ft_read_inventory(env, split, 0);
+	ft_free_tab((void ***)&split);
+	return (OK);
+}
+
 int					ft_get_inventory(t_env *env)
 {
 	char			buf[INV_BUF + 1];
@@ -56,13 +67,16 @@ int					ft_get_inventory(t_env *env)
 
 	ft_bzero(buf, INV_BUF + 1);
 	str = ft_strjoin("inventaire", "\n");
+	env->cmds[INVENT]++;
+	env->replies[SUCCESS] = ft_strdup(LIST);
+	env->replies[FAIL] = NULL;
 	if ((n = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));
-	recv(env->socket, buf, INV_BUF, 0);
+/*	recv(env->socket, buf, INV_BUF, 0);
 	printf("%s\n", buf);
 	split = ft_strsplit(buf, ',');
 	ft_read_inventory(env, split, 0);
 	ft_free_tab((void ***)&split);
-	ft_strdel(&str);
+	ft_strdel(&str);*/
 	return (OK);
 }
