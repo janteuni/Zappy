@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:42:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:08:40 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 12:10:12 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void				ft_treat_broadcast(t_env *env, int cs, char *rcv)
 	}
 	else
 		ft_reply_in_buff(env, cs, "ko");
+	ft_free_tab((void ***)&split);
 }

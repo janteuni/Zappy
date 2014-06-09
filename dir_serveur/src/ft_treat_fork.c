@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_del.c                                           :+:      :+:    :+:   */
+/*   ft_treat_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/06 11:15:50 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:42:15 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/09 12:10:25 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/09 12:26:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "serveur.h"
 
-void	ft_del(void *d, size_t s)
+void				ft_treat_fork(t_env *env, int cs, char *rcv)
 {
-	ft_memdel((void **)&d);
-	(void)s;
+	(void)rcv;
+	ft_reply_in_buff(env, cs, "ok");
 }

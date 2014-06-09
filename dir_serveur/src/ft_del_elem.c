@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_del.c                                           :+:      :+:    :+:   */
+/*   ft_del_elem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/06 11:15:50 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:42:15 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/09 12:37:19 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/09 12:42:52 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "serveur.h"
 
-void	ft_del(void *d, size_t s)
+void			ft_del_elem(t_list **begin, t_list *to_del)
 {
-	ft_memdel((void **)&d);
-	(void)s;
+	t_list		*prev;
+	t_list		*tmp;
+
+	prev = NULL;
+	tmp = *begin;
+	while (tmp)
+	{
+		if (tmp == to_del)
+		{
+			if (prev)
+				prev->next = tmp->next;
+			else
+				*begin = tmp->next;
+			ft_lstdelone(&tmp, ft_del);
+			break ;
+		}
+		prev = tmp;
+		tmp = tmp->next;
+	}
 }

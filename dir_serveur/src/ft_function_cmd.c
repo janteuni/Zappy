@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:08:57 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 12:30:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static void			st_assign(t_cmd cmds[])
 	cmds[8].name = "broadcast";
 	cmds[9].fn = ft_treat_incantation;
 	cmds[9].name = "incantation";
-/*	cmds[10].fn = treat_fork;
+	cmds[10].fn = ft_treat_fork;
 	cmds[10].name = "fork";
-	cmds[11].fn = treat_connect_nbr;
-	cmds[11].name = "connect_nbr";*/
+	cmds[11].fn = ft_treat_connect_nbr;
+	cmds[11].name = "connect_nbr";
 }
 
 int					ft_function_cmd(t_env *env, int cs, char *rcv)

@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/09 11:52:40 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/09 12:43:04 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,9 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_treat_incantation.c \
 					  $(DIR_SRC)/ft_treat_broadcast.c \
 					  $(DIR_SRC)/ft_check_incantation.c \
+					  $(DIR_SRC)/ft_treat_connect_nbr.c \
+					  $(DIR_SRC)/ft_treat_fork.c \
+					  $(DIR_SRC)/ft_del_elem.c \
 
 # ---------------------------------------------------------------------------- #
 

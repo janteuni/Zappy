@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 11:52:21 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 12:44:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
-# define NB_CMDS	10
+# define NB_CMDS	12
 # define NB_STUFF	7
 # define NB_LEVEL	9
 
@@ -153,8 +153,11 @@ int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
 void				ft_check_incantation(t_env *env, int cs);
+void				ft_del_elem(t_list **begin, t_list *to_del);
 
 void				ft_treat_expulse(t_env *env, int cs, char *rcv);
+void				ft_treat_connect_nbr(t_env *env, int cs, char *rcv);
+void				ft_treat_fork(t_env *env, int cs, char *rcv);
 void				ft_treat_incantation(t_env *env, int cs, char *rcv);
 void				ft_treat_broadcast(t_env *env, int cs, char *rcv);
 void				ft_treat_inventory(t_env *env, int cs, char *rcv);
