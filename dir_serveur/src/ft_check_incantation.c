@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 17:52:39 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:24:06 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int					st_incantation_succeed(t_env *env, int cs)
 		return (OK);
 	env->map[TOTY(cs)][TOTX(cs)][INCANT] = NO;
 	return (ERR);
-
 }
 
 void						ft_check_incantation(t_env *env, int cs)
@@ -29,9 +28,8 @@ void						ft_check_incantation(t_env *env, int cs)
 	char			*join;
 
 	if (st_incantation_succeed(env, cs) == OK)
-		itoa = ft_itoa(env->fd_socket[cs].level + 1);
-	else
-		itoa =  ft_itoa(env->fd_socket[cs].level);
+		env->fd_socket[cs].level += 1;
+	itoa =  ft_itoa(env->fd_socket[cs].level);
 	join = ft_strjoin("niveau ", itoa);
 	TOTY(cs) = -1;
 	TOTX(cs) = -1;

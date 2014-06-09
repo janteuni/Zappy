@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 17:56:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:35:04 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define CLIENT		1
 # define FREE		2
 
-# define BUF_SIZE	1024
+# define BUF_SIZE	4096
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
