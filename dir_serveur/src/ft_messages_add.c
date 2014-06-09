@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 14:18:44 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:24:18 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:11:57 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void				ft_messages_add(t_env *env, int cs, char *msg, int t)
 
 	gettimeofday(&tv, NULL);
 	timestamp = (1000000 * tv.tv_sec + tv.tv_usec) + ((t / env->time) * 1000000);
-	new_message.msg = msg;
+	new_message.msg = ft_strdup(msg);
 	new_message.cs = cs;
 	new_message.timestamp = timestamp;
+	printf("%s\n", msg);
 	ft_lstpush(&env->messages, ft_lstnew(&new_message, sizeof(new_message)));
 }

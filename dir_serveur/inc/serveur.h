@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:14:46 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 17:56:52 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct		s_env
 	fd_set			fd_read;
 	fd_set			fd_write;
 	int				***map;
-	char			stuff[NB_STUFF][11];
+	char			stuff[NB_STUFF][12];
 	int				**incantation;
 	t_list			*messages;
 }					t_env;

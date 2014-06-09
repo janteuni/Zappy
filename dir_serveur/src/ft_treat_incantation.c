@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:36:31 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 17:52:37 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void					ft_treat_incantation(t_env *env, int cs, char *rcv)
 	(void)rcv;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
 	if (env->map[POSY(cs)][POSX(cs)][INCANT] == NO
+			&& TOTX(cs) == -1 && TOTY(cs) == -1
 			&& st_compare_stuff(env, tab_case, env->fd_socket[cs].level) == OK)
 	{
 		env->map[POSY(cs)][POSX(cs)][INCANT] = YES;
