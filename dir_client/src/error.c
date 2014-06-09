@@ -6,11 +6,11 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:53:01 by janteuni          #+#    #+#             */
-/*   Updated: 2014/05/20 10:24:33 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 15:13:25 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "serveur.h"
+#include "client.h"
 
 int				error(char *err)
 {
