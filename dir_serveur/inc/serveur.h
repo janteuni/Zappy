@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/08 16:36:00 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 11:52:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # define OK			0
 # define ERR		-1
+
+# define YES		1
+# define NO			0
 
 # define SERVER		0
 # define CLIENT		1
@@ -39,6 +42,8 @@
 # define OR(CS)		env->fd_socket[CS].pos.o
 # define LEVEL(CS)	env->fd_socket[CS].level
 # define TOTEM		env->incantation
+# define TOTX(CS)	env->fd_socket[CS].incant.x
+# define TOTY(CS)	env->fd_socket[CS].incant.y
 
 # define N			1
 # define E			2
@@ -53,6 +58,7 @@
 # define MENDIANE	4
 # define PHIRAS		5
 # define THYSTAME	6
+# define INCANT		7
 
 typedef struct		s_cmd
 {
@@ -81,6 +87,7 @@ typedef struct		s_fd
 	t_list			*line_read;
 	char			*my_team;
 	t_pos			pos;
+	t_pos			incant;
 	int				inventory[NB_STUFF];
 }					t_fd;
 
@@ -114,7 +121,7 @@ typedef struct		s_env
 	fd_set			fd_write;
 	int				***map;
 	char			stuff[NB_STUFF][11];
-	int				incantation[NB_LEVEL][NB_STUFF];
+	int				**incantation;
 }					t_env;
 
 t_env				*get_env(void);
@@ -145,6 +152,7 @@ int					ft_init_map(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
+void				ft_check_incantation(t_env *env, int cs);
 
 void				ft_treat_expulse(t_env *env, int cs, char *rcv);
 void				ft_treat_incantation(t_env *env, int cs, char *rcv);
