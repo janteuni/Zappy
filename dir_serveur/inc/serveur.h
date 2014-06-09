@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 18:35:04 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:49:23 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
 void				ft_check_incantation(t_env *env, int cs);
 
+void				ft_treat_eat(t_env *env);
 void				ft_treat_expulse(t_env *env, int cs, char *rcv);
 void				ft_treat_connect_nbr(t_env *env, int cs, char *rcv);
 void				ft_treat_fork(t_env *env, int cs, char *rcv);
