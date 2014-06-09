@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 11:53:51 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:21:56 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int				st_count_players(t_pos pos, t_env *env, int level, int inf)
 					TOTY(i) = POSY(i);
 					TOTX(i) = POSX(i);
 					ft_reply_in_buff(env, i, "elevation en cours");
+					ft_messages_add(env, i, "elevation", 300);
 				}
 				j++;
 			}
@@ -80,13 +81,16 @@ void					ft_treat_incantation(t_env *env, int cs, char *rcv)
 	(void)rcv;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
 	if (env->map[POSY(cs)][POSX(cs)][INCANT] == NO
+			&& TOTX(cs) == -1 && TOTY(cs) == -1
 			&& st_compare_stuff(env, tab_case, env->fd_socket[cs].level) == OK)
 	{
+		printf("elevation OK\n");
 		env->map[POSY(cs)][POSX(cs)][INCANT] = YES;
 		st_count_players(env->fd_socket[cs].pos, env, env->fd_socket[cs].level, OK);
 	}
 	else
 	{
+		printf("elevation NO\n\n");
 		itoa = ft_itoa(env->fd_socket[cs].level);
 		join = ft_strjoin("elevation en cours\nniveau ", itoa);
 		ft_reply_in_buff(env, cs, join);

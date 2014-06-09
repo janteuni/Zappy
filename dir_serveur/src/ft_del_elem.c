@@ -6,13 +6,13 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 12:37:19 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:42:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 14:35:47 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-void			ft_del_elem(t_list **begin, t_list *to_del)
+void			ft_del_elem(t_list **begin, t_list *to_del, void (*del)(void *, size_t))
 {
 	t_list		*prev;
 	t_list		*tmp;
@@ -27,7 +27,7 @@ void			ft_del_elem(t_list **begin, t_list *to_del)
 				prev->next = tmp->next;
 			else
 				*begin = tmp->next;
-			ft_lstdelone(&tmp, ft_del);
+			ft_lstdelone(&tmp, del);
 			break ;
 		}
 		prev = tmp;

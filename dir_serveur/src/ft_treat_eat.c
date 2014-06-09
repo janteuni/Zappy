@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_fd.c                                          :+:      :+:    :+:   */
+/*   ft_treat_eat.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/20 18:17:39 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:25:18 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/09 18:36:41 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/09 18:57:03 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
-#include <sys/select.h>
 
-void		init_fd(t_env *env)
+void				ft_treat_eat(t_env *env)
 {
-	int		i;
+	int				i;
 
 	i = 0;
-	env->max = 0;
-	FD_ZERO(&env->fd_read);
-	FD_ZERO(&env->fd_write);
+	printf("I EAT\n");
 	while (i < env->max_fd)
 	{
-		if (env->fd_socket[i].type != FREE)
+		if (env->fd_socket[i].type == CLIENT)
 		{
-			FD_SET(i, &env->fd_read);
-			if (ft_strlen(env->fd_socket[i].buf_write) > 0)
-				FD_SET(i, &env->fd_write);
-			env->max = MAX(env->max, i);
+			env->fd_socket[i].inventory[FOOD] -= 1;
+			if (env->fd_socket[i].inventory[FOOD] <= 0)
+			{
+				ft_reply_in_buff(env, i, "mort");
+			}
 		}
 		i++;
 	}

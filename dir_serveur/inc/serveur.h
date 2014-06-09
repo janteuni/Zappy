@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:44:21 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:49:23 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define CLIENT		1
 # define FREE		2
 
-# define BUF_SIZE	1024
+# define BUF_SIZE	4096
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1
@@ -91,6 +91,13 @@ typedef struct		s_fd
 	int				inventory[NB_STUFF];
 }					t_fd;
 
+typedef struct		s_message
+{
+	char			*msg;
+	int				cs;
+	long int		timestamp;
+}					t_message;
+
 typedef struct		s_player
 {
 	int				sock;
@@ -120,13 +127,15 @@ typedef struct		s_env
 	fd_set			fd_read;
 	fd_set			fd_write;
 	int				***map;
-	char			stuff[NB_STUFF][11];
+	char			stuff[NB_STUFF][12];
 	int				**incantation;
+	t_list			*messages;
 }					t_env;
 
 t_env				*get_env(void);
 int					parser(t_env *env, int argc, char **argv);
 int					error(char *err);
+
 int					create_server(t_env *env);
 void				ft_loop(t_env *env);
 void				clean_fd(t_fd *fd);
@@ -136,25 +145,30 @@ void				client_write(t_env *env, int cs);
 void				do_select(t_env *env);
 void				check_fd(t_env *env);
 void				init_fd(t_env *env);
+
 int					ft_receive(t_env *env, int cs);
 void				ft_stock_line(int cs, char *buffer);
 void				ft_treat_msg(t_env *env, int cs, char *msg);
 void				ft_reply_in_buff(t_env *env, int cs, char *msg);
 void				ft_treat_cmd(char *rcv, t_env *env, int cs);
+
 void				ft_null(void *d, size_t s);
 void				del_list(t_list **begin, t_list *to_del);
-int					push_str(char *msg, t_fd *client, char *cst_emitter);
 void				ft_del(void *d, size_t s);
+void				ft_del_mess(void *d, size_t s);
+void				ft_del_elem(t_list **begin, t_list *to_del, void (*del)(void *, size_t));
 int					ft_exit(char *err);
+
 int					ft_pars_flag(int *i, char **argv, int argc, t_env *env);
 void				ft_print_map(t_env *env, int k);
 int					ft_init_map(t_env *env);
+
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
 void				ft_check_incantation(t_env *env, int cs);
-void				ft_del_elem(t_list **begin, t_list *to_del);
 
+void				ft_treat_eat(t_env *env);
 void				ft_treat_expulse(t_env *env, int cs, char *rcv);
 void				ft_treat_connect_nbr(t_env *env, int cs, char *rcv);
 void				ft_treat_fork(t_env *env, int cs, char *rcv);
@@ -168,4 +182,9 @@ void				ft_treat_avance(t_env *env, int cs, char *rcv);
 void				ft_treat_left(t_env *env, int cs, char *rcv);
 void				ft_treat_right(t_env *env, int cs, char *rcv);
 int					ft_function_cmd(t_env *env, int cs, char *rcv);
+
+void				ft_messages_select(t_env *env);
+void				ft_messages_add(t_env *env, int cs, char *msg, int t);
+void				ft_messages_del(t_env *env, t_list *to_del);
+
 #endif

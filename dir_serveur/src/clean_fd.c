@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:44:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/09 18:55:43 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		st_del_me(t_fd *fd)
 			while (players != NULL)
 			{
 				if (((t_player *)players->content)->sock == fd->my_cs)
-					ft_del_elem(&env->teams[i].players, players);
+					ft_del_elem(&env->teams[i].players, players, ft_del);
 				players = players->next;
 			}
 			env->teams[i].nb_player -= 1;

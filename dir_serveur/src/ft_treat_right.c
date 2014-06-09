@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/06 19:52:52 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/07 17:23:38 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/09 15:36:20 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/09 15:36:23 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void				ft_treat_right(t_env *env, int cs, char *rcv)
 		OR(cs) = O;
 	else if (OR(cs) == O)
 		OR(cs) = N;
-	ft_reply_in_buff(env, cs, "ok");
+	ft_messages_add(env, cs, "ok", 7);
 }
