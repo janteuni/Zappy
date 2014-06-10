@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serveur.h                                          :+:      :+:    :+:   */
+/*   ft_graphic_function.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 11:31:11 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/04 11:38:32 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/10 15:37:24 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/10 15:44:24 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVEUR_H
-# define SERVEUR_H
+#include "serveur.h"
 
-# include <stdio.h>
-# include "libft.h"
-
-# define OK		0
-# define ERR	-1
-
-#endif
+void				ft_graphic_function(t_env *env, int cs, char *rcv)
+{
+	printf("graphic cmd\n");
+	(void)env;
+	(void)cs;
+	(void)rcv;
+}

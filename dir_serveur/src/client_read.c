@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 18:12:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 12:32:38 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/10 18:58:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void				client_read(t_env *env, int cs)
 		printf("client #%d gone away\n", cs);
 	}
 	else
+	{
 		ft_receive(env, cs);
+	}
 }
