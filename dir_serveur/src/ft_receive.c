@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/21 10:17:34 by janteuni          #+#    #+#             */
-/*   Updated: 2014/05/24 13:08:10 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/10 18:58:19 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ int				ft_receive(t_env *env, int cs)
 		i = 0;
 		ft_treat_msg(env, cs, msg);
 	}
+	if (special_strchr(env->fd_socket[cs].buf_read, '\n', BUF_SIZE) != NULL)
+		ft_receive(env, cs);
 	return (OK);
 }
