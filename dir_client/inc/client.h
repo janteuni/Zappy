@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/09 18:01:57 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 11:49:14 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <sys/select.h>
 # include <stdio.h>
 # include "libft.h"
+# include "zappy.h"
 
 # define OK			0
 # define ERR		-1
@@ -56,6 +57,7 @@
 # define MOVE		"deplacement"
 # define MSG		"message"
 # define ELEV		"elevation en cours"
+# define ELEV_END	"niveau actuel"
 # define OK			"ok"
 # define KO			"ko"
 # define LIST		"{"
@@ -103,5 +105,10 @@ int					ft_get_inventory(t_env *env);
 **			ft_look.c
 */
 int					ft_look(t_env *env);
+
+/*
+**			ft_set_replies.c
+*/
+int					ft_set_replies(t_env *env, char *succ, char *fail);
 
 #endif

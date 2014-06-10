@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 20:58:40 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/09 18:00:22 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 11:13:45 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void			ft_read_inventory(t_env *env, char **s, int i)
 {
 	while (i < INV_SIZE)
 	{
-		if (!ft_strncmp("food", s[i], 4))
+		if (!ft_strncmp("nourriture", s[i], 10))
 			env->inv[FOOD] = ft_get_nb(s[i]);
 		else if (ft_strlen(s[i]) > 8 && !ft_strncmp("linemate", s[i], 8))
 			env->inv[LINEMATE] = ft_get_nb(s[i]);
