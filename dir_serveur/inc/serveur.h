@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 18:49:23 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/10 15:39:19 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define SERVER		0
 # define CLIENT		1
 # define FREE		2
+# define GRAPHIC	3
 
 # define BUF_SIZE	4096
 # define BUF_NAME	10
@@ -186,5 +187,8 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv);
 void				ft_messages_select(t_env *env);
 void				ft_messages_add(t_env *env, int cs, char *msg, int t);
 void				ft_messages_del(t_env *env, t_list *to_del);
+
+void				ft_graphic_function(t_env *env, int cs, char *rcv);
+void				ft_graphic_init(t_env *env, int cs);
 
 #endif
