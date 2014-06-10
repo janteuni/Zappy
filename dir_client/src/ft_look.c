@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/08 19:47:06 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 16:15:58 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@
 
 int					**ft_malloc_view(t_env *env)
 {
-	int				**view;
 	int				i;
 	int				nb;
 
 	nb = (env->level + 1) * (env->level + 1);
 	i = 0;
-	if (!(view = (int **)malloc((nb + 1) * sizeof(int *))))
+	if (env->view)
+		ft_free_tab((void ***)&env->view);
+	if (!(env->view = (int **)malloc((nb + 1) * sizeof(int *))))
 		return (NULL);
-	view[nb] = NULL;
+	env->view[nb] = NULL;
 	while (i < nb)
 	{
-		view[i] = (int *)malloc(sizeof(int) * (SEE_SIZE + 1));
-		ft_bzero((void *)view[i], sizeof(int) * SEE_SIZE);
+		env->view[i] = (int *)malloc(sizeof(int) * (SEE_SIZE + 1));
+		ft_bzero((void *)env->view[i], sizeof(int) * SEE_SIZE);
 		++i;
 	}
-	return (view);
+	return (env->view);
 }
 
 int					ft_read_square(char *sqr, int i, int **view)
@@ -105,28 +106,32 @@ void				ft_print_view(t_env *env, int **view)
 	}
 }
 
-int					ft_look(t_env *env)
+int					ft_read_view(t_env *env, char **split)
 {
-	char			buf[LOOK_BUF + 1];
-	char			*str;
-	char			**split;
-	int				**view;
 	int				i;
 
-	view = ft_malloc_view(env);
-	ft_bzero(buf, LOOK_BUF + 1);
+	env->view = ft_malloc_view(env);
+	i = 0;
+	while (split[i])
+	{
+		ft_read_square(split[i], i, env->view);
+		++i;
+	}
+	ft_print_view(env, env->view);
+	return (OK);
+}
+
+int					ft_look(t_env *env)
+{
+	char			buf[BIG_BUF + 1];
+	char			*str;
+	int				i;
+
+	ft_bzero(buf, BIG_BUF + 1);
 	str = ft_strjoin("voir", "\n");
+	printf("SEND COMMAND : VOIR\n");
 	if ((i = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));
-	recv(env->socket, buf, LOOK_BUF, 0);
-	printf("%s\n", buf);
-	split = ft_strsplit(buf, ',');
-	i = -1;
-	while (split[++i])
-		ft_read_square(split[i], i, view);
-	ft_print_view(env, view);
-	ft_free_tab((void ***)&view);
-	ft_free_tab((void ***)&split);
 	ft_strdel(&str);
 	return (OK);
 }

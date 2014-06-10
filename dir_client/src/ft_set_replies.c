@@ -6,10 +6,11 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 11:41:57 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/10 11:44:50 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 15:34:55 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "client.h"
 
 int					ft_set_replies(t_env *env, char *succ, char *fail)

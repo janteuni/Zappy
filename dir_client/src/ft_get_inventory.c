@@ -6,13 +6,25 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 20:58:40 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/10 11:13:45 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 16:15:07 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include "client.h"
+
+void				ft_print_inv(t_env *env)
+{
+	int				i;
+
+	i = 0;
+	while (i < INV_SIZE)
+	{
+		printf("INVENTORY[%d] has %d\n",i, env->inv[i] );
+		++i;
+	}
+}
 
 static int			ft_get_nb(char *line)
 {
@@ -25,7 +37,7 @@ static int			ft_get_nb(char *line)
 	return (res);
 }
 
-static void			ft_read_inventory(t_env *env, char **s, int i)
+void				ft_read_inventory(t_env *env, char **s, int i)
 {
 	while (i < INV_SIZE)
 	{
@@ -47,36 +59,19 @@ static void			ft_read_inventory(t_env *env, char **s, int i)
 	}
 }
 
-int					ft_recv_inventory(t_env *env, char *str)
-{
-	char			**split;
-
-	printf("%s\n", buf);
-	split = ft_strsplit(buf, ',');
-	ft_read_inventory(env, split, 0);
-	ft_free_tab((void ***)&split);
-	return (OK);
-}
-
 int					ft_get_inventory(t_env *env)
 {
 	char			buf[INV_BUF + 1];
 	char			*str;
 	int				n;
-	char			**split;
 
 	ft_bzero(buf, INV_BUF + 1);
 	str = ft_strjoin("inventaire", "\n");
 	env->cmds[INVENT]++;
 	env->replies[SUCCESS] = ft_strdup(LIST);
 	env->replies[FAIL] = NULL;
+	printf("SEND COMMAND : INVENTORY\n");
 	if ((n = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));
-/*	recv(env->socket, buf, INV_BUF, 0);
-	printf("%s\n", buf);
-	split = ft_strsplit(buf, ',');
-	ft_read_inventory(env, split, 0);
-	ft_free_tab((void ***)&split);
-	ft_strdel(&str);*/
 	return (OK);
 }

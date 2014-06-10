@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/10 11:49:14 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 19:47:28 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define BUF_SIZE	50
 # define INV_BUF	1024
 # define BIG_BUF	4095
+# define NB_RESP	4
 
 # define INV_SIZE	7
 # define SEE_SIZE	8
@@ -38,6 +39,9 @@
 # define PLAYERS	7
 
 # define NB_CMDS	12
+# define SUCCESS	0
+# define VIEW		1
+# define 
 # define AVANCE		0
 # define DROITE		1
 # define GAUCHE		2
@@ -58,7 +62,6 @@
 # define MSG		"message"
 # define ELEV		"elevation en cours"
 # define ELEV_END	"niveau actuel"
-# define OK			"ok"
 # define KO			"ko"
 # define LIST		"{"
 
@@ -71,14 +74,16 @@ typedef struct		s_env
 	int				port;
 	int				socket;
 	int				*cmds;
-	char			**replies;
-	fd_set			readfd;
+	int				*responses;
 	int				dead;
 	int				level;
 	int				client_nb;
 	int				x;
 	int				y;
 	int				inv[INV_SIZE];
+	int				**view;
+	t_list			*moves;
+	int				elevating;
 }					t_env;
 
 t_env				*get_env(void);
@@ -94,21 +99,28 @@ int					ft_parse(int ac, char **av, t_env *env);
 **			ft_loop.c
 */
 int					ft_loop(t_env *env);
-int					ft_get_inventory(t_env *env);
 
 /*
 **			ft_get_inventory.c
 */
 int					ft_get_inventory(t_env *env);
+void				ft_read_inventory(t_env *env, char **s, int i);
+void				ft_print_inv(t_env *env); //TAKE OUT!!!
 
 /*
 **			ft_look.c
 */
 int					ft_look(t_env *env);
+int					ft_read_view(t_env *env, char **split);
 
 /*
 **			ft_set_replies.c
 */
 int					ft_set_replies(t_env *env, char *succ, char *fail);
+
+/*
+**			ft_recv.c
+*/
+int					ft_recv(t_env *env);
 
 #endif

@@ -6,13 +6,15 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/10 11:48:32 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/10 16:53:51 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <sys/socket.h>
 #include "client.h"
 
-int					is_dead(t_env *env, char *buf)
+/*int					is_dead(t_env *env, char *buf)
 {
 	if (!ft_strncmp(DEAD, buf, ft_strlen(DEAD)))
 	{
@@ -32,17 +34,16 @@ int					is_move(t_env *env, char *buf)
 	if (!ft_strncmp(MOVE, buf, ft_strlen(MOVE)))
 	{
 		printf("I WAS MOVED - %s\n", buf);
-		split = ft_strsplit(buf, ' ');	/*do i need any of this?*/
-		dir = ft_atoi(split[1]);		/**/
-		if (dir == N)					/**/
-			env->y++;					/**/
-		if (dir == E)					/**/
-			env->x--;					/**/
-		if (dir == S)					/**/
-			env->y--;					/**/
-		if (dir == W)					/**/
-			env->x++;					/**/
-		ft_free_tab((void ***)&split);	/**/
+		dir = ft_atoi(split[1]);
+		if (dir == N)
+			env->y++;
+		if (dir == E)
+			env->x--;
+		if (dir == S)
+			env->y--;
+		if (dir == W)
+			env->x++;
+		ft_free_tab((void ***)&split);
 		return (YES);
 	}
 	return (NO);
@@ -66,11 +67,31 @@ int					is_elev(t_env *env, char *buf)
 		printf("I AM BEING ELEVATED - %s\n", buf);
 		if (enough_food(env))
 			env->elevating = 1;
-		else
-			env->get_food = 1;
 		return (YES);
 	}
 	return (NO);
+}*/
+
+int					ft_read_list(t_env *env, char *buf)
+{
+	char			*list;
+	char			**split;
+	char			*sp;
+
+	(void)env;
+	list = ft_strsub(buf, 1, ft_strlen(buf) - 3);
+	split = ft_strsplit(list, ',');
+	sp = ft_strchr(split[0], ' ');
+	if (ft_isdigit(sp[1]))
+	{
+		ft_read_inventory(env, split, 0);
+		ft_print_inv(env);
+	}
+	else
+		ft_read_view(env, split);
+	free(list);
+	ft_free_tab((void ***)&split);
+	return (OK);
 }
 
 int					ft_recv(t_env *env)
@@ -79,7 +100,33 @@ int					ft_recv(t_env *env)
 
 	ft_bzero(buf, BIG_BUF + 1);
 	recv(env->socket, buf, BIG_BUF, 0);
-	if (!is_dead(env, buf) && !is_move(env, buf) && !is msg(env, buf)
-			&& !is elev(env, buf) && !is_elev_end(env, buf))
-		check_expected(env, buf);
+	if (buf[0] == 'o')// OK
+	{
+		printf("OK\n");
+		return (OK);
+	}
+	if (buf[0] == 'k') // KO
+	{
+		printf("KO\n");
+		return (OK);
+	}
+	if (buf[0] == '{')// {...}
+	return (ft_read_list(env, buf));
+	/*if (buf[0] == 'e')// elevation en cours
+	  return (ft_is_elev(env, buf));
+	  if (buf[0] == 'n') // niveau actuel
+	  return (ft_end_elev(env, buf));
+	  if (buf[0] == 'd') // deplacement <K>
+	  return (ft_move(env, buf));
+	  if (buf[0] == 'm' && !ft_strncmp(DEAD, buf, ft_strlen(DEAD))) // mort
+	  return (ft_dead(env, buf));
+	  if (buf[0] == 'm' && !ft_strncmp(MSG, buf, ft_strlen(MSG))) // message <msg>
+	  return (ft_message(env, buf));
+	  else
+	  {
+	  ft_putstr("recevied reply from server I don't understand : '");
+	  ft_putstr(buf);
+	  ft_putendl("'");
+	  }*/
+	return (OK);
 }
