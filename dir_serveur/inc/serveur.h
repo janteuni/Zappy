@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:39:01 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 12:01:23 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct		s_env
 	char			stuff[NB_STUFF][12];
 	int				**incantation;
 	t_list			*actions;
+	long int		last_cmd;
 }					t_env;
 
 t_env				*get_env(void);
@@ -166,13 +167,14 @@ void				ft_null(void *d, size_t s);
 void				del_list(t_list **begin, t_list *to_del);
 void				ft_del(void *d, size_t s);
 void				ft_del_mess(void *d, size_t s);
-void				ft_del_elem(t_list **begin, t_list *to_del, void (*del)(void *, size_t));
+void				ft_del_elem(t_list **begin, t_list *to_del,
+		void (*del)(void *, size_t));
 void				ft_del_action(void *d, size_t s);
 int					ft_exit(char *err);
 
 int					ft_pars_flag(int *i, char **argv, int argc, t_env *env);
 void				ft_print_map(t_env *env, int k);
-int					ft_init_map(t_env *env);
+void				ft_init_map(t_env *env);
 
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);

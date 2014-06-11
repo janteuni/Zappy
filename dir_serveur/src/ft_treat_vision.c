@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:37:55 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 12:00:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 	}
 }
 
-static char				*st_list_player(t_pos pos, t_env *env, int cs, char *final)
+static char			*st_list_player(t_pos pos, t_env *env, int cs, char *final)
 {
 	char			*ret;
 	char			*tmp;

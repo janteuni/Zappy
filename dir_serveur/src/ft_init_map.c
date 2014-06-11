@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 17:03:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 10:46:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:50:56 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <time.h>
 #include "serveur.h"
 
-int					ft_init_map(t_env *env)
+void					ft_init_map(t_env *env)
 {
 	int				i;
 	int				j;
@@ -41,5 +41,4 @@ int					ft_init_map(t_env *env)
 		}
 		i++;
 	}
-	return (OK);
 }

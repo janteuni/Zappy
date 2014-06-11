@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 17:45:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:36:44 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:53:41 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_treat_get(t_env *env, int cs, char *rcv)
 	{
 		while (i < NB_STUFF)
 		{
-			if (ft_strcmp(split[1],env->stuff[i]) == 0)
+			if (ft_strcmp(split[1], env->stuff[i]) == 0)
 			{
 				if (env->map[POSY(cs)][POSX(cs)][i] > 0)
 					st_fill_inventory(i, env, cs);

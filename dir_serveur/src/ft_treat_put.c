@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 18:37:46 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:37:36 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:59:39 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_treat_put(t_env *env, int cs, char *rcv)
 	{
 		while (i < NB_STUFF)
 		{
-			if (ft_strcmp(split[1],env->stuff[i]) == 0)
+			if (ft_strcmp(split[1], env->stuff[i]) == 0)
 			{
 				if (env->fd_socket[cs].inventory[i] > 0)
 					st_pull_inventory(i, env, cs);

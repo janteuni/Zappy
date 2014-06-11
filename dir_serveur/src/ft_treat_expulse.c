@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:05:56 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:36:27 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:53:20 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static void			st_inform(t_env *env, int i, int cs)
 
 void				ft_treat_expulse(t_env *env, int cs, char *rcv)
 {
-	(void)rcv;
 	int				i;
 	int				expulse;
 
 	i = 0;
 	expulse = 0;
+	(void)rcv;
 	while (i < env->max_fd)
 	{
 		if (env->fd_socket[i].type == CLIENT && i != cs)
