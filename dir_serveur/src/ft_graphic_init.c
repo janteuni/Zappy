@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 15:36:37 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 18:23:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 18:34:04 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,7 @@ void				ft_graphic_init(t_env *env, int cs)
 	ft_reply_in_buff(env, cs, push);
 	ft_memdel((void **)&push);
 	ft_graphic_all_map(env, cs);
+	push = ft_graphic_tna(env);
+	ft_reply_in_buff(env, cs, push);
+	ft_memdel((void **)&push);
 }

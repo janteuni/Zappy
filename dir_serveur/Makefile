@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/11 17:00:29 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/11 18:33:16 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_graphic_function.c \
 					  $(DIR_SRC)/ft_graphic_init.c \
 					  $(DIR_SRC)/ft_graphic_bct.c \
+					  $(DIR_SRC)/ft_graphic_tna.c \
 
 # ---------------------------------------------------------------------------- #
 
