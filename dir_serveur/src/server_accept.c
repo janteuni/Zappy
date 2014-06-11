@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 15:38:15 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 12:00:57 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <stdlib.h>
 #include "serveur.h"
 
-void		st_init_inventory(t_env *env, int cs)
+void					st_init_inventory(t_env *env, int cs)
 {
-	int			i;
+	int					i;
 
 	i = 1;
 	env->fd_socket[cs].inventory[FOOD] = 10;
@@ -29,7 +29,7 @@ void		st_init_inventory(t_env *env, int cs)
 	}
 }
 
-void			server_accept(t_env *env)
+void					server_accept(t_env *env)
 {
 	int					cs;
 	struct sockaddr_in	csin;

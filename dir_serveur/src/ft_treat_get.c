@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 17:45:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 10:35:58 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:53:41 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void			st_fill_inventory(int i, t_env *env, int cs)
 {
 	env->fd_socket[cs].inventory[i]++;
 	env->map[POSY(cs)][POSX(cs)][i] -= 1;
-	/*ft_messages_add(env, cs, "ok", 7);*/
 	ft_reply_in_buff(env, cs, "ok");
 }
 
@@ -32,13 +31,12 @@ void				ft_treat_get(t_env *env, int cs, char *rcv)
 	{
 		while (i < NB_STUFF)
 		{
-			if (ft_strcmp(split[1],env->stuff[i]) == 0)
+			if (ft_strcmp(split[1], env->stuff[i]) == 0)
 			{
 				if (env->map[POSY(cs)][POSX(cs)][i] > 0)
 					st_fill_inventory(i, env, cs);
 				else
 					ft_reply_in_buff(env, cs, "ko");
-					/*ft_messages_add(env, cs, "ko", 7);*/
 				ft_free_tab((void ***)&split);
 				return ;
 			}
@@ -46,6 +44,5 @@ void				ft_treat_get(t_env *env, int cs, char *rcv)
 		}
 	}
 	ft_reply_in_buff(env, cs, "ko");
-	/*ft_messages_add(env, cs, "ko", 7);*/
 	ft_free_tab((void ***)&split);
 }

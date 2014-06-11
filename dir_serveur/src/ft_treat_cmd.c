@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 17:12:48 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:52:46 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void				ft_treat_cmd(char *rcv, t_env *env, int cs)
 	else if (env->fd_socket[cs].my_team == NULL)
 	{
 		if (ft_strcmp(rcv, "GRAPHIC") == 0)
-			ft_graphic_init(env,cs);
+			ft_graphic_init(env, cs);
 		else if (ft_add_me_team(env, cs, rcv) == OK)
 			ft_place_me(env, cs);
 	}

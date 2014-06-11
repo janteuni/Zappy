@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 14:44:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 10:33:40 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 12:02:55 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static void			st_finish_init(t_env *env)
 {
-	env->incantation[5][DERAUMERE] = 1;
 	env->incantation[5][SIBUR] = 2;
 	env->incantation[5][MENDIANE] = 0;
 	env->incantation[5][PHIRAS] = 1;
@@ -59,7 +58,6 @@ static void			st_malloc_inc(t_env *env)
 	}
 }
 
-
 void				ft_init_incantation(t_env *env)
 {
 	st_malloc_inc(env);
@@ -86,5 +84,6 @@ void				ft_init_incantation(t_env *env)
 	env->incantation[4][THYSTAME] = 0;
 	env->incantation[5][PLAYERS] = 4;
 	env->incantation[5][LINEMATE] = 1;
+	env->incantation[5][DERAUMERE] = 1;
 	st_finish_init(env);
 }

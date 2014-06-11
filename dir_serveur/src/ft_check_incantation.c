@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:32:26 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:48:20 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void						ft_check_incantation(t_env *env, int cs, char *rcv)
 	(void)rcv;
 	if (st_incantation_succeed(env, cs) == OK)
 		env->fd_socket[cs].level += 1;
-	itoa =  ft_itoa(env->fd_socket[cs].level);
+	itoa = ft_itoa(env->fd_socket[cs].level);
 	join = ft_strjoin("niveau ", itoa);
 	TOTY(cs) = -1;
 	TOTX(cs) = -1;

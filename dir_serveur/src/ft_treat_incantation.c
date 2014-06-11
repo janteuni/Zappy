@@ -6,16 +6,16 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:32:24 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:55:47 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-static int				st_count_players(t_pos pos, t_env *env, int level, int inf)
+static int		st_count(t_pos pos, t_env *env, int level, int inf)
 {
-	int				i;
-	int				j;
+	int			i;
+	int			j;
 
 	i = 0;
 	j = 0;
@@ -32,7 +32,6 @@ static int				st_count_players(t_pos pos, t_env *env, int level, int inf)
 					TOTX(i) = POSX(i);
 					ft_reply_in_buff(env, i, "elevation en cours");
 					ft_action_add(i, 300, ft_check_incantation, "elevation");
-					/*ft_messages_add(env, i, "elevation", 300);*/
 				}
 				j++;
 			}
@@ -42,13 +41,13 @@ static int				st_count_players(t_pos pos, t_env *env, int level, int inf)
 	return (j);
 }
 
-static void				st_get_infos(t_pos pos, t_env *env, int cs, int tab[NB_STUFF])
+static void		st_get_infos(t_pos pos, t_env *env, int cs, int tab[NB_STUFF])
 {
-	int				i;
-	int				nb;
+	int			i;
+	int			nb;
 
 	i = 1;
-	tab[PLAYERS] = st_count_players(pos, env, env->fd_socket[cs].level, ERR);
+	tab[PLAYERS] = st_count(pos, env, env->fd_socket[cs].level, ERR);
 	printf("nb joueurs: %d\n", tab[PLAYERS]);
 	while (i < NB_STUFF)
 	{
@@ -59,9 +58,8 @@ static void				st_get_infos(t_pos pos, t_env *env, int cs, int tab[NB_STUFF])
 	printf("linemate %d\n", tab[LINEMATE]);
 }
 
-static int				st_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
+static int		st_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 {
-	printf("totem : players : %d linemate %d\n", TOTEM[2][PLAYERS], TOTEM[2][LINEMATE] );
 	if (tab[PLAYERS] >= TOTEM[level][PLAYERS]
 			&& tab[LINEMATE] >= TOTEM[level][LINEMATE]
 			&& tab[DERAUMERE] >= TOTEM[level][DERAUMERE]
@@ -73,11 +71,11 @@ static int				st_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 	return (ERR);
 }
 
-void					ft_treat_incantation(t_env *env, int cs, char *rcv)
+void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 {
-	int					tab_case[NB_STUFF];
-	char				*itoa;
-	char				*join;
+	int			tab_case[NB_STUFF];
+	char		*itoa;
+	char		*join;
 
 	(void)rcv;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
@@ -87,7 +85,7 @@ void					ft_treat_incantation(t_env *env, int cs, char *rcv)
 	{
 		printf("elevation OK\n");
 		env->map[POSY(cs)][POSX(cs)][INCANT] = YES;
-		st_count_players(env->fd_socket[cs].pos, env, env->fd_socket[cs].level, OK);
+		st_count(env->fd_socket[cs].pos, env, env->fd_socket[cs].level, OK);
 	}
 	else
 	{
@@ -98,5 +96,4 @@ void					ft_treat_incantation(t_env *env, int cs, char *rcv)
 		ft_memdel((void **)&itoa);
 		ft_memdel((void **)&join);
 	}
-
 }

@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 10:50:10 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:46:46 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void		st_del_me(t_fd *fd)
 				players = players->next;
 			}
 			env->teams[i].nb_player -= 1;
-
 		}
 		i++;
 	}
@@ -57,7 +56,7 @@ static void		st_del_action(t_fd *fd)
 	}
 }
 
-void	clean_fd(t_fd *fd)
+void			clean_fd(t_fd *fd)
 {
 	fd->type = FREE;
 	fd->my_cs = 0;
