@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 11:50:35 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 12:39:24 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,6 @@ void				ft_print_inv(t_env *env); //TAKE OUT!!!
 */
 int					ft_look(t_env *env);
 int					ft_read_view(t_env *env, char **split);
-
-/*
-**			ft_set_replies.c
-*/
-int					ft_set_replies(t_env *env, char *succ, char *fail);
 
 /*
 **			ft_recv.c
