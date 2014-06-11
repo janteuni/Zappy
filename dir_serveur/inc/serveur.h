@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 12:39:22 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 14:59:59 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct		s_team
 {
 	char			*name;
 	int				nb_player;
+	int				max_player;
 	t_list			*players;
 }					t_team;
 
@@ -156,6 +157,7 @@ void				client_write(t_env *env, int cs);
 void				do_select(t_env *env);
 void				check_fd(t_env *env);
 void				init_fd(t_env *env);
+void				ft_max_players_in_team(t_env *env);
 
 int					ft_receive(t_env *env, int cs);
 void				ft_stock_line(int cs, char *buffer);

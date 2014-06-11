@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 12:10:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 18:48:57 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 15:12:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int				st_fill_team(char **argv, int argc, t_env *env, int *i)
 	{
 		env->teams[count].name = ft_strdup(argv[(*i) + 1]);
 		env->teams[count].nb_player = 0;
+		env->teams[count].max_player = 0;
 		env->teams[count].players = NULL;
 		count++;
 		(*i)++;

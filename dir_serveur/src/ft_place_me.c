@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:05:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/06 20:00:18 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 15:13:42 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,32 @@
 #include <time.h>
 #include "serveur.h"
 
+static int		st_calcul_nb(t_env *env, int cs)
+{
+	int			ret;
+	int			i;
+
+	i = 0;
+	ret = 0;
+	while (i < env->max_team)
+	{
+		if (ft_strcmp(env->teams[i].name, env->fd_socket[cs].my_team) == 0)
+		{
+			ret = env->teams[i].max_player - env->teams[i].nb_player;
+			return (ret);
+		}
+		i++;
+	}
+	return (ret);
+}
+
 static void		st_my_position(t_env *env, int cs)
 {
 	char		*ret;
 	char		*tmp;
 	char		*itoa;
 
-	itoa = ft_itoa(env->nb_player);
+	itoa = ft_itoa(st_calcul_nb(env, cs));
 	ret = ft_strjoin(itoa, "\n");
 	ft_memdel((void **)&itoa);
 	itoa = ft_itoa(env->fd_socket[cs].pos.x);

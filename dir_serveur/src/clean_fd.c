@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:46:46 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 15:26:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void			clean_fd(t_fd *fd)
 	fd->buf_offset = 0;
 	fd->fct_read = NULL;
 	fd->fct_write = NULL;
+	ft_bzero(fd->buf_read, BUF_SIZE);
+	ft_bzero(fd->buf_write, BUF_SIZE);
 	if (fd->my_team)
 	{
 		st_del_me(fd);

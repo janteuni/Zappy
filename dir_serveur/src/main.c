@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 12:39:32 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 15:12:16 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int				main(int argc, char **argv)
 	if (create_server(env) == ERR)
 		return (ERR);
 	ft_init_map(env);
+	ft_max_players_in_team(env);
 	ft_print_map(env, SIBUR);
 	ft_loop(env);
 	close(env->sock_server);

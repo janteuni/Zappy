@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/11 11:39:13 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/11 15:00:21 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/parser.c \
 					  $(DIR_SRC)/server_accept.c \
 					  $(DIR_SRC)/ft_pars_flag.c \
+					  $(DIR_SRC)/ft_max_players_in_team.c \
 					  $(DIR_SRC)/ft_print_map.c \
 					  $(DIR_SRC)/ft_init_map.c \
 					  $(DIR_SRC)/ft_add_me_team.c \
