@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 12:50:24 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 19:09:41 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define FORW		"avance\n"
 # define RIGHT		"droite\n"
 # define LEFT		"gauche\n"
+# define CMD(X)		((t_cmd *)X->content)
 
 # define DEAD		"mort"
 # define MOVE		"deplacement"
@@ -55,7 +56,12 @@
 # define KO			"ko"
 # define LIST		"{"
 
-
+typedef struct		s_cmd
+{
+	char			*cmd;
+	char			*opt;
+	int				resp;
+}					t_cmd;
 
 typedef struct		s_env
 {
@@ -74,6 +80,8 @@ typedef struct		s_env
 	int				**view;
 	t_list			*moves;
 	int				elevating;
+	int				moved;
+	int				dir_msg;
 }					t_env;
 
 t_env				*get_env(void);
@@ -111,11 +119,32 @@ int					ft_read_view(t_env *env, char **split);
 int					ft_recv(t_env *env);
 
 /*
-**			ft_moves.c
+**			ft_send_cmd.c
 */
-int					ft_right(t_env *env);
-int					ft_left(t_env *env);
-int					ft_forwards(t_env *env);
+int					ft_send_cmd(t_env *env, char *cmd, int i);
+
+/*
+**			ft_elevation.c
+*/
+int					ft_start_elevation(t_env *env);
+int					ft_end_elev(t_env *env, char *buf);
+int					ft_begin_elev(t_env *env, char *buf);
+int					ft_enough_food(t_env *env);
+
+/*
+**			ft_move.c
+*/
+int					ft_move(t_env *env, char *buf);
+
+/*
+**			ft_dead.c
+*/
+int					ft_dead(t_env *env, char *buf);
+
+/*
+**			ft_message.c
+*/
+int					ft_message(t_env *env, char *buf);
 
 /*# define NB_CMDS	12
 # define AVANCE		0

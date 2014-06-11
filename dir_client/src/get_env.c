@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 12:50:41 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 17:11:29 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_env			*get_env(void)
 		env->port = 0;
 		env->dead = 0;
 		env->elevating = 0;
+		env->moved = 0;
+		env->dir_msg = 0;
 		env->level = 1;
 		env->team = NULL;
 		env->view = NULL;

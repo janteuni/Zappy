@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 16:11:33 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 15:24:00 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int					ft_confirm_connection(t_env *env)
 
 	ft_bzero(buf, BUF_SIZE + 1);
 	recv(env->socket, buf, BUF_SIZE, 0);
+	printf("FIRST BFFER [%s]\n",buf );
 	if (ft_strcmp("BIENVENUE\n", buf))
 		return (ERR);
 	str = ft_strjoin(env->team, "\n");

@@ -6,7 +6,7 @@
 #    By: fbeck <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/06 16:16:30 by fbeck             #+#    #+#              #
-#    Updated: 2014/06/11 12:49:12 by fbeck            ###   ########.fr        #
+#    Updated: 2014/06/11 18:06:20 by fbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,11 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_look.c \
 					  $(DIR_SRC)/ft_get_inventory.c \
 					  $(DIR_SRC)/ft_recv.c \
-					  $(DIR_SRC)/ft_moves.c \
+					  $(DIR_SRC)/ft_send_cmd.c \
+					  $(DIR_SRC)/ft_elevation.c \
+					  $(DIR_SRC)/ft_move.c \
+					  $(DIR_SRC)/ft_dead.c \
+					  $(DIR_SRC)/ft_message.c \
 
 # ---------------------------------------------------------------------------- #
 

@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 12:53:28 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 15:44:00 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,29 @@ int					ft_recv(t_env *env)
 	ft_bzero(buf, BIG_BUF + 1);
 	recv(env->socket, buf, BIG_BUF, 0);
 	printf("BUFFER [%s]\n",buf );
-	if (buf[0] == 'o')// OK
+	if ((buf[0] == 'o') || (buf[0] == 'k'))// OK / KO
 	{
 		env->resp[RESP_OK]--;
 		printf("OK\n");
 		return (OK);
 	}
-	if (buf[0] == 'k') // KO
-	{
-		env->resp[RESP_OK]--;
-		printf("KO\n");
-		return (OK);
-	}
 	if (buf[0] == '{')// {...}
-	return (ft_read_list(env, buf));
-	/*if (buf[0] == 'e')// elevation en cours
-	  return (ft_is_elev(env, buf));
-	  if (buf[0] == 'n') // niveau actuel
-	  return (ft_end_elev(env, buf));
-	  if (buf[0] == 'd') // deplacement <K>
-	  return (ft_move(env, buf));
-	  if (buf[0] == 'm' && !ft_strncmp(DEAD, buf, ft_strlen(DEAD))) // mort
-	  return (ft_dead(env, buf));
-	  if (buf[0] == 'm' && !ft_strncmp(MSG, buf, ft_strlen(MSG))) // message <msg>
-	  return (ft_message(env, buf));
-	  else
-	  {
-	  ft_putstr("recevied reply from server I don't understand : '");
-	  ft_putstr(buf);
-	  ft_putendl("'");
-	  }*/
+		return (ft_read_list(env, buf));
+	if (buf[0] == 'e')// elevation en cours
+		return (ft_begin_elev(env, buf));
+	if (buf[0] == 'n') // niveau actuel
+		return (ft_end_elev(env, buf));
+	if (buf[0] == 'd') // deplacement <K>
+		return (ft_move(env, buf));
+	if (buf[0] == 'm' && !ft_strncmp(DEAD, buf, ft_strlen(DEAD))) // mort
+		return (ft_dead(env, buf));
+	if (buf[0] == 'm' && !ft_strncmp(MSG, buf, ft_strlen(MSG))) // message <msg>
+		return (ft_message(env, buf));
+	else
+	{
+		ft_putstr("recevied reply from server I don't understand : '");
+		ft_putstr(buf);
+		ft_putendl("'");
+	}
 	return (OK);
 }
