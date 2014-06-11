@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 16:59:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:13:41 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,18 @@
 # define THYSTAME	6
 # define INCANT		7
 
+typedef struct		s_action
+{
+	char			*rcv;
+	int				cs;
+	long int		timestamp;
+	void			(*fn)();
+}					t_action;
+
 typedef struct		s_cmd
 {
 	char			*name;
+	int				t;
 	void			(*fn)();
 }					t_cmd;
 
@@ -131,6 +140,7 @@ typedef struct		s_env
 	char			stuff[NB_STUFF][12];
 	int				**incantation;
 	t_list			*messages;
+	t_list			*actions;
 }					t_env;
 
 t_env				*get_env(void);
@@ -158,6 +168,7 @@ void				del_list(t_list **begin, t_list *to_del);
 void				ft_del(void *d, size_t s);
 void				ft_del_mess(void *d, size_t s);
 void				ft_del_elem(t_list **begin, t_list *to_del, void (*del)(void *, size_t));
+void				ft_del_action(void *d, size_t s);
 int					ft_exit(char *err);
 
 int					ft_pars_flag(int *i, char **argv, int argc, t_env *env);
@@ -187,6 +198,10 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv);
 void				ft_messages_select(t_env *env);
 void				ft_messages_add(t_env *env, int cs, char *msg, int t);
 void				ft_messages_del(t_env *env, t_list *to_del);
+
+void				ft_action_add(int cs, int t, void (*fn)(), char *rcv);
+void				ft_action_del(t_env *env, t_list *to_del);
+void				ft_actions_select(t_env *env);
 
 void				ft_graphic_function(t_env *env, int cs, char *rcv);
 void				ft_graphic_init(t_env *env, int cs);

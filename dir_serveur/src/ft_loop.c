@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 10:30:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 17:03:34 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:24:06 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void				ft_loop(t_env *env)
 			tmp = 1000000 * tv.tv_sec + tv.tv_usec;
 		}
 		ft_messages_select(env);
+		ft_actions_select(env);
 		init_fd(env);
 		do_select(env);
 		check_fd(env);

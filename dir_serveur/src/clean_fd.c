@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 18:55:43 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 10:50:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,24 @@ static void		st_del_me(t_fd *fd)
 	}
 }
 
+static void		st_del_action(t_fd *fd)
+{
+	t_env		*env;
+	t_list		*act;
+
+	env = get_env();
+	act = env->actions;
+	if (act)
+	{
+		while (act != NULL)
+		{
+			if (((t_action *)act->content)->cs == fd->my_cs)
+				ft_del_elem(&env->actions, act, ft_del_action);
+			act = act->next;
+		}
+	}
+}
+
 void	clean_fd(t_fd *fd)
 {
 	fd->type = FREE;
@@ -55,4 +73,5 @@ void	clean_fd(t_fd *fd)
 		ft_lstdel(&fd->line, ft_del);
 	if (fd->line_read)
 		ft_lstdel(&fd->line_read, ft_del);
+	st_del_action(fd);
 }
