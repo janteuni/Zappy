@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 12:39:24 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 12:50:24 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,9 @@
 # define RESP_INV	2
 # define RESP_VAL	3
 
-# define NB_CMDS	12
-# define AVANCE		0
-# define DROITE		1
-# define GAUCHE		2
-# define VOIR		3
-# define INVENT		4
-# define PREND		5
-# define POSE		6
-# define EXPUL		7
-# define BROAD		8
-# define INCANT		9
-# define FORK		10
-# define CON_NB		11
-# define SUCCESS	0
-# define FAIL		1
+# define FORW		"avance\n"
+# define RIGHT		"droite\n"
+# define LEFT		"gauche\n"
 
 # define DEAD		"mort"
 # define MOVE		"deplacement"
@@ -75,7 +63,7 @@ typedef struct		s_env
 	char			*addr;
 	int				port;
 	int				socket;
-	int				*cmds;
+	/*int				*cmds;*/
 	int				*resp;
 	int				dead;
 	int				level;
@@ -122,4 +110,26 @@ int					ft_read_view(t_env *env, char **split);
 */
 int					ft_recv(t_env *env);
 
+/*
+**			ft_moves.c
+*/
+int					ft_right(t_env *env);
+int					ft_left(t_env *env);
+int					ft_forwards(t_env *env);
+
+/*# define NB_CMDS	12
+# define AVANCE		0
+# define DROITE		1
+# define GAUCHE		2
+# define VOIR		3
+# define INVENT		4
+# define PREND		5
+# define POSE		6
+# define EXPUL		7
+# define BROAD		8
+# define INCANT		9
+# define FORK		10
+# define CON_NB		11
+# define SUCCESS	0
+# define FAIL		1*/
 #endif

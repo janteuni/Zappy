@@ -6,12 +6,10 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 12:32:04 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 12:51:09 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include "client.h"
 
 int					ft_expecting_resp(t_env *env)
@@ -67,11 +65,14 @@ int					ft_loop(t_env *env)
 	/*char			*str;*/
 
 	i = 0;
-	env->resp[RESP_OK] += 2;
+	ft_forwards(env);
+	ft_left(env);
+	ft_right(env);
+/*	env->resp[RESP_OK] += 2;
 	if ((send(env->socket, "avance\n", ft_strlen("avance\n"), 0)) < 0)
 		return (error("Failed to send command"));
 	if ((send(env->socket, "gauche\n", ft_strlen("gauche\n"), 0)) < 0)
-		return (error("Failed to send command"));
+		return (error("Failed to send command"));*/
 /*	ft_look(env);*/
 	while (!env->dead)
 	{
