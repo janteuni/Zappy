@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/11 15:00:21 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/11 17:00:29 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,12 +60,14 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_check_incantation.c \
 					  $(DIR_SRC)/ft_treat_connect_nbr.c \
 					  $(DIR_SRC)/ft_treat_eat.c \
+					  $(DIR_SRC)/ft_treat_egg.c \
 					  $(DIR_SRC)/ft_treat_fork.c \
 					  $(DIR_SRC)/ft_del_elem.c \
 					  $(DIR_SRC)/ft_action_del.c \
 					  $(DIR_SRC)/ft_action_add.c \
 					  $(DIR_SRC)/ft_graphic_function.c \
 					  $(DIR_SRC)/ft_graphic_init.c \
+					  $(DIR_SRC)/ft_graphic_bct.c \
 
 # ---------------------------------------------------------------------------- #
 

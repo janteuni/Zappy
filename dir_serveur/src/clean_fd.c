@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 15:26:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 16:42:39 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ static void		st_del_action(t_fd *fd)
 
 void			clean_fd(t_fd *fd)
 {
-	fd->type = FREE;
-	fd->my_cs = 0;
-	fd->buf_offset = 0;
-	fd->fct_read = NULL;
-	fd->fct_write = NULL;
-	ft_bzero(fd->buf_read, BUF_SIZE);
-	ft_bzero(fd->buf_write, BUF_SIZE);
 	if (fd->my_team)
 	{
 		st_del_me(fd);
@@ -75,4 +68,11 @@ void			clean_fd(t_fd *fd)
 	if (fd->line_read)
 		ft_lstdel(&fd->line_read, ft_del);
 	st_del_action(fd);
+	fd->type = FREE;
+	fd->my_cs = 0;
+	fd->buf_offset = 0;
+	fd->fct_read = NULL;
+	fd->fct_write = NULL;
+	ft_bzero(fd->buf_read, BUF_SIZE);
+	ft_bzero(fd->buf_write, BUF_SIZE);
 }
