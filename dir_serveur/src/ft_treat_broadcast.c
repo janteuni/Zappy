@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:42:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 10:33:40 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:36:04 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static void			st_contact_all(char *rcv, int i, t_env *env, int cs)
 	while (j < env->max_fd)
 	{
 		if (env->fd_socket[j].type == CLIENT && cs != j)
-		{
 			ft_reply_in_buff(env, j, rcv + i);
-		}
 		j++;
 	}
 }
@@ -40,10 +38,8 @@ void				ft_treat_broadcast(t_env *env, int cs, char *rcv)
 			i++;
 		st_contact_all(rcv, i, env, cs);
 		ft_reply_in_buff(env, cs, "ok");
-/*		ft_messages_add(env, cs, "ok", 7);*/
 	}
 	else
 		ft_reply_in_buff(env, cs, "ko");
-		/*ft_messages_add(env, cs, "ko", 7);*/
 	ft_free_tab((void ***)&split);
 }

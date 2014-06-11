@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:48:16 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 10:39:09 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:35:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void				ft_treat_avance(t_env *env, int cs, char *rcv)
 	POSX(cs) = new_pos.x;
 	POSY(cs) = new_pos.y;
 	printf("new pos: %d %d\n", new_pos.x, new_pos.y);
-	/*ft_messages_add(env, cs, "ok", 7);*/
 	ft_reply_in_buff(env, cs, "ok");
 }

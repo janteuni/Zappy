@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:32:24 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:36:59 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int				st_count_players(t_pos pos, t_env *env, int level, int inf)
 					TOTX(i) = POSX(i);
 					ft_reply_in_buff(env, i, "elevation en cours");
 					ft_action_add(i, 300, ft_check_incantation, "elevation");
-					/*ft_messages_add(env, i, "elevation", 300);*/
 				}
 				j++;
 			}
@@ -98,5 +97,4 @@ void					ft_treat_incantation(t_env *env, int cs, char *rcv)
 		ft_memdel((void **)&itoa);
 		ft_memdel((void **)&join);
 	}
-
 }

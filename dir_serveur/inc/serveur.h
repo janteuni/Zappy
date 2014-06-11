@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:32:25 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:39:01 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ typedef struct		s_env
 	int				***map;
 	char			stuff[NB_STUFF][12];
 	int				**incantation;
-	t_list			*messages;
 	t_list			*actions;
 }					t_env;
 
@@ -194,10 +193,6 @@ void				ft_treat_avance(t_env *env, int cs, char *rcv);
 void				ft_treat_left(t_env *env, int cs, char *rcv);
 void				ft_treat_right(t_env *env, int cs, char *rcv);
 int					ft_function_cmd(t_env *env, int cs, char *rcv);
-
-void				ft_messages_select(t_env *env);
-void				ft_messages_add(t_env *env, int cs, char *msg, int t);
-void				ft_messages_del(t_env *env, t_list *to_del);
 
 void				ft_action_add(int cs, int t, void (*fn)(), char *rcv);
 void				ft_action_del(t_env *env, t_list *to_del);

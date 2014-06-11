@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:15:25 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:39:32 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void		finish_init(t_env *env)
 	env->nb_player = 0;
 	env->port = 0;
 	env->map = NULL;
-	env->messages = NULL;
 	env->actions = NULL;
 	ft_strcpy(env->stuff[FOOD], "nourriture");
 	ft_strcpy(env->stuff[LINEMATE], "linemate");

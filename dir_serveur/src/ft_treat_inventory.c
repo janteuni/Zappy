@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 11:36:48 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 10:36:59 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:37:57 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ void				ft_treat_inventory(t_env *env, int cs, char *rcv)
 	ret[ft_strlen(ret) - 1] = '\0';
 	ret[ft_strlen(ret) - 1] = '}';
 	ft_reply_in_buff(env, cs, ret);
-	/*ft_messages_add(env, cs, ret, 1);*/
 	ft_memdel((void **)&ret);
 }
