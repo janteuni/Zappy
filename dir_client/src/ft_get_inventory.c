@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 20:58:40 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/10 16:15:07 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 12:01:19 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int					ft_get_inventory(t_env *env)
 
 	ft_bzero(buf, INV_BUF + 1);
 	str = ft_strjoin("inventaire", "\n");
-	env->cmds[INVENT]++;
-	env->replies[SUCCESS] = ft_strdup(LIST);
-	env->replies[FAIL] = NULL;
+	/*env->cmds[INVENT]++;
+	env->replies[FAIL] = NULL;*/
 	printf("SEND COMMAND : INVENTORY\n");
 	if ((n = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));
+	env->resp[RESP_INV]++;
 	return (OK);
 }

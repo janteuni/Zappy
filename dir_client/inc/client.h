@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/10 19:47:28 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/11 11:50:35 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define BUF_SIZE	50
 # define INV_BUF	1024
 # define BIG_BUF	4095
-# define NB_RESP	4
 
 # define INV_SIZE	7
 # define SEE_SIZE	8
@@ -38,10 +37,13 @@
 # define THYSTAME	6
 # define PLAYERS	7
 
+# define NB_RESP	4
+# define RESP_OK	0
+# define RESP_VIEW	1
+# define RESP_INV	2
+# define RESP_VAL	3
+
 # define NB_CMDS	12
-# define SUCCESS	0
-# define VIEW		1
-# define 
 # define AVANCE		0
 # define DROITE		1
 # define GAUCHE		2
@@ -74,7 +76,7 @@ typedef struct		s_env
 	int				port;
 	int				socket;
 	int				*cmds;
-	int				*responses;
+	int				*resp;
 	int				dead;
 	int				level;
 	int				client_nb;
@@ -99,6 +101,8 @@ int					ft_parse(int ac, char **av, t_env *env);
 **			ft_loop.c
 */
 int					ft_loop(t_env *env);
+int					ft_expecting_resp(t_env *env);
+int					ft_takemove(t_env *env);
 
 /*
 **			ft_get_inventory.c
