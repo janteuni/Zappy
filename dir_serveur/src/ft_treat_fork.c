@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 12:10:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:34:16 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 10:35:02 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void				ft_treat_fork(t_env *env, int cs, char *rcv)
 {
 	(void)rcv;
-	ft_messages_add(env, cs, "ok", 42);
+	/*ft_messages_add(env, cs, "ok", 42);*/
+	ft_reply_in_buff(env, cs, "ok");
 }

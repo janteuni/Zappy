@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:52:26 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:27:27 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 10:37:13 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void				ft_treat_left(t_env *env, int cs, char *rcv)
 		OR(cs) = E;
 	else if (OR(cs) == E)
 		OR(cs) = O;
-	ft_messages_add(env, cs, "ok", 7);
+/*	ft_messages_add(env, cs, "ok", 7);*/
+	ft_reply_in_buff(env, cs, "ok");
 }

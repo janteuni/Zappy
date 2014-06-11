@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:05:56 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 15:32:06 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 10:34:41 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void				ft_treat_expulse(t_env *env, int cs, char *rcv)
 		i++;
 	}
 	if (expulse == 0)
-		ft_messages_add(env, cs, "ko", 7);
+		ft_reply_in_buff(env, cs, "ko");
+/*		ft_messages_add(env, cs, "ko", 7);*/
 	else
-		ft_messages_add(env, cs, "ok", 7);
+		ft_reply_in_buff(env, cs, "ok");
+/*		ft_messages_add(env, cs, "ok", 7);*/
 }

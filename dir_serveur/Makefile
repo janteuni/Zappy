@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/10 15:43:25 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/11 11:06:49 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,8 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_del_elem.c \
 					  $(DIR_SRC)/ft_messages_add.c \
 					  $(DIR_SRC)/ft_messages_del.c \
+					  $(DIR_SRC)/ft_action_del.c \
+					  $(DIR_SRC)/ft_action_add.c \
 					  $(DIR_SRC)/ft_graphic_function.c \
 					  $(DIR_SRC)/ft_graphic_init.c \
 
