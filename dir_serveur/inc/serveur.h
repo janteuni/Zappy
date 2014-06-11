@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 14:59:59 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 18:32:58 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,9 @@ typedef struct		s_env
 	t_list			*actions;
 }					t_env;
 
-t_env				*get_env(void);
-int					parser(t_env *env, int argc, char **argv);
-int					error(char *err);
-
+/*
+** SERVER
+*/
 int					create_server(t_env *env);
 void				ft_loop(t_env *env);
 void				clean_fd(t_fd *fd);
@@ -157,14 +156,20 @@ void				client_write(t_env *env, int cs);
 void				do_select(t_env *env);
 void				check_fd(t_env *env);
 void				init_fd(t_env *env);
-void				ft_max_players_in_team(t_env *env);
 
+/*
+** CMD BUFFER
+*/
 int					ft_receive(t_env *env, int cs);
 void				ft_stock_line(int cs, char *buffer);
 void				ft_treat_msg(t_env *env, int cs, char *msg);
 void				ft_reply_in_buff(t_env *env, int cs, char *msg);
 void				ft_treat_cmd(char *rcv, t_env *env, int cs);
 
+/*
+**	TOOLS DELETE AND EXIT
+*/
+int					error(char *err);
 void				ft_null(void *d, size_t s);
 void				del_list(t_list **begin, t_list *to_del);
 void				ft_del(void *d, size_t s);
@@ -174,16 +179,26 @@ void				ft_del_elem(t_list **begin, t_list *to_del,
 void				ft_del_action(void *d, size_t s);
 int					ft_exit(char *err);
 
+/*
+** INIT
+*/
+t_env				*get_env(void);
+int					parser(t_env *env, int argc, char **argv);
 int					ft_pars_flag(int *i, char **argv, int argc, t_env *env);
 void				ft_print_map(t_env *env, int k);
 void				ft_init_map(t_env *env);
 
+void				ft_max_players_in_team(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
-void				ft_check_incantation(t_env *env, int cs, char *rcv);
 
+/*
+** CLIENT CMDS
+*/
+void				ft_check_incantation(t_env *env, int cs, char *rcv);
 void				ft_treat_eat(t_env *env);
+void				ft_treat_egg(t_env *env, int cs, char *rcv);
 void				ft_treat_expulse(t_env *env, int cs, char *rcv);
 void				ft_treat_connect_nbr(t_env *env, int cs, char *rcv);
 void				ft_treat_fork(t_env *env, int cs, char *rcv);
@@ -198,11 +213,20 @@ void				ft_treat_left(t_env *env, int cs, char *rcv);
 void				ft_treat_right(t_env *env, int cs, char *rcv);
 int					ft_function_cmd(t_env *env, int cs, char *rcv);
 
+/*
+** ACTION LIST
+*/
 void				ft_action_add(int cs, int t, void (*fn)(), char *rcv);
 void				ft_action_del(t_env *env, t_list *to_del);
 void				ft_actions_select(t_env *env);
 
+/*
+** CLIENT GRAPHIC
+*/
 void				ft_graphic_function(t_env *env, int cs, char *rcv);
 void				ft_graphic_init(t_env *env, int cs);
+char				*ft_graphic_bct(t_env *env, int x, int y);
+void				ft_graphic_all_map(t_env *env, int cs);
+char				*ft_graphic_tna(t_env *env);
 
 #endif
