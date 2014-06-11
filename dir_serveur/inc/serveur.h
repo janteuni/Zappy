@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 12:01:23 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 12:39:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct		s_fd
 	char			*my_team;
 	t_pos			pos;
 	t_pos			incant;
+	long int		last_cmd;
 	int				inventory[NB_STUFF];
 }					t_fd;
 
@@ -140,7 +141,6 @@ typedef struct		s_env
 	char			stuff[NB_STUFF][12];
 	int				**incantation;
 	t_list			*actions;
-	long int		last_cmd;
 }					t_env;
 
 t_env				*get_env(void);
