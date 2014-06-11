@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:13:41 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:32:25 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ int					ft_init_map(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
-void				ft_check_incantation(t_env *env, int cs);
+void				ft_check_incantation(t_env *env, int cs, char *rcv);
 
 void				ft_treat_eat(t_env *env);
 void				ft_treat_expulse(t_env *env, int cs, char *rcv);

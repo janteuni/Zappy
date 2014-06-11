@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 14:27:08 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 18:31:21 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 11:30:16 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				ft_messages_del(t_env *env, t_list *to_del)
 	cs = ((t_message *)to_del->content)->cs;
 	msg = ((t_message *)to_del->content)->msg;
 	if (ft_strcmp("elevation", msg) == 0)
-		ft_check_incantation(env, cs);
+		ft_check_incantation(env, cs, "elevation");
 	else
 		ft_reply_in_buff(env, cs, msg);
 	ft_del_elem(&env->messages, to_del, ft_del_mess);
