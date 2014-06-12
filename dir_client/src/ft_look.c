@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 18:27:06 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 18:29:35 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int					ft_read_square(char *sqr, int i, int **view)
 			view[i][PLAYERS]++;
 		++n;
 	}
-	view[i] = ft_calc_distance(env, ...);
+	view[i] = ft_calc_dist(env, ...);
 	ft_free_tab((void ***)&split);
 	return (OK);
 }
