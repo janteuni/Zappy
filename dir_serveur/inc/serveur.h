@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 18:45:34 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 19:57:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ t_list				*ft_get_players_same_level(t_env *env, int cs);
 void				ft_action_add(int cs, int t, void (*fn)(), char *rcv);
 void				ft_action_del(t_env *env, t_list *to_del);
 void				ft_actions_select(t_env *env);
+void				ft_action_tm(int cs, int t, void (*fn)(), char *rcv);
 
 /*
 ** CLIENT GRAPHIC
