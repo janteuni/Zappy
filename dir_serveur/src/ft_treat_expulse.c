@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:05:56 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:53:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 15:41:12 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void			st_inform(t_env *env, int i, int cs)
 	join = ft_strjoin("deplacement ", itoa);
 	ft_memdel((void **)&itoa);
 	ft_reply_in_buff(env, i, join);
+	ft_graphic_reply(env, i, ft_graphic_ppo);
 	ft_memdel((void **)&join);
 }
 
@@ -65,6 +66,8 @@ void				ft_treat_expulse(t_env *env, int cs, char *rcv)
 		{
 			if (POSX(i) == POSX(cs) && POSY(i) == POSY(cs))
 			{
+				if (expulse == 0)
+					ft_graphic_reply(env, cs, ft_graphic_pex);
 				expulse++;
 				st_special_avance(env, i, OR(cs));
 				st_inform(env, i, cs);

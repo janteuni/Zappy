@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/11 18:33:16 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/12 18:45:33 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,18 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_graphic_init.c \
 					  $(DIR_SRC)/ft_graphic_bct.c \
 					  $(DIR_SRC)/ft_graphic_tna.c \
+					  $(DIR_SRC)/ft_graphic_pnw.c \
+					  $(DIR_SRC)/ft_graphic_ppo.c \
+					  $(DIR_SRC)/ft_graphic_reply.c \
+					  $(DIR_SRC)/ft_graphic_plv.c \
+					  $(DIR_SRC)/ft_graphic_pin.c \
+					  $(DIR_SRC)/ft_graphic_pex.c \
+					  $(DIR_SRC)/ft_graphic_pbc.c \
+					  $(DIR_SRC)/ft_graphic_pic.c \
+					  $(DIR_SRC)/ft_graphic_pie.c \
+					  $(DIR_SRC)/ft_snapshot.c \
+					  $(DIR_SRC)/ft_get_players.c \
+					  $(DIR_SRC)/ft_lst_contains.c \
 
 # ---------------------------------------------------------------------------- #
 

@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_tna.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_pic.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/11 17:29:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 12:15:18 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/12 16:01:22 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/12 16:18:41 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char					*ft_graphic_tna(t_env *env)
+char				*ft_graphic_pic(t_env *env, int cs)
 {
-	char				*ret;
-	char				*tmp;
-	int					i;
+	char			*str;
+	char			*tmp;
+	int				i;
 
 	i = 0;
-	ret = NULL;
-	while (i < env->max_team)
+	asprintf(&str, "pic %d %d %d", POSX(cs), POSY(cs),
+			env->fd_socket[cs].level);
+	while (i < env->max_fd)
 	{
-		tmp = ft_strjoin(ret, "tna ");
-		if (ret)
-			ft_memdel((void **)&ret);
-		ret = ft_strjoin(tmp, env->teams[i].name);
-		ft_memdel((void **)&tmp);
-		tmp = ft_strjoin(ret, "\n");
-		ft_memdel((void **)&ret);
-		ret = tmp;
+		if (env->fd_socket[i].type == CLIENT && POSY(i) == POSY(cs)
+				&& POSX(i) == POSX(cs)
+				&& env->fd_socket[i].level == env->fd_socket[cs].level)
+		{
+			asprintf(&tmp, "%s %d", str, i);
+			ft_memdel((void **)&str);
+			str = tmp;
+		}
 		i++;
 	}
-	return (ret);
+	return (str);
 }

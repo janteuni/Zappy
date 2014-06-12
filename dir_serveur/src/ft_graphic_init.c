@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 15:36:37 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 18:34:04 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 15:15:36 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,28 @@
 
 char				*ft_graphic_msz(t_env *env)
 {
-	char			*ret;
-	char			*itoa;
-	char			*tmp;
+	char			*str;
 
-	itoa = ft_itoa(env->width);
-	ret = ft_strjoin("msz ", itoa);
-	ft_memdel((void **)&itoa);
-	itoa = ft_itoa(env->height);
-	tmp = ft_strjoin(ret, " ");
-	ft_memdel((void **)&ret);
-	ret = ft_strjoin(tmp, itoa);
-	ft_memdel((void **)&itoa);
-	ft_memdel((void **)&tmp);
-	tmp = ft_strjoin(ret, "\n");
-	ft_memdel((void **)&ret);
-	return (tmp);
+	asprintf(&str, "msz %d %d\n", env->width, env->height);
+	return (str);
 }
 
 char				*ft_graphic_sgt(t_env *env)
 {
-	char			*ret;
-	char			*tmp;
-	char			*itoa;
+	char			*str;
 
-	itoa = ft_itoa(env->time);
-	tmp = ft_strjoin("sgt ", itoa);
-	ft_memdel((void **)&itoa);
-	ret = ft_strjoin(tmp, "\n");
-	ft_memdel((void **)&tmp);
-	return (ret);
+	asprintf(&str, "sgt %d\n", env->time);
+	return (str);
 }
 
 void				ft_graphic_init(t_env *env, int cs)
 {
 	char			*push;
+	int				i;
 
+	i = 0;
 	env->fd_socket[cs].type = GRAPHIC;
+	env->graphic = cs;
 	push = ft_graphic_msz(env);
 	ft_reply_in_buff(env, cs, push);
 	ft_memdel((void **)&push);
@@ -61,4 +46,10 @@ void				ft_graphic_init(t_env *env, int cs)
 	push = ft_graphic_tna(env);
 	ft_reply_in_buff(env, cs, push);
 	ft_memdel((void **)&push);
+	while (i < env->max_fd)
+	{
+		if (env->fd_socket[i].type == CLIENT)
+			ft_graphic_reply(env, i, ft_graphic_pnw);
+		i++;
+	}
 }

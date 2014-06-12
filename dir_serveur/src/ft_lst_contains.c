@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_tna.c                                   :+:      :+:    :+:   */
+/*   ft_lst_contains.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/11 17:29:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 12:15:18 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/12 18:41:33 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/12 18:45:43 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char					*ft_graphic_tna(t_env *env)
+static int			st_in_list(int nb, t_list *lst)
 {
-	char				*ret;
-	char				*tmp;
-	int					i;
-
-	i = 0;
-	ret = NULL;
-	while (i < env->max_team)
+	while (lst)
 	{
-		tmp = ft_strjoin(ret, "tna ");
-		if (ret)
-			ft_memdel((void **)&ret);
-		ret = ft_strjoin(tmp, env->teams[i].name);
-		ft_memdel((void **)&tmp);
-		tmp = ft_strjoin(ret, "\n");
-		ft_memdel((void **)&ret);
-		ret = tmp;
-		i++;
+		if ((int)(*(int *)lst->content) == nb)
+			return (YES);
+		lst = lst->next;
 	}
-	return (ret);
+	return (NO);
+}
+
+int					ft_lst_contains(t_list *tocheck, t_list *container)
+{
+	while (tocheck)
+	{
+		if (!st_in_list((int)(*(int *)tocheck->content), container))
+			return (NO);
+		tocheck = tocheck->next;
+	}
+	return (YES);
 }

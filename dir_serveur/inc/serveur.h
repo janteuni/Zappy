@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 18:32:58 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 18:45:34 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define TOTEM		env->incantation
 # define TOTX(CS)	env->fd_socket[CS].incant.x
 # define TOTY(CS)	env->fd_socket[CS].incant.y
+# define INV(CS)	env->fd_socket[CS].inventory
+# define SNAP		env->fd_socket[i].snapshot
 
 # define N			1
 # define E			2
@@ -83,6 +85,12 @@ typedef struct		s_pos
 	int				o;
 }					t_pos;
 
+typedef struct		s_snapshot
+{
+	t_list			*players;
+	int				*stuff;
+}					t_snapshot;
+
 typedef struct		s_fd
 {
 	int				level;
@@ -100,6 +108,7 @@ typedef struct		s_fd
 	t_pos			incant;
 	long int		last_cmd;
 	int				inventory[NB_STUFF];
+	t_snapshot		snapshot;
 }					t_fd;
 
 typedef struct		s_message
@@ -133,6 +142,7 @@ typedef struct		s_env
 	int				max_fd;
 	int				max;
 	int				r;
+	int				graphic;
 	t_team			*teams;
 	int				max_team;
 	t_fd			*fd_socket;
@@ -212,6 +222,9 @@ void				ft_treat_avance(t_env *env, int cs, char *rcv);
 void				ft_treat_left(t_env *env, int cs, char *rcv);
 void				ft_treat_right(t_env *env, int cs, char *rcv);
 int					ft_function_cmd(t_env *env, int cs, char *rcv);
+void				ft_snapshot(t_env *env, int cs, int stuff[NB_STUFF]);
+t_list				*ft_get_players(t_env *env, int cs);
+t_list				*ft_get_players_same_level(t_env *env, int cs);
 
 /*
 ** ACTION LIST
@@ -228,5 +241,19 @@ void				ft_graphic_init(t_env *env, int cs);
 char				*ft_graphic_bct(t_env *env, int x, int y);
 void				ft_graphic_all_map(t_env *env, int cs);
 char				*ft_graphic_tna(t_env *env);
+char				*ft_graphic_pnw(t_env *env, int cs);
+char				*ft_graphic_ppo(t_env *env, int cs);
+void				ft_graphic_reply(t_env *env, int cs, char *(*fn)());
+char				*ft_graphic_plv(t_env *env, int cs);
+char				*ft_graphic_pin(t_env *env, int cs);
+char				*ft_graphic_pex(t_env *env, int cs);
+char				*ft_graphic_pbc(t_env *env, int cs, char *msg);
+char				*ft_graphic_pic(t_env *env, int cs);
+char				*ft_graphic_pie(t_env *env, int cs, int result);
+
+/*
+** Miscelleanous
+*/
+int					ft_lst_contains(t_list *tocheck, t_list *container);
 
 #endif

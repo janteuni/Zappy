@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_tna.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_reply.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/11 17:29:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 12:15:18 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/12 14:18:42 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/12 14:25:23 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char					*ft_graphic_tna(t_env *env)
+void				ft_graphic_reply(t_env *env, int cs, char *(*fn)())
 {
-	char				*ret;
-	char				*tmp;
-	int					i;
+	char			*line;
 
-	i = 0;
-	ret = NULL;
-	while (i < env->max_team)
+	line = NULL;
+	if (env->graphic != -1)
 	{
-		tmp = ft_strjoin(ret, "tna ");
-		if (ret)
-			ft_memdel((void **)&ret);
-		ret = ft_strjoin(tmp, env->teams[i].name);
-		ft_memdel((void **)&tmp);
-		tmp = ft_strjoin(ret, "\n");
-		ft_memdel((void **)&ret);
-		ret = tmp;
-		i++;
+		line = fn(env, cs);
+		ft_reply_in_buff(env, env->graphic, line);
+		ft_memdel((void **)&line);
 	}
-	return (ret);
 }
