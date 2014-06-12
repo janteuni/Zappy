@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 18:29:25 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 18:47:48 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 19:35:30 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,36 @@
 */
 
 
-int					ft_calc_dist(t_env *env...)
+int					ft_calc_dist(t_env *env, int stop)
 {
 	int				i;
 	int				j;
 	int				row_len;
+	int				row_start;
+	int				row_mid;
+	int				dist;
 
 	i = 0;
 	j = 0;
+	dist = 0;
 	while (i <= env->level)
 	{
+		row_start = j;
 		row_len = (i * 2) + 1;
-
-
-
-		ft_compute_row(env, i, );
+		row_mid = row_start + (row_len / 2);
+		while (j < row_start + row_len)
+		{
+			if (j < row_mid)
+				dist = i + 1 + (row_mid - j);
+			else if (j > row_mid)
+				dist = i + 1 + ( j - row_mid);
+			else
+				dist = i;
+			if (j == stop)
+				break;
+			j++;
+		}
 		i++;
 	}
-
-	return (OK);
+	return (dist);
 }

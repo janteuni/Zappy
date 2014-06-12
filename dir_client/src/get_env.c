@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 12:30:12 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 19:24:41 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_env			*get_env(void)
 		env->team = NULL;
 		env->view = NULL;
 		env->moves = NULL;
-		env->inv = NULL;
+		ft_bzero(env->inv, sizeof(int) * INV_SIZE);
 	}
 	return (env);
 }
