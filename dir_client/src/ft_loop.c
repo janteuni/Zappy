@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 12:00:41 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 19:25:43 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,14 @@ int					ft_takemove(t_env *env)
 		return (OK);
 	else
 	{
-		if (!env->moves)
+	/*	if (!env->moves)
 		  ft_ia(env);
-		ft_send_moves(env);
+		ft_send_moves(env);*/
 	}
 	return (OK);
 }
 
-void				printf_moves(t_env *env)
+void				print_moves(t_env *env)
 {
 	t_list			*ptr;
 	int				i;
@@ -132,6 +132,7 @@ int					ft_loop(t_env *env)
 	ft_send_cmd(env, FORW, RESP_OK);
 	ft_send_cmd(env, LEFT, RESP_OK);
 	ft_send_cmd(env, RIGHT, RESP_OK);
+	ft_send_cmd(env, VIEW, RESP_VIEW);
 	/*	env->resp[RESP_OK] += 2;
 		if ((send(env->socket, "avance\n", ft_strlen("avance\n"), 0)) < 0)
 		return (error("Failed to send command"));

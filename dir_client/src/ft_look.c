@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 18:29:35 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 19:35:56 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int					ft_read_square(char *sqr, int i, int **view)
 			view[i][PLAYERS]++;
 		++n;
 	}
-	view[i] = ft_calc_dist(env, ...);
 	ft_free_tab((void ***)&split);
 	return (OK);
 }
@@ -97,6 +96,8 @@ void				ft_print_view(t_env *env, int **view)
 				str = "THYSTAME";
 			else if (n == 7)
 				str = "PLAYERS";
+			else if (n == 8)
+				str = "DISTANCE";
 			else
 				str = "dunno";
 
@@ -116,6 +117,7 @@ int					ft_read_view(t_env *env, char **split)
 	while (split[i])
 	{
 		ft_read_square(split[i], i, env->view);
+		env->view[i][DISTANCE] = (i == 0 ? 0 : ft_calc_dist(env, i));
 		++i;
 	}
 	ft_print_view(env, env->view);

@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 18:10:59 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 19:32:53 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define RIGHT		"droite\n"
 # define LEFT		"gauche\n"
 # define INV		"inventaire\n"
-# define FORK		"fork\n"
+# define VIEW		"voir\n"
 # define CMD(X)		((t_cmd *)X->content)
 
 # define DEAD		"mort"
@@ -86,7 +86,7 @@ typedef struct		s_env
 	char			*addr;
 	int				port;
 	int				socket;
-	/*int				*cmds;*/
+	char			**cmds;
 	int				*resp;
 	int				dead;
 	int				level;
@@ -167,6 +167,9 @@ int					ft_message(t_env *env, char *buf);
 /*
 **			ft_ia.c
 */
-int					ft_set_cmd(t_cmd *cmd, int cmd_num, char *opt, int resp);
+int					ft_set_cmd(t_cmd *cmd, int cmd_num, char *opt, int resp, t_env *env);
 int					ft_ia(t_env *env);
+
+int					ft_calc_dist(t_env *env, int stop);
+
 #endif
