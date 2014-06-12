@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 18:45:41 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 19:30:46 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void						ft_check_incantation(t_env *env, int cs, char *rcv)
 	join = ft_strjoin("niveau ", itoa);
 	TOTY(cs) = -1;
 	TOTX(cs) = -1;
+	env->map[POSY(cs)][POSX(cs)][INCANT] = NO;
 	ft_reply_in_buff(env, cs, join);
 	ft_memdel((void **)&itoa);
 	ft_memdel((void **)&join);
