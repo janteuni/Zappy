@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_graphic_pie.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 11:30:13 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/04 11:30:55 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/12 16:18:55 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/12 17:00:47 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-int					main(void)
+char			*ft_graphic_pie(t_env *env, int cs, int result)
 {
-	printf("yolo\n");
-	return (OK);
+	char		*str;
+
+	asprintf(&str, "pie %d %d %d\n", POSX(cs), POSY(cs), result);
+	return (str);
 }

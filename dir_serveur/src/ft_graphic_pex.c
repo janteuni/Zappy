@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_ppo.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_pex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/12 12:42:21 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 15:02:17 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/12 15:28:02 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/12 15:41:15 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char				*ft_graphic_ppo(t_env *env, int cs)
+char				*ft_graphic_pex(t_env *env, int cs)
 {
 	char			*str;
 
-	asprintf(&str, "ppo %d %d %d %d\n", cs, POSX(cs), POSY(cs), OR(cs));
+	(void)env;
+	asprintf(&str, "pex %d\n", cs);
 	return (str);
 }

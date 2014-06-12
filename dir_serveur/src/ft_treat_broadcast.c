@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:42:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:36:04 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 16:01:02 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void				ft_treat_broadcast(t_env *env, int cs, char *rcv)
 {
 	int				i;
 	char			**split;
+	char			*line;
 
 	i = 9;
 	split = ft_super_split(rcv);
@@ -37,6 +38,9 @@ void				ft_treat_broadcast(t_env *env, int cs, char *rcv)
 		while (rcv[i] == ' ')
 			i++;
 		st_contact_all(rcv, i, env, cs);
+		line = ft_graphic_pbc(env, cs, rcv + i);
+		ft_reply_in_buff(env, env->graphic, line);
+		ft_memdel((void **)&line);
 		ft_reply_in_buff(env, cs, "ok");
 	}
 	else

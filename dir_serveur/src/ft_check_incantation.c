@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:48:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 18:45:41 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 static int					st_incantation_succeed(t_env *env, int cs)
 {
-	if (env->map[TOTY(cs)][TOTX(cs)][INCANT] == NO)
+	t_list					*players;
+	t_list					*my_list;
+
+	if (POSX(cs) != TOTX(cs) && POSY(cs) != TOTY(cs))
 		return (ERR);
-	if (POSX(cs) == TOTX(cs) && POSY(cs) == TOTY(cs))
-		return (OK);
-	env->map[TOTY(cs)][TOTX(cs)][INCANT] = NO;
-	return (ERR);
+	players = ft_get_players(env, cs);
+	my_list = env->fd_socket[cs].snapshot.players;
+	if (!ft_lst_contains(my_list, players))
+	{
+		ft_lstdel(&players, ft_del);
+		return (ERR);
+	}
+	ft_lstdel(&players, ft_del);
+	return (OK);
 }
 
 void						ft_check_incantation(t_env *env, int cs, char *rcv)
@@ -37,4 +45,6 @@ void						ft_check_incantation(t_env *env, int cs, char *rcv)
 	ft_reply_in_buff(env, cs, join);
 	ft_memdel((void **)&itoa);
 	ft_memdel((void **)&join);
+	ft_lstdel(&env->fd_socket[cs].snapshot.players, ft_del);
+	ft_graphic_reply(env, cs, ft_graphic_plv);
 }

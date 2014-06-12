@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_ppo.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_pbc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/12 12:42:21 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 15:02:17 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/12 15:55:07 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/12 16:00:45 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char				*ft_graphic_ppo(t_env *env, int cs)
+char				*ft_graphic_pbc(t_env *env, int cs, char *msg)
 {
 	char			*str;
 
-	asprintf(&str, "ppo %d %d %d %d\n", cs, POSX(cs), POSY(cs), OR(cs));
+	(void)env;
+	asprintf(&str, "pbc %d %s\n", cs, msg);
 	return (str);
 }
