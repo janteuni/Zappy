@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 19:18:55 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 12:00:41 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,28 @@ int					ft_takemove(t_env *env)
 		return (OK);
 	else
 	{
-		/*if (!env->moves)
-		  ft_ia(env);*/
+		if (!env->moves)
+		  ft_ia(env);
 		ft_send_moves(env);
 	}
 	return (OK);
+}
+
+void				printf_moves(t_env *env)
+{
+	t_list			*ptr;
+	int				i;
+
+	ptr = env->moves;
+	i = 0;
+	if (ptr)
+		printf("MOVES TO TAKE:\n");
+	while (ptr)
+	{
+		printf("MOVE %d : %s\n",i, CMD(ptr)->cmd );
+		ptr = ptr->next;
+		i++;
+	}
 }
 
 int					ft_loop(t_env *env)
@@ -123,6 +140,7 @@ int					ft_loop(t_env *env)
 	/*	ft_look(env);*/
 	while (!env->dead)
 	{
+		print_moves(env);
 		ft_recv(env);
 		ft_takemove(env);
 		/*++i;*/

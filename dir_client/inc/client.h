@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 19:09:41 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/12 18:10:59 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define BIG_BUF	4095
 
 # define INV_SIZE	7
-# define SEE_SIZE	8
+# define SEE_SIZE	9
 # define FOOD		0
 # define LINEMATE	1
 # define DERAUMERE	2
@@ -36,6 +36,21 @@
 # define PHIRAS		5
 # define THYSTAME	6
 # define PLAYERS	7
+# define DISTANCE	8
+
+# define NB_CMDS	12
+# define AVANCE		0
+# define DROITE		1
+# define GAUCHE		2
+# define VOIR		3
+# define INVENT		4
+# define PREND		5
+# define POSE		6
+# define EXPUL		7
+# define BROAD		8
+# define INCANT		9
+# define FORK		10
+# define CON_NB		11
 
 # define NB_RESP	4
 # define RESP_OK	0
@@ -46,6 +61,8 @@
 # define FORW		"avance\n"
 # define RIGHT		"droite\n"
 # define LEFT		"gauche\n"
+# define INV		"inventaire\n"
+# define FORK		"fork\n"
 # define CMD(X)		((t_cmd *)X->content)
 
 # define DEAD		"mort"
@@ -73,13 +90,14 @@ typedef struct		s_env
 	int				*resp;
 	int				dead;
 	int				level;
-	int				client_nb;
+	int				connect_nb;
 	int				x;
 	int				y;
 	int				inv[INV_SIZE];
 	int				**view;
 	t_list			*moves;
 	int				elevating;
+	int				forked;
 	int				moved;
 	int				dir_msg;
 }					t_env;
@@ -146,19 +164,9 @@ int					ft_dead(t_env *env, char *buf);
 */
 int					ft_message(t_env *env, char *buf);
 
-/*# define NB_CMDS	12
-# define AVANCE		0
-# define DROITE		1
-# define GAUCHE		2
-# define VOIR		3
-# define INVENT		4
-# define PREND		5
-# define POSE		6
-# define EXPUL		7
-# define BROAD		8
-# define INCANT		9
-# define FORK		10
-# define CON_NB		11
-# define SUCCESS	0
-# define FAIL		1*/
+/*
+**			ft_ia.c
+*/
+int					ft_set_cmd(t_cmd *cmd, int cmd_num, char *opt, int resp);
+int					ft_ia(t_env *env);
 #endif
