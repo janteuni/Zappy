@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 16:42:39 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 12:40:56 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void		st_del_action(t_fd *fd)
 
 	env = get_env();
 	act = env->actions;
+	if (fd->type == GRAPHIC)
+		env->graphic = -1;
 	if (act)
 	{
 		while (act != NULL)
