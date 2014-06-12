@@ -6,7 +6,7 @@
 /*   By: mpillet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 12:24:11 by mpillet           #+#    #+#             */
-/*   Updated: 2014/06/07 18:07:17 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/11 19:01:22 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void		ft_lstsort(t_list *lst, int (*f)(t_list *, t_list *));
 int			ft_indexof(char *str, char c);
 void		ft_printlst(t_list *lst);
 int			ft_lstlen(t_list *lst);
+void		ft_lstdel_elem(void *content, size_t content_size);
 
 /*
 ** btree
