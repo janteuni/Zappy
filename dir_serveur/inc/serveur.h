@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 12:23:00 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 12:50:03 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,5 +230,6 @@ char				*ft_graphic_bct(t_env *env, int x, int y);
 void				ft_graphic_all_map(t_env *env, int cs);
 char				*ft_graphic_tna(t_env *env);
 char				*ft_graphic_pnw(t_env *env, int cs);
+char				*ft_graphic_ppo(t_env *env, int cs);
 
 #endif

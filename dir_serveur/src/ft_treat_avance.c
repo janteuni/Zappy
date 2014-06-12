@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:48:16 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:35:49 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/12 13:00:44 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void				ft_treat_avance(t_env *env, int cs, char *rcv)
 {
 	t_pos			new_pos;
+	char			*line;
 
 	(void)rcv;
 	new_pos.x = POSX(cs);
@@ -32,4 +33,10 @@ void				ft_treat_avance(t_env *env, int cs, char *rcv)
 	POSY(cs) = new_pos.y;
 	printf("new pos: %d %d\n", new_pos.x, new_pos.y);
 	ft_reply_in_buff(env, cs, "ok");
+	if (env->graphic != -1)
+	{
+		line = ft_graphic_ppo(env, cs);
+		ft_reply_in_buff(env, env->graphic, line);
+		ft_memdel((void **)&line);
+	}
 }
