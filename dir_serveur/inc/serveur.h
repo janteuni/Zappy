@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 19:57:49 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 10:18:50 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,5 +256,6 @@ char				*ft_graphic_pie(t_env *env, int cs, int result);
 ** Miscelleanous
 */
 int					ft_lst_contains(t_list *tocheck, t_list *container);
+int					ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level);
 
 #endif
