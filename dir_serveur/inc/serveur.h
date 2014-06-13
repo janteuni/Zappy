@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 12:00:34 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 12:54:43 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,18 @@
 # define PHIRAS		5
 # define THYSTAME	6
 # define INCANT		7
+
+# define GESTATION	0
+# define DEATH		-1
+# define BORN		1
+
+typedef struct		s_egg
+{
+	int				num;
+	char			*team;
+	int				state;
+	long int		birth;
+}					t_egg;
 
 typedef struct		s_action
 {
@@ -153,6 +165,8 @@ typedef struct		s_env
 	char			stuff[NB_STUFF][12];
 	int				**incantation;
 	t_list			*actions;
+	t_list			*eggs;
+	int				count_egg;
 }					t_env;
 
 /*
