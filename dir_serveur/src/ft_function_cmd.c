@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 12:57:51 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:52:11 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv)
 				cmds[i].fn(env, cs, rcv);
 			else
 				ft_action_add(cs, cmds[i].t, cmds[i].fn, rcv);
+			if (i == 10)
+				ft_graphic_reply(env, cs, ft_graphic_pfk);
 			ft_free_tab((void ***)&split);
 			return (OK);
 		}
