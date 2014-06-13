@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 12:54:43 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 14:59:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,6 @@
 # define DEATH		-1
 # define BORN		1
 
-typedef struct		s_egg
-{
-	int				num;
-	char			*team;
-	int				state;
-	long int		birth;
-}					t_egg;
-
 typedef struct		s_action
 {
 	char			*rcv;
@@ -103,6 +95,15 @@ typedef struct		s_snapshot
 	t_list			*players;
 	int				stuff[NB_STUFF];
 }					t_snapshot;
+
+typedef struct		s_egg
+{
+	int				num;
+	char			*team;
+	int				state;
+	long int		birth;
+	t_pos			pos;
+}					t_egg;
 
 typedef struct		s_fd
 {
@@ -203,6 +204,7 @@ void				ft_del_elem(t_list **begin, t_list *to_del,
 		void (*del)(void *, size_t));
 void				ft_del_action(void *d, size_t s);
 int					ft_exit(char *err);
+void				ft_del_egg(void *d, size_t s);
 
 /*
 ** INIT
@@ -270,13 +272,15 @@ void				ft_graphic_pdr(t_env *env, int cs, int i);
 void				ft_graphic_pgt(t_env *env, int cs, int i);
 char				*ft_graphic_pfk(t_env *env, int cs);
 char				*ft_graphic_pdi(t_env *env, int cs);
-char				*ft_graphic_enw(t_env *env, int cs);
+char				*ft_graphic_enw(t_env *env, int cs, int egg);
 char				*ft_graphic_eht(t_env *env, int cs);
+char				*ft_graphic_ebo(t_env *env, int cs);
 
 /*
 ** Miscelleanous
 */
 int					ft_lst_contains(t_list *tocheck, t_list *container);
 int					ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level);
+int					ft_calcul_nb(t_env *env, int cs);
 
 #endif
