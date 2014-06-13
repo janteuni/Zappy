@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 10:19:59 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:06:01 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void		st_get_infos(t_pos pos, t_env *env, int cs, int tab[NB_STUFF])
 
 int				ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 {
+	printf("comp %d %d %d %d %d %d %d\n", TOTEM[level][PLAYERS], TOTEM[level][LINEMATE],  TOTEM[level][DERAUMERE],  TOTEM[level][SIBUR],  TOTEM[level][MENDIANE], TOTEM[level][PHIRAS], TOTEM[level][THYSTAME]);
+	printf("snap %d %d %d %d %d %d %d\n", tab[PLAYERS], tab[LINEMATE],  tab[DERAUMERE], tab[SIBUR], tab[MENDIANE],tab[PHIRAS],tab[THYSTAME]);
 	if (tab[PLAYERS] >= TOTEM[level][PLAYERS]
 			&& tab[LINEMATE] >= TOTEM[level][LINEMATE]
 			&& tab[DERAUMERE] >= TOTEM[level][DERAUMERE]

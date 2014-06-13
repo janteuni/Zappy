@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 10:18:50 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:12:06 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ typedef struct		s_pos
 
 typedef struct		s_snapshot
 {
+	int				master;
 	t_list			*players;
-	int				*stuff;
+	int				stuff[NB_STUFF];
 }					t_snapshot;
 
 typedef struct		s_fd
@@ -250,7 +251,7 @@ char				*ft_graphic_pin(t_env *env, int cs);
 char				*ft_graphic_pex(t_env *env, int cs);
 char				*ft_graphic_pbc(t_env *env, int cs, char *msg);
 char				*ft_graphic_pic(t_env *env, int cs);
-char				*ft_graphic_pie(t_env *env, int cs, int result);
+void				ft_graphic_pie(t_env *env, int cs, int result);
 
 /*
 ** Miscelleanous

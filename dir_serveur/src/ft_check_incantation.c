@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 10:20:00 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:12:12 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ static int					st_incantation_succeed(t_env *env, int cs)
 	}
 	ft_lstdel(&players, ft_del);
 	if (ft_compare_stuff(env, env->fd_socket[cs].snapshot.stuff, env->fd_socket[cs].level + 1) == OK)
+	{
+		printf("ok\n");
 		return (OK);
+	}
+	printf("err\n");
 	return (ERR);
 }
 
@@ -36,10 +40,17 @@ void						ft_check_incantation(t_env *env, int cs, char *rcv)
 {
 	char			*itoa;
 	char			*join;
+	int				result;
 
 	(void)rcv;
+	result = NO;
 	if (st_incantation_succeed(env, cs) == OK)
+	{
+		result = YES;
 		env->fd_socket[cs].level += 1;
+	}
+	if (env->fd_socket[cs].snapshot.master == cs)
+		ft_graphic_pie(env, cs, result);
 	itoa = ft_itoa(env->fd_socket[cs].level);
 	join = ft_strjoin("niveau ", itoa);
 	env->map[TOTY(cs)][TOTX(cs)][INCANT] = NO;

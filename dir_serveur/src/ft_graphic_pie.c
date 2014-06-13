@@ -6,16 +6,20 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 16:18:55 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 17:00:47 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:12:14 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char			*ft_graphic_pie(t_env *env, int cs, int result)
+void			ft_graphic_pie(t_env *env, int cs, int result)
 {
 	char		*str;
 
-	asprintf(&str, "pie %d %d %d\n", POSX(cs), POSY(cs), result);
-	return (str);
+	if (env->graphic != -1)
+	{
+		asprintf(&str, "pie %d %d %d\n", TOTX(cs), TOTY(cs), result);
+		ft_reply_in_buff(env, env->graphic, str);
+		ft_memdel((void **)&str);
+	}
 }
