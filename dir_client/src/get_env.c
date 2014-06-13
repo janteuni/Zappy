@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 19:24:41 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 20:38:31 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ t_env			*get_env(void)
 		env->moved = 0;
 		env->dir_msg = 0;
 		env->forked = 0;
+		env->laying = 0;
+		env->connect_nb = -1;
 		env->level = 1;
 		env->team = NULL;
 		env->view = NULL;
 		env->moves = NULL;
-		ft_bzero(env->inv, sizeof(int) * INV_SIZE);
+		env->inv[0] = -1;
+		/*ft_bzero(env->inv, sizeof(int) * INV_SIZE);*/
 	}
 	return (env);
 }

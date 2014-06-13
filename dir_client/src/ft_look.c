@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 19:35:56 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 20:32:43 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					ft_read_square(char *sqr, int i, int **view)
 	n = 0;
 	while (split[n])
 	{
-		if (!ft_strcmp(split[n], "food"))
+		if (!ft_strcmp(split[n], "nourriture"))
 			view[i][FOOD]++;
 		else if (!ft_strcmp(split[n], "linemate"))
 			view[i][LINEMATE]++;
@@ -97,7 +97,7 @@ void				ft_print_view(t_env *env, int **view)
 			else if (n == 7)
 				str = "PLAYERS";
 			else if (n == 8)
-				str = "DISTANCE";
+				str = "DIST";
 			else
 				str = "dunno";
 
@@ -117,7 +117,7 @@ int					ft_read_view(t_env *env, char **split)
 	while (split[i])
 	{
 		ft_read_square(split[i], i, env->view);
-		env->view[i][DISTANCE] = (i == 0 ? 0 : ft_calc_dist(env, i));
+		env->view[i][DIST] = (i == 0 ? 0 : ft_calc_dist(i));
 		++i;
 	}
 	ft_print_view(env, env->view);

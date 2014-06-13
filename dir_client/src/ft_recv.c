@@ -6,13 +6,35 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 15:44:00 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 20:55:52 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <sys/socket.h>
 #include "client.h"
+
+int					ft_connect_nb(t_env *env, char *buf)
+{
+	int				new;
+
+	new = ft_atoi(buf);
+	printf("RECIEVED CONNECT_NB [%s]\n",buf );
+	if (!env->laying)
+	{
+		printf("seeting new connect nb - NOT YET LAYING\n");
+		env->connect_nb = new;
+	}
+	else if (new > env->connect_nb)
+	{
+		printf("connect nb is higher!! time to fork\n");
+		env->connect_nb = new;
+		ft_fork(env);
+	}
+	printf("AM laying, nb is not yet higher\n");
+	env->resp[RESP_VAL]--;
+	return (OK);
+}
 
 int					ft_read_list(t_env *env, char *buf)
 {
@@ -65,6 +87,8 @@ int					ft_recv(t_env *env)
 		return (ft_dead(env, buf));
 	if (buf[0] == 'm' && !ft_strncmp(MSG, buf, ft_strlen(MSG))) // message <msg>
 		return (ft_message(env, buf));
+	if (ft_isdigit(buf[0])) // CONNECT_NB
+		return (ft_connect_nb(env, buf));
 	else
 	{
 		ft_putstr("recevied reply from server I don't understand : '");

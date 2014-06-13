@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 15:06:57 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/11 15:16:54 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 21:18:58 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 int					ft_send_cmd(t_env *env, char *cmd, int i)
 {
 	printf("SENDING COMMAND: %s", cmd);
+	printf("incresing the response table\n");
 	env->resp[i]++;
 	if ((send(env->socket, cmd, ft_strlen(cmd), 0)) < 0)
 	{
+		printf("SEND WAS UNSICCESSFUL - return -1\n");
 		env->resp[i]--;
 		return (error("Failed to send command"));
 	}
+	printf("SEND WAS SUCCESSFUL\n");
 	return (OK);
 }

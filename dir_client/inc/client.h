@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 19:32:53 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 20:23:41 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ERR		-1
 
 # define MAX(a,b)	((a > b) ? a : b)
+# define ABS(a,b)	((a - b > 0) ? a - b : b - a)
 # define BUF_SIZE	50
 # define INV_BUF	1024
 # define BIG_BUF	4095
@@ -36,7 +37,7 @@
 # define PHIRAS		5
 # define THYSTAME	6
 # define PLAYERS	7
-# define DISTANCE	8
+# define DIST		8
 
 # define NB_CMDS	12
 # define AVANCE		0
@@ -98,13 +99,16 @@ typedef struct		s_env
 	t_list			*moves;
 	int				elevating;
 	int				forked;
+	int				laying;
 	int				moved;
 	int				dir_msg;
 }					t_env;
 
 t_env				*get_env(void);
 int					error(char *err);
+void				ft_free_and_quit(t_env *env);
 int					create_client(t_env *env);
+int					ft_confirm_connection(t_env *env);
 
 /*
 **			ft_parse.c
@@ -117,6 +121,7 @@ int					ft_parse(int ac, char **av, t_env *env);
 int					ft_loop(t_env *env);
 int					ft_expecting_resp(t_env *env);
 int					ft_takemove(t_env *env);
+void				ft_del_cmd_lst(void *content, size_t content_size);
 
 /*
 **			ft_get_inventory.c
@@ -167,9 +172,30 @@ int					ft_message(t_env *env, char *buf);
 /*
 **			ft_ia.c
 */
-int					ft_set_cmd(t_cmd *cmd, int cmd_num, char *opt, int resp, t_env *env);
+/*int					ft_set_cmd(t_cmd *cmd, int cmd_num, int resp, t_env *env);
+int					ft_set_cmd_opt(t_cmd *cmd, int cmd_num, char *opt,
+		t_env *env);*/
 int					ft_ia(t_env *env);
+int					ft_find_food(t_env *env);
+int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp);
 
-int					ft_calc_dist(t_env *env, int stop);
+/*
+**			ft_calc_dist.c
+*/
+int					ft_calc_dist(int squ);
+int					ft_calc_level(int squ);
+
+/*
+**			ft_get_route.c
+*/
+int					ft_get_route(t_env *env, int squ);
+int					ft_avance(t_env *env, int num);
+
+/*
+**			ft_fork.c
+*/
+int					ft_fork(t_env *env);
+int					ft_connect_egg(t_env *env);
+int					ft_reset_env(t_env *env);
 
 #endif

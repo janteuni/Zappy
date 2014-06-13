@@ -6,13 +6,13 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 18:29:25 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 19:35:30 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 16:16:40 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-/*
+/* YANNS SUPER FORMULA
     while (i <= player->level)
         {
             compute_rows(e, player, msg, i);
@@ -33,37 +33,35 @@
     }
 */
 
-
-int					ft_calc_dist(t_env *env, int stop)
+int					ft_calc_level(int squ)
 {
-	int				i;
-	int				j;
+	int				l;
+
+	l = 1;
+	while (l * l <= squ)
+		++l;
+	return (l - 1);
+}
+
+int					ft_calc_dist(int squ)
+{
+	int				level_nb;
 	int				row_len;
 	int				row_start;
 	int				row_mid;
 	int				dist;
 
-	i = 0;
-	j = 0;
+	level_nb = ft_calc_level(squ);
 	dist = 0;
-	while (i <= env->level)
-	{
-		row_start = j;
-		row_len = (i * 2) + 1;
-		row_mid = row_start + (row_len / 2);
-		while (j < row_start + row_len)
-		{
-			if (j < row_mid)
-				dist = i + 1 + (row_mid - j);
-			else if (j > row_mid)
-				dist = i + 1 + ( j - row_mid);
-			else
-				dist = i;
-			if (j == stop)
-				break;
-			j++;
-		}
-		i++;
-	}
+	row_start = level_nb * level_nb;
+	row_len = (level_nb * 2) + 1;
+	row_mid = row_start + (row_len / 2);
+	if (squ < row_mid)
+		dist = level_nb + 1 + (row_mid - squ);
+	else if (squ > row_mid)
+		dist = level_nb + 1 + ( squ - row_mid);
+	else
+		dist = level_nb;
 	return (dist);
 }
+

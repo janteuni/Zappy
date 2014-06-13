@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/12 19:25:43 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/13 21:21:30 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ int					ft_expecting_resp(t_env *env)
 	while (i < NB_RESP)
 	{
 		if (env->resp[i] > 0)
+		{
+			printf("EXPECTING A RESPONSE\n");
 			return (YES);
+		}
 		++i;
 	}
+	printf("NOT WAITING FOR A RESPONSE\n");
 	return (NO);
 }
 
@@ -67,12 +71,14 @@ int					ft_send_moves(t_env *env)
 	int				i;
 	char			*str;
 
+	printf("IN SEND MOVES\n");
 	i = 0;
 	ptr = env->moves;
 	str = NULL;
 	while (ptr && i < 10)
 	{
 		str = ft_strjoin(CMD(ptr)->cmd, CMD(ptr)->opt);
+		printf("STR IS [%s]\n",str );
 		ft_send_cmd(env, str, CMD(ptr)->resp);
 		free(str);
 		ptr = ptr->next;
@@ -80,6 +86,7 @@ int					ft_send_moves(t_env *env)
 	}
 	if (ptr)
 	{
+		printf("sent 10 commands but still have some in list\n");
 		while (env->moves != ptr)
 		{
 			tmp = env->moves;
@@ -87,8 +94,13 @@ int					ft_send_moves(t_env *env)
 			ft_lstdelone(&tmp, ft_del_cmd_lst);
 		}
 	}
-	else
+	else if (env->moves)
+	{
+		printf("DELETING MOVES\n");
 		ft_lstdel(&env->moves, ft_del_cmd_lst);
+		env->moves = NULL;
+	}
+	printf("END OF SEND MOVES\n");
 	return (OK);
 }
 
@@ -99,9 +111,12 @@ int					ft_takemove(t_env *env)
 		return (OK);
 	else
 	{
-	/*	if (!env->moves)
-		  ft_ia(env);
-		ft_send_moves(env);*/
+		if (!env->moves)
+		{
+			printf("I DONT HAVE ANY MOVES\n");
+			ft_ia(env);
+		}
+		ft_send_moves(env);
 	}
 	return (OK);
 }
@@ -125,20 +140,20 @@ void				print_moves(t_env *env)
 
 int					ft_loop(t_env *env)
 {
-	int				i;
-	/*char			*str;*/
+	/*int				i;
+	char			*str;*/
 
-	i = 0;
+	/*i = 0;
 	ft_send_cmd(env, FORW, RESP_OK);
 	ft_send_cmd(env, LEFT, RESP_OK);
 	ft_send_cmd(env, RIGHT, RESP_OK);
-	ft_send_cmd(env, VIEW, RESP_VIEW);
+	ft_send_cmd(env, VIEW, RESP_VIEW);*/
 	/*	env->resp[RESP_OK] += 2;
 		if ((send(env->socket, "avance\n", ft_strlen("avance\n"), 0)) < 0)
 		return (error("Failed to send command"));
 		if ((send(env->socket, "gauche\n", ft_strlen("gauche\n"), 0)) < 0)
 		return (error("Failed to send command"));*/
-	/*	ft_look(env);*/
+		ft_look(env);
 	while (!env->dead)
 	{
 		print_moves(env);

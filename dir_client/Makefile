@@ -6,14 +6,14 @@
 #    By: fbeck <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/06 16:16:30 by fbeck             #+#    #+#              #
-#    Updated: 2014/06/12 19:29:53 by fbeck            ###   ########.fr        #
+#    Updated: 2014/06/13 21:11:53 by fbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= client
 
 CC					= clang
-FLAG				= -Wall -Werror -Wextra -pedantic
+FLAG				= -Wall -Werror -Wextra -pedantic -g
 INCS				= -I inc -I ./inc -I ../libft/inc
 LIBS				= -L ../libft -lft
 
@@ -33,6 +33,8 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_message.c \
 					  $(DIR_SRC)/ft_ia.c \
 					  $(DIR_SRC)/ft_calc_dist.c \
+					  $(DIR_SRC)/ft_get_route.c \
+					  $(DIR_SRC)/ft_fork.c \
 
 # ---------------------------------------------------------------------------- #
 
@@ -81,8 +83,10 @@ fclean: clean
 
 re: fclean all
 
-debug : FLAG += -g3 -fno-inline -DD_ERRORS_ON
+debug : FLAG += -g
 debug : re
 	@printf '\033[1;31m%s\033[0m\n' "Debug enabled."
 
 .PHONY: clean fclean re debug libft
+#-g3 -fno-inline -DD_ERRORS_ON
+
