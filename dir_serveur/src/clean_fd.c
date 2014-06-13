@@ -6,14 +6,23 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:59:44 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 17:35:20 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "serveur.h"
 
-static void		st_del_me(t_fd *fd)
+static void			st_check_max_player(t_env *env, int i)
+{
+	int				nb;
+
+	nb = env->teams[i].max_player;
+	if (nb > env->nb_player)
+		env->teams[i].max_player--;
+}
+
+static void			st_del_me(t_fd *fd)
 {
 	t_env		*env;
 	t_list		*players;
@@ -33,12 +42,13 @@ static void		st_del_me(t_fd *fd)
 				players = players->next;
 			}
 			env->teams[i].nb_player -= 1;
+			st_check_max_player(env, i);
 		}
 		i++;
 	}
 }
 
-static void		st_del_action(t_fd *fd)
+static void			st_del_action(t_fd *fd)
 {
 	t_env		*env;
 	t_list		*act;
