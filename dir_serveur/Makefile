@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/12 18:45:33 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/13 11:25:38 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,9 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_snapshot.c \
 					  $(DIR_SRC)/ft_get_players.c \
 					  $(DIR_SRC)/ft_lst_contains.c \
+					  $(DIR_SRC)/ft_graphic_pdr.c \
+					  $(DIR_SRC)/ft_graphic_pgt.c \
+					  $(DIR_SRC)/ft_graphic_pfk.c \
 
 # ---------------------------------------------------------------------------- #
 

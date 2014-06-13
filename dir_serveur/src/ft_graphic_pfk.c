@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_treat_right.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_pfk.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/09 15:36:20 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:13:18 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/13 11:14:08 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/13 11:24:17 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-void				ft_treat_right(t_env *env, int cs, char *rcv)
+char					*ft_graphic_pfk(t_env *env, int cs)
 {
-	(void)rcv;
-	if (OR(cs) == N)
-		OR(cs) = E;
-	else if (OR(cs) == E)
-		OR(cs) = S;
-	else if (OR(cs) == S)
-		OR(cs) = O;
-	else if (OR(cs) == O)
-		OR(cs) = N;
-	ft_reply_in_buff(env, cs, "ok");
-	ft_graphic_reply(env, cs, ft_graphic_ppo);
+	char				*str;
+
+	(void)env;
+	asprintf(&str, "pfk %d\n", cs);
+	return (str);
 }
