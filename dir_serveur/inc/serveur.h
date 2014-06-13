@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:25:26 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:39:54 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ void				ft_graphic_pie(t_env *env, int cs, int result);
 void				ft_graphic_pdr(t_env *env, int cs, int i);
 void				ft_graphic_pgt(t_env *env, int cs, int i);
 char				*ft_graphic_pfk(t_env *env, int cs);
+char				*ft_graphic_pdi(t_env *env, int cs);
 
 /*
 ** Miscelleanous

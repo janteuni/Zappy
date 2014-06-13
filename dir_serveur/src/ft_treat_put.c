@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 18:37:46 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:24:21 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 11:43:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 static void			st_pull_inventory(int i, t_env *env, int cs)
 {
+	char			*line;
+
+	line = NULL;
 	env->fd_socket[cs].inventory[i] -= 1;
 	env->map[POSY(cs)][POSX(cs)][i] += 1;
 	ft_reply_in_buff(env, cs, "ok");
 	ft_graphic_pdr(env, cs, i);
+	ft_graphic_reply(env, cs, ft_graphic_pin);
+	line = ft_graphic_bct(env, POSX(cs), POSY(cs));
+	if (env->graphic != -1)
+		ft_reply_in_buff(env, env->graphic, line);
+	ft_memdel((void **)&line);
 }
 
 void				ft_treat_put(t_env *env, int cs, char *rcv)
