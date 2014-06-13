@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:07:07 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 17:46:02 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int					st_check_eggs(t_env *env, int cs)
 				&& ft_strcmp(env->fd_socket[cs].my_team,
 					((t_egg *)eggs->content)->team) == 0)
 		{
+			printf("assignation : x: %d y:%d\n", ((t_egg *)eggs->content)->pos.x, ((t_egg *)eggs->content)->pos.y);
 			POSX(cs) = ((t_egg *)eggs->content)->pos.x;
 			POSY(cs) = ((t_egg *)eggs->content)->pos.y;
 			OR(cs) = ((t_egg *)eggs->content)->pos.o;
