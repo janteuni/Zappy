@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 14:59:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 17:36:40 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,11 @@ typedef struct		s_snapshot
 
 typedef struct		s_egg
 {
+	int				father;
+	int				life;
 	int				num;
 	char			*team;
 	int				state;
-	long int		birth;
 	t_pos			pos;
 }					t_egg;
 
@@ -275,6 +276,7 @@ char				*ft_graphic_pdi(t_env *env, int cs);
 char				*ft_graphic_enw(t_env *env, int cs, int egg);
 char				*ft_graphic_eht(t_env *env, int cs);
 char				*ft_graphic_ebo(t_env *env, int cs);
+char				*ft_graphic_edi(t_env *env, int cs);
 
 /*
 ** Miscelleanous

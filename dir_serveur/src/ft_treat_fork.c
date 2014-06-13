@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 12:10:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 15:17:07 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 17:25:37 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ void				ft_treat_fork(t_env *env, int cs, char *rcv)
 	srand(time(0));
 	env->count_egg += 1;
 	itoa = ft_itoa(env->count_egg);
-	ft_action_tm(cs, 600, ft_treat_egg, itoa);
+	ft_action_tm(-1, 600, ft_treat_egg, itoa);
 	ft_memdel((void **)&itoa);
 	new_egg.num = env->count_egg;
 	new_egg.state = GESTATION;
-	new_egg.birth = 0;
+	new_egg.father = cs;
+	new_egg.life = 10;
 	new_egg.pos.x = POSX(cs);
 	new_egg.pos.y = POSY(cs);
 	new_egg.pos.o = rand() % 4;

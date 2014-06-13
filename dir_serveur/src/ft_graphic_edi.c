@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_enw.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_edi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/13 11:44:36 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 15:50:45 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/13 15:41:14 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/13 15:43:30 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char					*ft_graphic_enw(t_env *env, int cs, int egg)
+char			*ft_graphic_edi(t_env *env, int cs)
 {
-	char					*str;
+	char		*str;
 
-	(void )env;
-	asprintf(&str, "enw %d %d %d %d\n", egg, cs, POSX(cs), POSY(cs));
+	(void)env;
+	asprintf(&str, "edi %d\n", cs);
 	return (str);
 }

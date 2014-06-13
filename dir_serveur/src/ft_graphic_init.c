@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 15:36:37 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 15:15:36 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/13 15:50:42 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ char				*ft_graphic_sgt(t_env *env)
 
 	asprintf(&str, "sgt %d\n", env->time);
 	return (str);
+}
+
+static void			st_all_eggs(t_env *env)
+{
+	char			*str;
+	t_list			*list;
+
+	str = NULL;
+	list = env->eggs;
+	while (list)
+	{
+		str = ft_graphic_enw(env, ((t_egg *)list->content)->father,
+			   	((t_egg *)list->content)->num);
+		ft_reply_in_buff(env, env->graphic, str);
+		ft_memdel((void **)&str);
+		list = list->next;
+	}
 }
 
 void				ft_graphic_init(t_env *env, int cs)
@@ -52,4 +69,5 @@ void				ft_graphic_init(t_env *env, int cs)
 			ft_graphic_reply(env, i, ft_graphic_pnw);
 		i++;
 	}
+	st_all_eggs(env);
 }
