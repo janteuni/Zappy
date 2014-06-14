@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:33:53 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 15:44:09 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void		st_incantation_terminate(t_env *env, t_pos pos, int level, t_list *
 	env->map[pos.y][pos.x][INCANT] = NO;
 	ft_graphic_pie(env, pos, result);
 	st_inform_end(env, ((t_snapshot *)list->content)->players, level);
+	ft_del_elem(&env->elevation, list, ft_del_snapshot);
 	ft_reject_stones(env, level, pos);
 }
 
@@ -93,4 +94,5 @@ void				ft_check_incantation(t_env *env, int cs, char *rcv)
 		}
 		list = list->next;
 	}
+	ft_free_tab((void ***)&split);
 }

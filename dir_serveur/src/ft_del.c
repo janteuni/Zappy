@@ -6,12 +6,20 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 11:15:50 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:21:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 15:44:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "serveur.h"
+
+void	ft_del_snapshot(void *d, size_t s)
+{
+	ft_lstdel(&((t_snapshot *)d)->players, ft_del);
+	(void)((t_snapshot *)d)->master;
+	ft_memdel((void **)&d);
+	(void)s;
+}
 
 void	ft_del_egg(void *d, size_t s)
 {

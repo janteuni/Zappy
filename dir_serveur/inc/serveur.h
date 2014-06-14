@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:26:50 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 15:42:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ void				ft_del_elem(t_list **begin, t_list *to_del,
 void				ft_del_action(void *d, size_t s);
 int					ft_exit(char *err);
 void				ft_del_egg(void *d, size_t s);
+void				ft_del_snapshot(void *d, size_t s);
 
 /*
 ** INIT
