@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 13:35:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 13:41:06 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 14:41:03 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void					ft_reject_stones(t_env *env, int level, t_pos pos)
 	if (env->graphic != -1)
 		ft_reply_in_buff(env, env->graphic, line);
 	ft_memdel((void **)&line);
-	st_place_stones(env, level);
+	st_place_stones(env, level + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 17:18:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 13:04:15 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 14:47:24 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void				ft_snapshot(t_env *env, int cs, int stuff[NB_STUFF])
 	ft_lstpush(&env->elevation, ft_lstnew(&snapshot, sizeof(snapshot)));
 	asprintf(&str, "%d %d %d", POSX(cs), POSY(cs), env->fd_socket[cs].level);
 	st_inform_players(env, cs);
-	ft_action_tm(-1, 300, ft_check_incantation, str);
+	ft_action_special(cs, 300, ft_check_incantation, str);
 	ft_memdel((void **)&str);
 }

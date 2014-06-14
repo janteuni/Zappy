@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 13:39:48 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 15:02:50 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int			st_incantation_succeed(t_env *env, t_pos pos, int level, t_list *li
 	return (ERR);
 }
 
-static void			st_inform_end(t_env *env, t_list *players)
+static void			st_inform_end(t_env *env, t_list *players, int level)
 {
 	int				cs;
 	char			*str;
@@ -40,10 +40,10 @@ static void			st_inform_end(t_env *env, t_list *players)
 		cs = (int)(*(int *)players->content);
 		if (env->fd_socket[cs].type == CLIENT)
 		{
-			env->fd_socket[cs].level += 1;
+			env->fd_socket[cs].level = level;
 			TOTY(cs) = -1;
 			TOTX(cs) = -1;
-			asprintf(&str, "niveau %d\n", env->fd_socket[cs].level);
+			asprintf(&str, "niveau %d\n", level);
 			ft_reply_in_buff(env, cs, str);
 			ft_memdel((void **)&str);
 			ft_graphic_reply(env, cs, ft_graphic_plv);
@@ -58,10 +58,13 @@ static void		st_incantation_terminate(t_env *env, t_pos pos, int level, t_list *
 
 	result = NO;
 	if (st_incantation_succeed(env, pos, level, list) == OK)
+	{
 		result = YES;
+		level++;
+	}
 	env->map[pos.y][pos.x][INCANT] = NO;
 	ft_graphic_pie(env, pos, result);
-	st_inform_end(env, ((t_snapshot *)list->content)->players);
+	st_inform_end(env, ((t_snapshot *)list->content)->players, level);
 	ft_reject_stones(env, level, pos);
 }
 
