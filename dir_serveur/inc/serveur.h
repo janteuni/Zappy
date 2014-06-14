@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:36:40 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 13:37:39 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_pos
 
 typedef struct		s_snapshot
 {
+	t_pos			pos;
 	int				master;
 	t_list			*players;
 	int				stuff[NB_STUFF];
@@ -169,6 +170,7 @@ typedef struct		s_env
 	t_list			*actions;
 	t_list			*eggs;
 	int				count_egg;
+	t_list			*elevation;
 }					t_env;
 
 /*
@@ -243,6 +245,8 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv);
 void				ft_snapshot(t_env *env, int cs, int stuff[NB_STUFF]);
 t_list				*ft_get_players(t_env *env, int cs);
 t_list				*ft_get_players_same_level(t_env *env, int cs);
+void				ft_reject_stones(t_env *env, int level, t_pos pos);
+t_list				*ft_get_players_from_case(t_env *env, t_pos pos);
 
 /*
 ** ACTION LIST
@@ -268,7 +272,7 @@ char				*ft_graphic_pin(t_env *env, int cs);
 char				*ft_graphic_pex(t_env *env, int cs);
 char				*ft_graphic_pbc(t_env *env, int cs, char *msg);
 char				*ft_graphic_pic(t_env *env, int cs);
-void				ft_graphic_pie(t_env *env, int cs, int result);
+void				ft_graphic_pie(t_env *env, t_pos pos, int result);
 void				ft_graphic_pdr(t_env *env, int cs, int i);
 void				ft_graphic_pgt(t_env *env, int cs, int i);
 char				*ft_graphic_pfk(t_env *env, int cs);

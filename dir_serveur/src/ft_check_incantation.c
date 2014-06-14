@@ -6,59 +6,88 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:12:12 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 13:39:48 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-static int					st_incantation_succeed(t_env *env, int cs)
+static int			st_incantation_succeed(t_env *env, t_pos pos, int level, t_list *list)
 {
-	t_list					*players;
-	t_list					*my_list;
+	t_list			*players;
+	t_list			*my_list;
 
-	if (POSX(cs) != TOTX(cs) && POSY(cs) != TOTY(cs))
-		return (ERR);
-	players = ft_get_players(env, cs);
-	my_list = env->fd_socket[cs].snapshot.players;
+	players = ft_get_players_from_case(env, pos);
+	my_list = ((t_snapshot *)list->content)->players;
 	if (!ft_lst_contains(my_list, players))
 	{
 		ft_lstdel(&players, ft_del);
 		return (ERR);
 	}
 	ft_lstdel(&players, ft_del);
-	if (ft_compare_stuff(env, env->fd_socket[cs].snapshot.stuff, env->fd_socket[cs].level + 1) == OK)
-	{
-		printf("ok\n");
+	if (ft_compare_stuff(env, ((t_snapshot *)list->content)->stuff, level + 1) == OK)
 		return (OK);
-	}
-	printf("err\n");
 	return (ERR);
 }
 
-void						ft_check_incantation(t_env *env, int cs, char *rcv)
+static void			st_inform_end(t_env *env, t_list *players)
 {
-	char			*itoa;
-	char			*join;
+	int				cs;
+	char			*str;
+
+	while (players)
+	{
+		cs = (int)(*(int *)players->content);
+		if (env->fd_socket[cs].type == CLIENT)
+		{
+			env->fd_socket[cs].level += 1;
+			TOTY(cs) = -1;
+			TOTX(cs) = -1;
+			asprintf(&str, "niveau %d\n", env->fd_socket[cs].level);
+			ft_reply_in_buff(env, cs, str);
+			ft_memdel((void **)&str);
+			ft_graphic_reply(env, cs, ft_graphic_plv);
+			players = players->next;
+		}
+	}
+}
+
+static void		st_incantation_terminate(t_env *env, t_pos pos, int level, t_list *list)
+{
 	int				result;
 
-	(void)rcv;
 	result = NO;
-	if (st_incantation_succeed(env, cs) == OK)
-	{
+	if (st_incantation_succeed(env, pos, level, list) == OK)
 		result = YES;
-		env->fd_socket[cs].level += 1;
+	env->map[pos.y][pos.x][INCANT] = NO;
+	ft_graphic_pie(env, pos, result);
+	st_inform_end(env, ((t_snapshot *)list->content)->players);
+	ft_reject_stones(env, level, pos);
+}
+
+void				ft_check_incantation(t_env *env, int cs, char *rcv)
+{
+	char			**split;
+	t_pos			pos;
+	int				level;
+	int				result;
+	t_list			*list;
+
+	(void)cs;
+	split = ft_strsplit(rcv, ' ');
+	pos.x = ft_atoi(split[0]);
+	pos.y = ft_atoi(split[1]);
+	level = ft_atoi(split[2]);
+	result = NO;
+	list = env->elevation;
+	while (list)
+	{
+		if (((t_snapshot *)list->content)->pos.x == pos.x
+				&& ((t_snapshot *)list->content)->pos.y == pos.y)
+		{
+			st_incantation_terminate(env, pos, level, list);
+			break ;
+		}
+		list = list->next;
 	}
-	if (env->fd_socket[cs].snapshot.master == cs)
-		ft_graphic_pie(env, cs, result);
-	itoa = ft_itoa(env->fd_socket[cs].level);
-	join = ft_strjoin("niveau ", itoa);
-	env->map[TOTY(cs)][TOTX(cs)][INCANT] = NO;
-	TOTY(cs) = -1;
-	TOTX(cs) = -1;
-	ft_reply_in_buff(env, cs, join);
-	ft_memdel((void **)&itoa);
-	ft_memdel((void **)&join);
-	ft_lstdel(&env->fd_socket[cs].snapshot.players, ft_del);
-	ft_graphic_reply(env, cs, ft_graphic_plv);
 }
