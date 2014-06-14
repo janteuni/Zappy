@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:35:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 19:54:54 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static void			st_del_action(t_fd *fd)
 
 void			clean_fd(t_fd *fd)
 {
-	if (fd->snapshot.players)
-		ft_lstdel(&fd->snapshot.players, ft_del);
 	if (fd->my_team)
 	{
 		st_del_me(fd);
