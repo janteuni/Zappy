@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:36:40 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 17:47:53 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_pos
 
 typedef struct		s_snapshot
 {
+	t_pos			pos;
 	int				master;
 	t_list			*players;
 	int				stuff[NB_STUFF];
@@ -123,7 +124,6 @@ typedef struct		s_fd
 	t_pos			incant;
 	long int		last_cmd;
 	int				inventory[NB_STUFF];
-	t_snapshot		snapshot;
 }					t_fd;
 
 typedef struct		s_message
@@ -169,6 +169,8 @@ typedef struct		s_env
 	t_list			*actions;
 	t_list			*eggs;
 	int				count_egg;
+	t_list			*elevation;
+	int				end;
 }					t_env;
 
 /*
@@ -206,6 +208,7 @@ void				ft_del_elem(t_list **begin, t_list *to_del,
 void				ft_del_action(void *d, size_t s);
 int					ft_exit(char *err);
 void				ft_del_egg(void *d, size_t s);
+void				ft_del_snapshot(void *d, size_t s);
 
 /*
 ** INIT
@@ -220,6 +223,7 @@ void				ft_max_players_in_team(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
+int					ft_treat_end(t_env *env);
 
 /*
 ** CLIENT CMDS
@@ -243,6 +247,9 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv);
 void				ft_snapshot(t_env *env, int cs, int stuff[NB_STUFF]);
 t_list				*ft_get_players(t_env *env, int cs);
 t_list				*ft_get_players_same_level(t_env *env, int cs);
+void				ft_reject_stones(t_env *env, int level, t_pos pos);
+t_list				*ft_get_players_from_case(t_env *env, t_pos pos);
+void				ft_action_special(int cs, int t, void (*fn)(), char *rcv);
 
 /*
 ** ACTION LIST
@@ -268,7 +275,7 @@ char				*ft_graphic_pin(t_env *env, int cs);
 char				*ft_graphic_pex(t_env *env, int cs);
 char				*ft_graphic_pbc(t_env *env, int cs, char *msg);
 char				*ft_graphic_pic(t_env *env, int cs);
-void				ft_graphic_pie(t_env *env, int cs, int result);
+void				ft_graphic_pie(t_env *env, t_pos pos, int result);
 void				ft_graphic_pdr(t_env *env, int cs, int i);
 void				ft_graphic_pgt(t_env *env, int cs, int i);
 char				*ft_graphic_pfk(t_env *env, int cs);
@@ -277,6 +284,7 @@ char				*ft_graphic_enw(t_env *env, int cs, int egg);
 char				*ft_graphic_eht(t_env *env, int cs);
 char				*ft_graphic_ebo(t_env *env, int cs);
 char				*ft_graphic_edi(t_env *env, int cs);
+char				*ft_graphic_seg(t_env *env, int cs);
 
 /*
 ** Miscelleanous
@@ -284,5 +292,6 @@ char				*ft_graphic_edi(t_env *env, int cs);
 int					ft_lst_contains(t_list *tocheck, t_list *container);
 int					ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level);
 int					ft_calcul_nb(t_env *env, int cs);
+void				ft_utils_find_path(t_env *env, int cs);
 
 #endif

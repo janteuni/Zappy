@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/13 15:42:37 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/14 17:48:10 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,10 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_graphic_eht.c \
 					  $(DIR_SRC)/ft_graphic_ebo.c \
 					  $(DIR_SRC)/ft_graphic_edi.c \
+					  $(DIR_SRC)/ft_graphic_seg.c \
+					  $(DIR_SRC)/ft_reject_stones.c \
+					  $(DIR_SRC)/ft_treat_end.c \
+					  $(DIR_SRC)/ft_utils_find_path.c \
 
 # ---------------------------------------------------------------------------- #
 

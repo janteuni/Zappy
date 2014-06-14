@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 14:15:46 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 17:09:17 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void					server_accept(t_env *env)
 	env->fd_socket[cs].incant.x = -1;
 	env->fd_socket[cs].incant.y = -1;
 	env->fd_socket[cs].last_cmd = 0;
-	env->fd_socket[cs].snapshot.players = NULL;
-	env->fd_socket[cs].snapshot.master = cs;
 	st_init_inventory(env, cs);
 	ft_reply_in_buff(env, cs, "BIENVENUE");
 }

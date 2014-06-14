@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 12:54:18 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 15:27:08 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ static void		finish_init(t_env *env)
 	env->port = 0;
 	env->map = NULL;
 	env->actions = NULL;
+	env->elevation = NULL;
 	env->eggs = NULL;
 	env->count_egg = 0;
+	env->end = NO;
 	env->graphic = -1;
 	ft_strcpy(env->stuff[FOOD], "nourriture");
 	ft_strcpy(env->stuff[LINEMATE], "linemate");

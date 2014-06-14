@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_contains.c                                  :+:      :+:    :+:   */
+/*   ft_graphic_seg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/12 18:41:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 12:57:15 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/14 15:05:30 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/14 15:07:23 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-static int			st_in_list(int nb, t_list *lst)
+char							*ft_graphic_seg(t_env *env, int cs)
 {
-	while (lst)
-	{
-		if ((int)(*(int *)lst->content) == nb)
-			return (YES);
-		lst = lst->next;
-	}
-	return (NO);
-}
+	char				*str;
 
-int					ft_lst_contains(t_list *tocheck, t_list *container)
-{
-	while (tocheck)
-	{
-		if (!st_in_list((int)(*(int *)tocheck->content), container))
-			return (NO);
-		tocheck = tocheck->next;
-	}
-	return (YES);
+	asprintf(&str, "seg %s\n", env->fd_socket[cs].my_team);
+	return (str);
 }

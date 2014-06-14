@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:42:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 16:01:02 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 20:02:38 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ void				ft_treat_broadcast(t_env *env, int cs, char *rcv)
 			i++;
 		st_contact_all(rcv, i, env, cs);
 		line = ft_graphic_pbc(env, cs, rcv + i);
-		ft_reply_in_buff(env, env->graphic, line);
+		if (env->graphic != -1)
+			ft_reply_in_buff(env, env->graphic, line);
 		ft_memdel((void **)&line);
 		ft_reply_in_buff(env, cs, "ok");
 	}
 	else
 		ft_reply_in_buff(env, cs, "ko");
 	ft_free_tab((void ***)&split);
+	ft_utils_find_path(env, cs);
 }
