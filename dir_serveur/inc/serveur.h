@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 14:47:08 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/14 15:26:50 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef struct		s_env
 	t_list			*eggs;
 	int				count_egg;
 	t_list			*elevation;
+	int				end;
 }					t_env;
 
 /*
@@ -222,6 +223,7 @@ void				ft_max_players_in_team(t_env *env);
 int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
+int					ft_treat_end(t_env *env);
 
 /*
 ** CLIENT CMDS
@@ -282,6 +284,7 @@ char				*ft_graphic_enw(t_env *env, int cs, int egg);
 char				*ft_graphic_eht(t_env *env, int cs);
 char				*ft_graphic_ebo(t_env *env, int cs);
 char				*ft_graphic_edi(t_env *env, int cs);
+char				*ft_graphic_seg(t_env *env, int cs);
 
 /*
 ** Miscelleanous
