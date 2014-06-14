@@ -6,7 +6,7 @@
 #    By: fbeck <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/06 16:16:30 by fbeck             #+#    #+#              #
-#    Updated: 2014/06/13 21:11:53 by fbeck            ###   ########.fr        #
+#    Updated: 2014/06/14 18:11:16 by fbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,10 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_calc_dist.c \
 					  $(DIR_SRC)/ft_get_route.c \
 					  $(DIR_SRC)/ft_fork.c \
+					  $(DIR_SRC)/ft_init_incantation.c \
+					  $(DIR_SRC)/ft_check.c \
+					  $(DIR_SRC)/ft_incantation.c \
+					  $(DIR_SRC)/ft_find_stones.c \
 
 # ---------------------------------------------------------------------------- #
 

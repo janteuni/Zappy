@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 21:21:30 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/14 12:40:56 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,13 @@ int					ft_send_moves(t_env *env)
 
 int					ft_takemove(t_env *env)
 {
+	printf("IN TAKEMOVE\n");
 	ft_print_responsetab(env);
 	if (env->elevating || ft_expecting_resp(env))
+	{
+		printf("TAKEMOVE - waitig to elevate or for a response\n");
 		return (OK);
+	}
 	else
 	{
 		if (!env->moves)
@@ -141,19 +145,19 @@ void				print_moves(t_env *env)
 int					ft_loop(t_env *env)
 {
 	/*int				i;
-	char			*str;*/
+	  char			*str;*/
 
 	/*i = 0;
-	ft_send_cmd(env, FORW, RESP_OK);
-	ft_send_cmd(env, LEFT, RESP_OK);
-	ft_send_cmd(env, RIGHT, RESP_OK);
-	ft_send_cmd(env, VIEW, RESP_VIEW);*/
+	  ft_send_cmd(env, FORW, RESP_OK);
+	  ft_send_cmd(env, LEFT, RESP_OK);
+	  ft_send_cmd(env, RIGHT, RESP_OK);
+	  ft_send_cmd(env, VIEW, RESP_VIEW);*/
 	/*	env->resp[RESP_OK] += 2;
 		if ((send(env->socket, "avance\n", ft_strlen("avance\n"), 0)) < 0)
 		return (error("Failed to send command"));
 		if ((send(env->socket, "gauche\n", ft_strlen("gauche\n"), 0)) < 0)
 		return (error("Failed to send command"));*/
-		ft_look(env);
+	ft_look(env);
 	while (!env->dead)
 	{
 		print_moves(env);

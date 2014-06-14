@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:53:01 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 20:21:49 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/14 15:51:28 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void				ft_free_and_quit(t_env *env)
 	ft_memdel((void **)&env->resp);
 	if (env->view)
 		ft_free_tab((void ***)&env->view);
+	ft_free_tab((void ***)&env->incantation);
 	ft_lstdel(&env->moves, ft_del_cmd_lst);
 	exit(0);
 }

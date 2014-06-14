@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 20:38:31 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/14 13:16:54 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_env			*get_env(void)
 			error("Malloc Failed env");
 			return (NULL);
 		}
+		env->incantation = NULL;
 		env->addr = NULL;
 		env->port = 0;
 		env->dead = 0;
@@ -68,6 +69,7 @@ t_env			*get_env(void)
 		env->view = NULL;
 		env->moves = NULL;
 		env->inv[0] = -1;
+		ft_init_incantation(env);
 		/*ft_bzero(env->inv, sizeof(int) * INV_SIZE);*/
 	}
 	return (env);

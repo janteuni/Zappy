@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 20:23:41 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/14 20:09:34 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define INV_BUF	1024
 # define BIG_BUF	4095
 
+# define NB_STONES	6
 # define INV_SIZE	7
 # define SEE_SIZE	9
 # define FOOD		0
@@ -53,11 +54,12 @@
 # define FORK		10
 # define CON_NB		11
 
-# define NB_RESP	4
+# define NO_RESP	(-1)
 # define RESP_OK	0
 # define RESP_VIEW	1
 # define RESP_INV	2
 # define RESP_VAL	3
+# define NB_RESP	4
 
 # define FORW		"avance\n"
 # define RIGHT		"droite\n"
@@ -89,6 +91,7 @@ typedef struct		s_env
 	int				socket;
 	char			**cmds;
 	int				*resp;
+	int				**incantation;
 	int				dead;
 	int				level;
 	int				connect_nb;
@@ -109,6 +112,7 @@ int					error(char *err);
 void				ft_free_and_quit(t_env *env);
 int					create_client(t_env *env);
 int					ft_confirm_connection(t_env *env);
+void				ft_init_incantation(t_env *env);
 
 /*
 **			ft_parse.c
@@ -176,7 +180,8 @@ int					ft_message(t_env *env, char *buf);
 int					ft_set_cmd_opt(t_cmd *cmd, int cmd_num, char *opt,
 		t_env *env);*/
 int					ft_ia(t_env *env);
-int					ft_find_food(t_env *env);
+int					ft_find(t_env *env, int obj);
+/*int					ft_find_food(t_env *env);*/
 int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp);
 
 /*
@@ -197,5 +202,24 @@ int					ft_avance(t_env *env, int num);
 int					ft_fork(t_env *env);
 int					ft_connect_egg(t_env *env);
 int					ft_reset_env(t_env *env);
+
+/*
+**			ft_check.c
+*/
+int					ft_check_inv_stones(t_env *env);
+int					ft_check_squ_stones(t_env *env);
+
+/*
+**			ft_incantation.c
+*/
+char				*ft_get_str(int obj);
+int					ft_putdown(t_env *env, int stone);
+int					ft_putdown_stones(t_env *env);
+int					ft_get_people_here(t_env *env);
+
+/*
+**			ft_find_stones.c
+*/
+int					ft_find_stones(t_env *env);
 
 #endif
