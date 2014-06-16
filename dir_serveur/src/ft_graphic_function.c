@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 15:37:24 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 17:26:27 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:43:27 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void			st_assign_cmd(t_gr gr[])
 	gr[4].name = "ppo";
 	gr[5].fn = ft_treat_plv;
 	gr[5].name = "plv";
-/*	gr[6].fn = ft_treat_pin;
+	gr[6].fn = ft_treat_pin;
 	gr[6].name = "pin";
-	gr[7].fn = ft_treat_sgt;
+/*	gr[7].fn = ft_treat_sgt;
 	gr[7].name = "sgt";
 	gr[8].fn = ft_treat_sst;
 	gr[8].name = "sst";*/

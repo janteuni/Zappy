@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_pin.c                                   :+:      :+:    :+:   */
+/*   ft_treat_pin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/12 15:16:09 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:42:11 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/16 18:37:30 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/16 18:43:57 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char					*ft_graphic_pin(t_env *env, int cs)
+void					ft_treat_pin(t_env *env, int cs, char *rcv)
 {
-	char			*str;
+	int			player;
+	char		**split;
 
-	str = NULL;
-	if (cs >= 0 && cs < env->max_fd && env->fd_socket[cs].type == CLIENT)
+	split = NULL;
+	split = ft_super_split(rcv);
+	if (ft_tab_len(split) == 2
+			&& ft_strlen(split[1]) >= 2 && split[1][0] == '#')
 	{
-		asprintf(&str, "pin #%d %d %d %d %d %d %d %d %d %d\n", cs, POSX(cs),
-				POSY(cs), INV(cs)[FOOD], INV(cs)[LINEMATE], INV(cs)[DERAUMERE],
-				INV(cs)[SIBUR], INV(cs)[MENDIANE], INV(cs)[PHIRAS],
-				INV(cs)[THYSTAME]);
+		player = ft_atoi(split[1] + 1);
+		if (ft_graphic_reply(env, player, ft_graphic_pin) == ERR)
+			ft_graphic_reply(env, cs, ft_graphic_sbp);
 	}
-	return (str);
+	else
+		ft_graphic_reply(env, cs, ft_graphic_sbp);
 }
