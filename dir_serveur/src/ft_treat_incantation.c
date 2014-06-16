@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:48:53 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:57:26 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,8 @@ int				ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 {
 	int			tab_case[NB_STUFF];
-	char		*str;
 
 	(void)rcv;
-	str = NULL;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
 	if (env->fd_socket[cs].level < 8 &&
 			env->map[POSY(cs)][POSX(cs)][INCANT] == NO
@@ -84,9 +82,6 @@ void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 	else
 	{
 		printf("elevation NO\n\n");
-		asprintf(&str, "elevation en cours\nniveau %d\n",
-				env->fd_socket[cs].level);
-		ft_reply_in_buff(env, cs, str);
-		ft_memdel((void **)&str);
+		ft_reply_in_buff(env, cs, "ko");
 	}
 }
