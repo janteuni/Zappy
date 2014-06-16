@@ -6,13 +6,13 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:18:42 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:20:01 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 15:49:01 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-void				ft_graphic_reply(t_env *env, int cs, char *(*fn)())
+int					ft_graphic_reply(t_env *env, int cs, char *(*fn)())
 {
 	char			*line;
 
@@ -20,7 +20,14 @@ void				ft_graphic_reply(t_env *env, int cs, char *(*fn)())
 	if (env->graphic != -1)
 	{
 		line = fn(env, cs);
-		ft_reply_in_buff(env, env->graphic, line);
-		ft_memdel((void **)&line);
+		if (line != NULL)
+		{
+			ft_reply_in_buff(env, env->graphic, line);
+			ft_memdel((void **)&line);
+		}
+		else
+			return (ERR);
+		return (OK);
 	}
+	return (ERR);
 }

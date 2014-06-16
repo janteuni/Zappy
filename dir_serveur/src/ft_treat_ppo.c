@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_ppo.c                                   :+:      :+:    :+:   */
+/*   ft_treat_ppo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/12 12:42:21 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 15:44:16 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/16 15:41:20 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/16 15:55:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char				*ft_graphic_ppo(t_env *env, int cs)
+void			ft_treat_ppo(t_env *env, int cs, char *rcv)
 {
-	char			*str;
+	int			player;
+	char		**split;
 
-	str = NULL;
-	if (env->fd_socket[cs].type == CLIENT)
-		asprintf(&str, "ppo %d %d %d %d\n", cs, POSX(cs), POSY(cs), OR(cs));
-	return (str);
+	split = NULL;
+	split = ft_super_split(rcv);
+	if (ft_tab_len(split) == 2)
+	{
+		player = ft_atoi(split[1]);
+		if (ft_graphic_reply(env, player, ft_graphic_ppo) == ERR)
+		{
+			printf("ERR - send message sbp\n");
+			ft_graphic_reply(env, cs, ft_graphic_sbp);
+		}
+	}
+	else
+		ft_graphic_reply(env, cs, ft_graphic_sbp);
 }

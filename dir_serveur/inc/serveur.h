@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 15:33:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 15:54:12 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,7 @@ void				ft_graphic_all_map(t_env *env, int cs);
 char				*ft_graphic_tna(t_env *env);
 char				*ft_graphic_pnw(t_env *env, int cs);
 char				*ft_graphic_ppo(t_env *env, int cs);
-void				ft_graphic_reply(t_env *env, int cs, char *(*fn)());
+int					ft_graphic_reply(t_env *env, int cs, char *(*fn)());
 char				*ft_graphic_plv(t_env *env, int cs);
 char				*ft_graphic_pin(t_env *env, int cs);
 char				*ft_graphic_pex(t_env *env, int cs);
@@ -299,6 +299,7 @@ void				ft_treat_msz(t_env *env, int cs, char *rcv);
 void				ft_treat_bct(t_env *env, int cs, char *rcv);
 void				ft_treat_mct(t_env *env, int cs, char *rcv);
 void				ft_treat_tna(t_env *env, int cs, char *rcv);
+void				ft_treat_ppo(t_env *env, int cs, char *rcv);
 
 /*
 ** Miscelleanous
