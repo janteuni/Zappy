@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 15:54:12 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 17:22:37 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define NB_CMDS	12
 # define NB_STUFF	7
 # define NB_LEVEL	9
-# define NB_GR		4
+# define NB_GR		5
 
 # define WIDTH		env->width
 # define HEIGHT		env->height
@@ -269,7 +269,7 @@ void				ft_action_tm(int cs, int t, void (*fn)(), char *rcv);
 /*
 ** CLIENT GRAPHIC
 */
-void				ft_graphic_function(t_env *env, int cs, char *rcv);
+int					ft_graphic_function(t_env *env, int cs, char *rcv);
 void				ft_graphic_init(t_env *env, int cs);
 char				*ft_graphic_bct(t_env *env, int x, int y);
 void				ft_graphic_all_map(t_env *env, int cs);
@@ -295,6 +295,7 @@ char				*ft_graphic_seg(t_env *env, int cs);
 char				*ft_graphic_msz(t_env *env);
 char				*ft_graphic_sgt(t_env *env);
 char				*ft_graphic_sbp(t_env *env, int cs);
+char				*ft_graphic_suc(t_env *env, int cs);
 void				ft_treat_msz(t_env *env, int cs, char *rcv);
 void				ft_treat_bct(t_env *env, int cs, char *rcv);
 void				ft_treat_mct(t_env *env, int cs, char *rcv);

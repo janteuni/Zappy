@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_treat_ppo.c                                     :+:      :+:    :+:   */
+/*   ft_graphic_suc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/16 15:41:20 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 17:24:28 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/16 17:20:58 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/16 17:23:06 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-void			ft_treat_ppo(t_env *env, int cs, char *rcv)
+char				*ft_graphic_suc(t_env *env, int cs)
 {
-	int			player;
-	char		**split;
+	char			*str;
 
-	split = NULL;
-	split = ft_super_split(rcv);
-	if (ft_tab_len(split) == 2)
-	{
-		player = ft_atoi(split[1]);
-		if (ft_graphic_reply(env, player, ft_graphic_ppo) == ERR)
-			ft_graphic_reply(env, cs, ft_graphic_sbp);
-	}
-	else
-		ft_graphic_reply(env, cs, ft_graphic_sbp);
+	(void)env;
+	(void)cs;
+	str = NULL;
+	str = ft_strdup("suc\n");
+	return (str);
 }
