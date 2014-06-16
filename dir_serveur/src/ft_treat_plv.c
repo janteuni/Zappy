@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/16 17:24:59 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 17:58:51 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:35:45 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void					ft_treat_plv(t_env *env, int cs, char *rcv)
 	(void)cs;
 	split = NULL;
 	split = ft_super_split(rcv);
-	if (ft_tab_len(split) == 2)
+	if (ft_tab_len(split) == 2
+			&& ft_strlen(split[1]) >= 2 && split[1][0] == '#')
 	{
-		player = ft_atoi(split[1]);
+		player = ft_atoi(split[1] + 1);
 		if (ft_graphic_reply(env, player, ft_graphic_plv) == ERR)
 			ft_graphic_reply(env, cs, ft_graphic_sbp);
 	}
