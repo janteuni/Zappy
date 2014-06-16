@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:09:52 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:31:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 19:06:31 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static int				st_all_players_level_max(t_env *env, int i)
 	while (list)
 	{
 		cs = ((t_player *)list->content)->sock;
-		if (env->fd_socket[cs].type == CLIENT && env->fd_socket[cs].level == 8)
+		if (env->fd_socket[cs].type == CLIENT && env->fd_socket[cs].level == 2)
 			nb++;
 		list = list->next;
 	}
-	if (nb >= 6)
+	if (nb >= 2)
 		return (YES);
 	return (NO);
 }
@@ -50,12 +50,13 @@ int						ft_treat_end(t_env *env)
 	i = 0;
 	while (i < env->max_team)
 	{
-		if (env->teams[i].nb_player >= 6)
+		if (env->teams[i].nb_player >= 2)
 		{
 			if (st_all_players_level_max(env, i) == YES)
 			{
 				st_end_of_game(env, i);
 				env->end = YES;
+				ft_treat_dead_all(env);
 				return (YES);
 			}
 		}

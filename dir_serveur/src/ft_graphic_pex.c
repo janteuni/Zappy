@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 15:28:02 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 15:41:15 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:20:46 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char				*ft_graphic_pex(t_env *env, int cs)
 	char			*str;
 
 	(void)env;
-	asprintf(&str, "pex %d\n", cs);
+	str = NULL;
+	if (cs >= 0 && cs < env->max_fd && env->fd_socket[cs].type == CLIENT)
+		asprintf(&str, "pex #%d\n", cs);
 	return (str);
 }

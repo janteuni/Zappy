@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 12:32:50 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 19:05:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define NB_CMDS	12
 # define NB_STUFF	7
 # define NB_LEVEL	9
-# define NB_GR		3
+# define NB_GR		7
 
 # define WIDTH		env->width
 # define HEIGHT		env->height
@@ -231,6 +231,7 @@ int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
 int					ft_treat_end(t_env *env);
+void				ft_treat_dead_all(t_env *env);
 
 /*
 ** CLIENT CMDS
@@ -269,14 +270,14 @@ void				ft_action_tm(int cs, int t, void (*fn)(), char *rcv);
 /*
 ** CLIENT GRAPHIC
 */
-void				ft_graphic_function(t_env *env, int cs, char *rcv);
+int					ft_graphic_function(t_env *env, int cs, char *rcv);
 void				ft_graphic_init(t_env *env, int cs);
 char				*ft_graphic_bct(t_env *env, int x, int y);
 void				ft_graphic_all_map(t_env *env, int cs);
 char				*ft_graphic_tna(t_env *env);
 char				*ft_graphic_pnw(t_env *env, int cs);
 char				*ft_graphic_ppo(t_env *env, int cs);
-void				ft_graphic_reply(t_env *env, int cs, char *(*fn)());
+int					ft_graphic_reply(t_env *env, int cs, char *(*fn)());
 char				*ft_graphic_plv(t_env *env, int cs);
 char				*ft_graphic_pin(t_env *env, int cs);
 char				*ft_graphic_pex(t_env *env, int cs);
@@ -295,9 +296,14 @@ char				*ft_graphic_seg(t_env *env, int cs);
 char				*ft_graphic_msz(t_env *env);
 char				*ft_graphic_sgt(t_env *env);
 char				*ft_graphic_sbp(t_env *env, int cs);
+char				*ft_graphic_suc(t_env *env, int cs);
 void				ft_treat_msz(t_env *env, int cs, char *rcv);
 void				ft_treat_bct(t_env *env, int cs, char *rcv);
 void				ft_treat_mct(t_env *env, int cs, char *rcv);
+void				ft_treat_tna(t_env *env, int cs, char *rcv);
+void				ft_treat_ppo(t_env *env, int cs, char *rcv);
+void				ft_treat_plv(t_env *env, int cs, char *rcv);
+void				ft_treat_pin(t_env *env, int cs, char *rcv);
 
 /*
 ** Miscelleanous

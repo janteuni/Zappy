@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 13:00:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:57:26 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,16 @@ static void		st_get_infos(t_pos pos, t_env *env, int cs, int tab[NB_STUFF])
 
 	i = 1;
 	tab[PLAYERS] = st_count(pos, env, env->fd_socket[cs].level);
-	printf("nb joueurs: %d\n", tab[PLAYERS]);
 	while (i < NB_STUFF)
 	{
 		nb = env->map[pos.y][pos.x][i];
 		tab[i] = nb;
 		i++;
 	}
-	printf("linemate %d\n", tab[LINEMATE]);
 }
 
 int				ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 {
-	printf("comp %d %d %d %d %d %d %d\n", TOTEM[level][PLAYERS], TOTEM[level][LINEMATE],  TOTEM[level][DERAUMERE],  TOTEM[level][SIBUR],  TOTEM[level][MENDIANE], TOTEM[level][PHIRAS], TOTEM[level][THYSTAME]);
-	printf("snap %d %d %d %d %d %d %d\n", tab[PLAYERS], tab[LINEMATE],  tab[DERAUMERE], tab[SIBUR], tab[MENDIANE],tab[PHIRAS],tab[THYSTAME]);
 	if (tab[PLAYERS] >= TOTEM[level][PLAYERS]
 			&& tab[LINEMATE] >= TOTEM[level][LINEMATE]
 			&& tab[DERAUMERE] >= TOTEM[level][DERAUMERE]
@@ -69,14 +65,14 @@ int				ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 {
 	int			tab_case[NB_STUFF];
-	char		*itoa;
-	char		*join;
 
 	(void)rcv;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
-	if (env->map[POSY(cs)][POSX(cs)][INCANT] == NO
+	if (env->fd_socket[cs].level < 8 &&
+			env->map[POSY(cs)][POSX(cs)][INCANT] == NO
 			&& TOTX(cs) == -1 && TOTY(cs) == -1
-			&& ft_compare_stuff(env, tab_case, env->fd_socket[cs].level + 1) == OK)
+			&& ft_compare_stuff(env, tab_case, env->fd_socket[cs].level + 1)
+			== OK)
 	{
 		printf("elevation OK\n");
 		env->map[POSY(cs)][POSX(cs)][INCANT] = YES;
@@ -86,10 +82,6 @@ void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 	else
 	{
 		printf("elevation NO\n\n");
-		itoa = ft_itoa(env->fd_socket[cs].level);
-		join = ft_strjoin("elevation en cours\nniveau ", itoa);
-		ft_reply_in_buff(env, cs, join);
-		ft_memdel((void **)&itoa);
-		ft_memdel((void **)&join);
+		ft_reply_in_buff(env, cs, "ko");
 	}
 }

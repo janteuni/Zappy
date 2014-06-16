@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_eht.c                                   :+:      :+:    :+:   */
+/*   ft_graphic_suc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/13 11:52:38 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:29:00 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/16 17:20:58 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/16 17:23:06 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char				*ft_graphic_eht(t_env *env, int cs)
+char				*ft_graphic_suc(t_env *env, int cs)
 {
 	char			*str;
 
-	(void )env;
-	asprintf(&str, "eht #%d\n", cs);
+	(void)env;
+	(void)cs;
+	str = NULL;
+	str = ft_strdup("suc\n");
 	return (str);
 }

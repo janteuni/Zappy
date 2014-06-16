@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_graphic_eht.c                                   :+:      :+:    :+:   */
+/*   ft_treat_plv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/13 11:52:38 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:29:00 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/16 17:24:59 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/16 18:35:45 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-char				*ft_graphic_eht(t_env *env, int cs)
+void					ft_treat_plv(t_env *env, int cs, char *rcv)
 {
-	char			*str;
+	int					player;
+	char				**split;
 
-	(void )env;
-	asprintf(&str, "eht #%d\n", cs);
-	return (str);
+	(void)cs;
+	split = NULL;
+	split = ft_super_split(rcv);
+	if (ft_tab_len(split) == 2
+			&& ft_strlen(split[1]) >= 2 && split[1][0] == '#')
+	{
+		player = ft_atoi(split[1] + 1);
+		if (ft_graphic_reply(env, player, ft_graphic_plv) == ERR)
+			ft_graphic_reply(env, cs, ft_graphic_sbp);
+	}
+	else
+		ft_graphic_reply(env, cs, ft_graphic_sbp);
 }

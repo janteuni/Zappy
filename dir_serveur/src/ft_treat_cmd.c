@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:46:02 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 17:23:52 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int					st_check_eggs(t_env *env, int cs)
 				&& ft_strcmp(env->fd_socket[cs].my_team,
 					((t_egg *)eggs->content)->team) == 0)
 		{
-			printf("assignation : x: %d y:%d\n", ((t_egg *)eggs->content)->pos.x, ((t_egg *)eggs->content)->pos.y);
+			printf("assignation : x: %d y:%d\n",
+					((t_egg *)eggs->content)->pos.x,
+					((t_egg *)eggs->content)->pos.y);
 			POSX(cs) = ((t_egg *)eggs->content)->pos.x;
 			POSY(cs) = ((t_egg *)eggs->content)->pos.y;
 			OR(cs) = ((t_egg *)eggs->content)->pos.o;
@@ -49,13 +51,21 @@ static void			st_first_response(t_env *env, int cs)
 
 void				ft_treat_cmd(char *rcv, t_env *env, int cs)
 {
-	printf("%s\n", rcv);
+	printf(" SERVER RECEIVE CMD: %s\n", rcv);
 	if (env->fd_socket[cs].type == GRAPHIC)
-		ft_graphic_function(env, cs, rcv);
+	{
+		if (ft_graphic_function(env, cs, rcv) == ERR)
+			ft_graphic_reply(env, cs, ft_graphic_suc);
+	}
 	else if (env->fd_socket[cs].my_team == NULL)
 	{
 		if (ft_strcmp(rcv, "GRAPHIC") == 0)
-			ft_graphic_init(env, cs);
+		{
+			if (env->graphic == -1)
+				ft_graphic_init(env, cs);
+			else
+				ft_reply_in_buff(env, cs, "ko");
+		}
 		else if (ft_add_me_team(env, cs, rcv) == OK)
 		{
 			if (st_check_eggs(env, cs) == NO)
