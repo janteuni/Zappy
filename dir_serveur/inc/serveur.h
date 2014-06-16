@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 17:47:53 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 11:53:52 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +292,6 @@ char				*ft_graphic_seg(t_env *env, int cs);
 int					ft_lst_contains(t_list *tocheck, t_list *container);
 int					ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level);
 int					ft_calcul_nb(t_env *env, int cs);
-void				ft_utils_find_path(t_env *env, int cs);
+int					ft_utils_find_path(t_env *env, int cs, int i);
 
 #endif

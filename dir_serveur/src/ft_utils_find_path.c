@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:32:10 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 11:48:05 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 11:53:51 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,24 @@ static int				st_reoriente(int ret, t_env *env, int cs)
 	return (ret);
 }
 
-void					ft_utils_find_path(t_env *env, int cs)
+int						ft_utils_find_path(t_env *env, int cs, int i)
 {
 	t_pos				rcv;
 	t_pos				me;
 	t_pos				new;
-	int					i;
 	int					ret;
 
-	i = 0;
+	ret = 0;
 	me.x = POSX(cs);
 	me.y = POSY(cs);
-	while (i < env->max_fd)
+	if (env->fd_socket[i].type == CLIENT && cs != i)
 	{
-		if (env->fd_socket[i].type == CLIENT && cs != i)
-		{
-			rcv.x = env->fd_socket[i].pos.x;
-			rcv.y = env->fd_socket[i].pos.y;
-			new = st_find_vector(env, rcv, me);
-			ret = st_define_angle(new, me);
-			ret = st_reoriente(ret, env, i);
-			printf("MSG COME FROM  %d\n", ret);
-		}
-		i++;
+		rcv.x = env->fd_socket[i].pos.x;
+		rcv.y = env->fd_socket[i].pos.y;
+		new = st_find_vector(env, rcv, me);
+		ret = st_define_angle(new, me);
+		ret = st_reoriente(ret, env, i);
+		printf("MSG COME FROM  %d\n", ret);
 	}
+	return (ret);
 }
