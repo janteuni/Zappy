@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:32:10 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 20:02:36 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 11:48:05 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static t_pos			st_find_vector(t_env *env, t_pos rcv, t_pos me)
 	t_pos				diff;
 	t_pos				new;
 
-	printf("REVEIVER %d %d\n", rcv.x, rcv.y);
-	printf("ME %d %d\n", me.x, me.y);
 	diff.x = rcv.x - me.x;
 	diff.y = rcv.y - me.y;
 	if (abs(diff.x) > WIDTH / 2)
@@ -40,7 +38,6 @@ static t_pos			st_find_vector(t_env *env, t_pos rcv, t_pos me)
 	}
 	else
 		new.y = rcv.y;
-	printf("NEW %d %d\n", new.x, new.y);
 	return (new);
 }
 
@@ -76,21 +73,19 @@ static int				st_define_angle(t_pos rcv, t_pos me)
 		ret = 7;
 	else
 		st_diagonale(&ret, me, rcv);
-	printf("RET ======> %d\n", ret);
 	return (ret);
 }
 
 static int				st_reoriente(int ret, t_env *env, int cs)
 {
-	printf("ORIENTATION %d", OR(cs));
 	if (ret == 0 || OR(cs) == N)
 		return (ret);
 	if (OR(cs) == S)
-		return (ret + 5);
-	if (OR(cs) == E)
-		return (ret + 2);
-	if (OR(cs) == O)
-		return (ret + 7);
+		ret = ret <= 4 ? ret + 4 : ret - 4;
+	else if (OR(cs) == E)
+		ret = ret >= 7 ? ret - 6 : ret + 2;
+	else if (OR(cs) == O)
+		ret = ret <= 2 ? ret + 6 : ret - 2;
 	return (ret);
 }
 
@@ -114,7 +109,7 @@ void					ft_utils_find_path(t_env *env, int cs)
 			new = st_find_vector(env, rcv, me);
 			ret = st_define_angle(new, me);
 			ret = st_reoriente(ret, env, i);
-			printf("RET NOW IS %d\n", ret);
+			printf("MSG COME FROM  %d\n", ret);
 		}
 		i++;
 	}
