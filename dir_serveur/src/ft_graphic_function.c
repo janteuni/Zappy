@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 15:37:24 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 12:29:32 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 15:32:36 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void			st_assign_cmd(t_gr gr[])
 	gr[1].name = "bct";
 	gr[2].fn = ft_treat_mct;
 	gr[2].name = "mct";
-/*	gr[3].fn = ft_treat_tna;
+	gr[3].fn = ft_treat_tna;
 	gr[3].name = "tna";
-	gr[4].fn = ft_treat_ppo;
+/*	gr[4].fn = ft_treat_ppo;
 	gr[4].name = "ppo";
 	gr[5].fn = ft_treat_plv;
 	gr[5].name = "plv";

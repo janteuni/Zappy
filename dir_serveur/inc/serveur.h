@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 12:32:50 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 15:33:19 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define NB_CMDS	12
 # define NB_STUFF	7
 # define NB_LEVEL	9
-# define NB_GR		3
+# define NB_GR		4
 
 # define WIDTH		env->width
 # define HEIGHT		env->height
@@ -298,6 +298,7 @@ char				*ft_graphic_sbp(t_env *env, int cs);
 void				ft_treat_msz(t_env *env, int cs, char *rcv);
 void				ft_treat_bct(t_env *env, int cs, char *rcv);
 void				ft_treat_mct(t_env *env, int cs, char *rcv);
+void				ft_treat_tna(t_env *env, int cs, char *rcv);
 
 /*
 ** Miscelleanous
