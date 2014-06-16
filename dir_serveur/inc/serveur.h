@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:43:17 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 19:05:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ int					ft_add_me_team(t_env *env, int cs, char *rcv);
 int					ft_place_me(t_env *env, int cs);
 void				ft_init_incantation(t_env *env);
 int					ft_treat_end(t_env *env);
+void				ft_treat_dead_all(t_env *env);
 
 /*
 ** CLIENT CMDS
