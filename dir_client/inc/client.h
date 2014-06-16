@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/14 20:09:34 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/16 19:48:29 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,20 @@ typedef struct		s_env
 }					t_env;
 
 t_env				*get_env(void);
-int					error(char *err);
-void				ft_free_and_quit(t_env *env);
 int					create_client(t_env *env);
 int					ft_confirm_connection(t_env *env);
 void				ft_init_incantation(t_env *env);
+
+/*
+**			error.c
+*/
+void				ft_free_and_quit(t_env *env);
+int					error(char *err);
+
+/*
+**			ft_signal.c
+*/
+int					ft_setup_signal(void);
 
 /*
 **			ft_parse.c
@@ -153,10 +162,10 @@ int					ft_send_cmd(t_env *env, char *cmd, int i);
 /*
 **			ft_elevation.c
 */
-int					ft_start_elevation(t_env *env);
-int					ft_end_elev(t_env *env, char *buf);
-int					ft_begin_elev(t_env *env, char *buf);
 int					ft_enough_food(t_env *env);
+int					ft_begin_elev(t_env *env, char *buf);
+int					ft_end_elev(t_env *env, char *buf);
+int					ft_elev_failed(t_env *env);
 
 /*
 **			ft_move.c
@@ -222,4 +231,8 @@ int					ft_get_people_here(t_env *env);
 */
 int					ft_find_stones(t_env *env);
 
+/*
+**			ft_follow_msg.c
+*/
+int					ft_follow_msg(t_env *env);
 #endif

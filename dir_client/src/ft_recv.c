@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 20:55:52 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/16 19:49:49 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ int					ft_recv(t_env *env)
 	printf("BUFFER [%s]\n",buf );
 	if ((buf[0] == 'o') || (buf[0] == 'k'))// OK / KO
 	{
-		env->resp[RESP_OK]--;
+		if (buf[0] == 'k' && env->resp[RESP_OK] == 0 && env->elevating == 1)
+			ft_elev_failed(env);
+		else
+			env->resp[RESP_OK]--;
 		printf("OK\n");
 		return (OK);
 	}

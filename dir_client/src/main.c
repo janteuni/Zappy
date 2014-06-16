@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/12 19:21:57 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/16 19:48:12 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int					main(int ac, char **av)
 	t_env			*env;
 
 	env = get_env();
+	if (ft_setup_signal() == ERR)
+		return (error("Failed to setup signals"));
 	if (ft_parse(ac, av, env) == ERR)
 		return (ERR);
 	if (create_client(env) == ERR)

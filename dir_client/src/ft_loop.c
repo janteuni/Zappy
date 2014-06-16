@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/14 12:40:56 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/16 17:32:28 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,13 @@ int					ft_takemove(t_env *env)
 	ft_print_responsetab(env);
 	if (env->elevating || ft_expecting_resp(env))
 	{
-		printf("TAKEMOVE - waitig to elevate or for a response\n");
+		printf("TAKEMOVE - waiting to elevate or for a response\n");
 		return (OK);
+	}
+	else if (!env->elevating && env->dir_msg >= 0)
+	{
+		printf("RECEIVED A MSG - ON MY WAAAAAAAY :)\n");
+		ft_follow_msg(env);
 	}
 	else
 	{

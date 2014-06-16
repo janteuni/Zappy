@@ -6,10 +6,12 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:50:07 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/14 20:15:05 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/16 19:52:47 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include "stdio.h"
 #include "client.h"
 
 char				*ft_get_str(int obj)
@@ -60,7 +62,9 @@ int					ft_putdown_stones(t_env *env)
 
 int					ft_get_people_here(t_env *env)
 {
-	printf("COUCOU\n");
+	char			*msg;
+
+	printf("IN FT_GET_PEOPLE\n");
 	if (env->view[0][PLAYERS] >= env->incantation[env->level + 1][PLAYERS])
 	{
 		printf("THERE ARE ENOUGH PLAYERS TO ELEVATE\n");
@@ -69,8 +73,10 @@ int					ft_get_people_here(t_env *env)
 	}
 	else
 	{
-		printf("THERE ARE NOT ENOUGH PLAYERS TO ELEVATE\n");
-		ft_push_cmd(env, BROAD, ft_strdup(env->team), RESP_OK);
+		printf("THERE ARE NOT ENOUGH PLAYERS TO ELEVATE - SENDING MESSAGE\n");
+		asprintf(&msg, "%s %d", env->team, env->level);
+		ft_push_cmd(env, BROAD, msg, RESP_OK);
+		free(msg);
 	}
 	return (OK);
 }

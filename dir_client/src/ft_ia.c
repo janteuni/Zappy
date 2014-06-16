@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/14 20:03:12 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/16 15:59:22 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,9 @@ int					ft_ia(t_env *env)
 	printf("IA IS STARTING\n");
 	if (env->laying)
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
-	/*if (env->inv[0] < 0)*/
-		ft_push_cmd(env, INVENT, NULL, RESP_INV);
-		ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
-	/*else*/ if (!env->forked && !env->laying)
+	ft_push_cmd(env, INVENT, NULL, RESP_INV);
+	ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
+	if (!env->forked && !env->laying)
 	{
 		printf("current connect_nb = %d\n",env->connect_nb );
 		if (env->connect_nb < 0)

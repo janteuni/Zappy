@@ -6,7 +6,7 @@
 #    By: fbeck <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/06 16:16:30 by fbeck             #+#    #+#              #
-#    Updated: 2014/06/14 18:11:16 by fbeck            ###   ########.fr        #
+#    Updated: 2014/06/16 19:46:17 by fbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_check.c \
 					  $(DIR_SRC)/ft_incantation.c \
 					  $(DIR_SRC)/ft_find_stones.c \
+					  $(DIR_SRC)/ft_follow_msg.c \
+					  $(DIR_SRC)/ft_signal.c \
 
 # ---------------------------------------------------------------------------- #
 
