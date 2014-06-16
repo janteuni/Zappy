@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/16 17:22:20 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/16 17:25:59 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_graphic_suc.c \
 					  $(DIR_SRC)/ft_treat_tna.c \
 					  $(DIR_SRC)/ft_treat_ppo.c \
+					  $(DIR_SRC)/ft_treat_plv.c \
 
 # ---------------------------------------------------------------------------- #
 
