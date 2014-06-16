@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 15:16:09 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:16:38 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:20:32 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char					*ft_graphic_pin(t_env *env, int cs)
 	str = NULL;
 	if (cs >= 0 && cs < env->max_fd && env->fd_socket[cs].type == CLIENT)
 	{
-		asprintf(&str, "pin %d %d %d %d %d %d %d %d %d %d\n", cs, POSX(cs),
+		asprintf(&str, "pin #%d %d %d %d %d %d %d %d %d %d\n", cs, POSX(cs),
 				POSY(cs), INV(cs)[FOOD], INV(cs)[LINEMATE], INV(cs)[DERAUMERE],
 				INV(cs)[SIBUR], INV(cs)[MENDIANE], INV(cs)[PHIRAS],
 				INV(cs)[THYSTAME]);

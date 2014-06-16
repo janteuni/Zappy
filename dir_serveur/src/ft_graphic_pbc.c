@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 15:55:07 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 18:17:53 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 18:21:02 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ char				*ft_graphic_pbc(t_env *env, int cs, char *msg)
 	(void)env;
 	str = NULL;
 	if (cs >= 0 && cs < env->max_fd && env->fd_socket[cs].type == CLIENT)
-		asprintf(&str, "pbc %d %s\n", cs, msg);
+		asprintf(&str, "pbc #%d %s\n", cs, msg);
 	return (str);
 }
