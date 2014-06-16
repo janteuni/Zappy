@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 11:53:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/16 12:32:50 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define NB_CMDS	12
 # define NB_STUFF	7
 # define NB_LEVEL	9
+# define NB_GR		3
 
 # define WIDTH		env->width
 # define HEIGHT		env->height
@@ -74,6 +75,12 @@ typedef struct		s_action
 	long int		timestamp;
 	void			(*fn)();
 }					t_action;
+
+typedef struct		s_gr
+{
+	char			*name;
+	void			(*fn)();
+}					t_gr;
 
 typedef struct		s_cmd
 {
@@ -285,6 +292,12 @@ char				*ft_graphic_eht(t_env *env, int cs);
 char				*ft_graphic_ebo(t_env *env, int cs);
 char				*ft_graphic_edi(t_env *env, int cs);
 char				*ft_graphic_seg(t_env *env, int cs);
+char				*ft_graphic_msz(t_env *env);
+char				*ft_graphic_sgt(t_env *env);
+char				*ft_graphic_sbp(t_env *env, int cs);
+void				ft_treat_msz(t_env *env, int cs, char *rcv);
+void				ft_treat_bct(t_env *env, int cs, char *rcv);
+void				ft_treat_mct(t_env *env, int cs, char *rcv);
 
 /*
 ** Miscelleanous
