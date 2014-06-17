@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:51:20 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/09 10:34:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 12:02:06 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ int					parser(t_env *env, int argc, char **argv)
 	while (i < argc)
 	{
 		if (argv[i][0] == '-' && st_valid_flag(argv[i]) == OK)
+		{
+			if (argc == i + 1)
+				st_wrong_params();
 			ft_pars_flag(&i, argv, argc, env);
+		}
 		else
 			st_wrong_params();
 		i++;

@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 12:10:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 15:12:49 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 12:02:05 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,24 @@ int				st_fill_team(char **argv, int argc, t_env *env, int *i)
 	return (OK);
 }
 
+static int		st_valid_number(char **argv, int *i)
+{
+	int			nb;
+
+	nb = ft_atoi(argv[(*i) + 1]);
+	if (nb <= 0)
+		ft_exit("Number must be positiv.");
+	return (OK);
+}
+
 int				ft_pars_flag(int *i, char **argv, int argc, t_env *env)
 {
 	int			plus;
 
 	plus = 0;
-	if (argc == (*i) + 1)
-		return (ft_exit("Invalid."));
+	if (argv[*i][1] == 'p' || argv[*i][1] == 'x' ||argv[*i][1] == 'y'
+			|| argv[*i][1] == 't' || argv[*i][1] == 'c')
+		st_valid_number(argv, i);
 	if (argv[*i][1] == 'p')
 		env->port = ft_atoi(argv[(*i) + 1]);
 	if (argv[*i][1] == 'x')
