@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:04:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 12:27:22 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ static void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 	}
 }
 
-static char			*st_list_player(t_pos pos, t_env *env, int cs, char *final)
+static char			*st_list_player(t_pos pos, t_env *env, int cs, char **final)
 {
 	char			*ret;
 	char			*tmp;
 	int				i;
 
 	i = 0;
-	tmp = NULL;
+	tmp = *final;
 	ret = NULL;
 	while (i < env->max_fd)
 	{
@@ -53,32 +53,24 @@ static char			*st_list_player(t_pos pos, t_env *env, int cs, char *final)
 		{
 			if (POSY(i) == pos.y && POSX(i) == pos.x)
 			{
-				ret = ft_strjoin(tmp, env->fd_socket[i].my_team);
+				asprintf(&ret, "%sjoueur \n", tmp);
 				if (tmp)
 					ft_memdel((void **)&tmp);
-				tmp = ft_strjoin(ret, " ");
-				ft_memdel((void **)&ret);
+				tmp = ret;
 			}
 		}
 		i++;
 	}
-	if (tmp)
-	{
-		ret = ft_strjoin(final, tmp);
-		ft_memdel((void **)&tmp);
-	}
-	return (ret);
+	return (tmp);
 }
 
-static char				*ft_list_case(t_pos pos, t_env *env, int cs)
+static char				*ft_list_case(t_pos pos, t_env *env, int cs, int i)
 {
-	int				i;
 	int				j;
 	int				nb;
 	char			*ret;
 	char			*tmp;
 
-	i = 0;
 	ret = NULL;
 	tmp = NULL;
 	while (i < NB_STUFF)
@@ -95,12 +87,22 @@ static char				*ft_list_case(t_pos pos, t_env *env, int cs)
 		}
 		i++;
 	}
-	tmp = st_list_player(pos, env, cs, ret);
-	if (!tmp)
-		tmp = ft_strdup(ret);
-	ft_memdel((void **)&ret);
+	tmp = st_list_player(pos, env, cs, &ret);
 	tmp[ft_strlen(tmp) - 1] = '\0';
 	return (tmp);
+}
+
+static t_pos		st_reoriente_pos(t_pos pos_case, t_env *env, int cs)
+{
+	if (OR(cs) == N)
+		pos_case.x = pos_case.x == WIDTH - 1 ? 0 : pos_case.x + 1;
+	else if (OR(cs) == E)
+		pos_case.y = pos_case.y == HEIGHT - 1 ? 0 : pos_case.y + 1;
+	else if (OR(cs) == S)
+		pos_case.x = pos_case.x == 0 ? WIDTH - 1 : pos_case.x - 1;
+	else if (OR(cs) == O)
+		pos_case.y = pos_case.y == 0 ? HEIGHT - 1 : pos_case.y - 1;
+	return (pos_case);
 }
 
 void				ft_treat_vision(t_env *env, int cs, char *rcv)
@@ -121,21 +123,17 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 		j = 0;
 		while (j < (i * 2) + 1)
 		{
-			carre = ft_list_case(pos_case, env, cs);
-			final = ft_strjoin(tmp, carre);
+			printf("CASE: %d %d\n", pos_case.x, pos_case.y);
+			carre = ft_list_case(pos_case, env, cs, 0);
+			asprintf(&final, "%s%s, ",tmp, carre);
+		/*	final = ft_strjoin(tmp, carre);*/
 			if (tmp)
 				ft_memdel((void **)&tmp);
 			ft_memdel((void **)&carre);
-			tmp = ft_strjoin(final, ", ");
-			ft_memdel((void **)&final);
-			if (OR(cs) == N)
-				pos_case.x = pos_case.x == WIDTH - 1 ? 0 : pos_case.x + 1;
-			else if (OR(cs) == E)
-				pos_case.y = pos_case.y == HEIGHT - 1 ? 0 : pos_case.y + 1;
-			else if (OR(cs) == S)
-				pos_case.x = pos_case.x == 0 ? WIDTH - 1 : pos_case.x - 1;
-			else if (OR(cs) == O)
-				pos_case.y = pos_case.y == 0 ? HEIGHT - 1 : pos_case.y - 1;
+/*			tmp = ft_strjoin(final, ", ");*/
+			tmp = final;
+/*			ft_memdel((void **)&final);*/
+			pos_case = st_reoriente_pos(pos_case, env, cs);
 			j++;
 		}
 		i++;
