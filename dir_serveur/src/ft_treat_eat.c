@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 18:36:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:43:13 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 19:14:33 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				ft_treat_eat(t_env *env)
 			if (env->fd_socket[i].inventory[FOOD] <= 0)
 			{
 				printf("mort de %d\n", i);
-				send(i, "mort", 4, 0);
+				send(i, "mort\n", 5, 0);
 				ft_graphic_reply(env, i, ft_graphic_pdi);
 				clean_fd(&env->fd_socket[i]);
 			}
