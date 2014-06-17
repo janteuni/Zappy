@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 19:25:39 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 17:35:33 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 22:02:10 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,27 @@ int					ft_connect_egg(t_env *env)
 int					ft_fork(t_env *env)
 {
 	pid_t			father;
+	char			*str;
+	char			**args;
 
 	printf("GOING TO FORK\n");
 	if ((father = fork()) == -1)
 		return (error("Failed to fork"));
 	if (!father)
 	{
-		ft_reset_env(env);
+	/*	ft_reset_env(env);
 		if (ft_connect_egg(env) == ERR)
 		{
-			ft_putendl("Egg failed to connect to server - exiting");
-			ft_free_and_quit(env);
+		ft_putendl("Egg failed to connect to server - exiting");
+		ft_free_and_quit(env);
 		}
-		env->pid = getpid();
+		env->pid = getpid();*/
+		asprintf(&str, "%s -n %s -p %d -h %s", env->path, env->team, env->port, env->addr);
+		printf("STR SO FAR [%s]\n",str );
+		args = ft_strsplit(str, ' ');
+		execve(env->path, args, env->envp);
+		ft_putendl("Failed to execute program - exiting");
+		ft_free_and_quit(env);
 	}
 	else
 	{

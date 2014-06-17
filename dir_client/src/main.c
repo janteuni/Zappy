@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 17:54:25 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 22:02:40 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,15 @@ int					ft_confirm_connection(t_env *env)
 	return (OK);
 }
 
-int					main(int ac, char **av)
+int					main(int ac, char **av, char **envp)
 {
 	t_env			*env;
 
-	env = get_env();
+	if (!(env = get_env()))
+		return (ERR);
+	env->path = av[0];
+	printf("PATH IS %s\n",env->path );
+	env->envp = envp;
 	if (ft_setup_signal() == ERR)
 		return (error("Failed to setup signals"));
 	if (ft_parse(ac, av, env) == ERR)
