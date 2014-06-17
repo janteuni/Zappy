@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 19:48:12 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 17:54:25 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					ft_confirm_connection(t_env *env)
 
 	ft_bzero(buf, BUF_SIZE + 1);
 	recv(env->socket, buf, BUF_SIZE, 0);
-	printf("FIRST BFFER [%s]\n",buf );
+	printf("FIRST BUFFER [%s]\n",buf );
 	if (ft_strcmp("BIENVENUE\n", buf))
 		return (ERR);
 	str = ft_strjoin(env->team, "\n");
@@ -73,6 +73,7 @@ int					main(int ac, char **av)
 	if (ft_confirm_connection(env) == ERR)
 		return (error("Failed to connect"));
 	ft_loop(env);
+	printf("OUT OF LOOP - closing\n");
 	close(env->socket);
 	return (OK);
 }

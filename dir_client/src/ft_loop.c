@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/16 17:32:28 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 19:25:31 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@ void				ft_del_cmd_lst(void *content, size_t content_size)
 	t_cmd			*tmp;
 
 	tmp = (t_cmd *)content;
-	free(tmp->cmd);
-	if (tmp->opt)
-		free(tmp->opt);
-	ft_lstdel_elem(content, content_size);
+	if (tmp)
+	{
+		free(tmp->cmd);
+		if (tmp->opt)
+			free(tmp->opt);
+		/*ft_lstdel_elem(content, content_size);*/
+		ft_bzero(content, content_size);
+		free(tmp);
+	}
 }
 
 int					ft_expecting_resp(t_env *env)
@@ -96,11 +101,10 @@ int					ft_send_moves(t_env *env)
 	}
 	else if (env->moves)
 	{
-		printf("DELETING MOVES\n");
+		printf("DELETING SENT MOVES\n");
 		ft_lstdel(&env->moves, ft_del_cmd_lst);
 		env->moves = NULL;
 	}
-	printf("END OF SEND MOVES\n");
 	return (OK);
 }
 
@@ -117,6 +121,7 @@ int					ft_takemove(t_env *env)
 	{
 		printf("RECEIVED A MSG - ON MY WAAAAAAAY :)\n");
 		ft_follow_msg(env);
+		ft_send_moves(env);
 	}
 	else
 	{
@@ -149,26 +154,14 @@ void				print_moves(t_env *env)
 
 int					ft_loop(t_env *env)
 {
-	/*int				i;
-	  char			*str;*/
-
-	/*i = 0;
-	  ft_send_cmd(env, FORW, RESP_OK);
-	  ft_send_cmd(env, LEFT, RESP_OK);
-	  ft_send_cmd(env, RIGHT, RESP_OK);
-	  ft_send_cmd(env, VIEW, RESP_VIEW);*/
-	/*	env->resp[RESP_OK] += 2;
-		if ((send(env->socket, "avance\n", ft_strlen("avance\n"), 0)) < 0)
-		return (error("Failed to send command"));
-		if ((send(env->socket, "gauche\n", ft_strlen("gauche\n"), 0)) < 0)
-		return (error("Failed to send command"));*/
 	ft_look(env);
 	while (!env->dead)
 	{
-		print_moves(env);
+/*		print_moves(env);*/
 		ft_recv(env);
-		ft_takemove(env);
-		/*++i;*/
+		if (!env->dead)
+			ft_takemove(env);
 	}
+	ft_free_env(&env);
 	return (OK);
 }

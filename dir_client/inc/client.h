@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/16 19:48:29 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 21:09:00 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct		s_env
 	int				laying;
 	int				moved;
 	int				dir_msg;
+	int				pid;
 }					t_env;
 
 t_env				*get_env(void);
@@ -115,8 +116,14 @@ void				ft_init_incantation(t_env *env);
 /*
 **			error.c
 */
-void				ft_free_and_quit(t_env *env);
 int					error(char *err);
+
+/*
+**			ft_free.c
+*/
+void				ft_free_env(t_env **env);
+void				ft_free_and_quit(t_env *env);
+
 
 /*
 **			ft_signal.c

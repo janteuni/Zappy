@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 19:25:39 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 20:26:05 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 17:35:33 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int					ft_fork(t_env *env)
 			ft_putendl("Egg failed to connect to server - exiting");
 			ft_free_and_quit(env);
 		}
+		env->pid = getpid();
 	}
 	else
 	{

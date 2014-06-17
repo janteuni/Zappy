@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 20:32:43 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 18:29:18 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int					ft_look(t_env *env)
 	int				i;
 
 	ft_bzero(buf, BIG_BUF + 1);
-	str = ft_strjoin("voir", "\n");
+	str = ft_strdup(VIEW);
 	printf("SEND COMMAND : VOIR\n");
 	if ((i = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));

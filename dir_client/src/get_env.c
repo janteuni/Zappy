@@ -6,9 +6,11 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 17:07:07 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 18:26:55 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "unistd.h"
 
 #include <stdlib.h>
 #include "client.h"
@@ -30,6 +32,8 @@ int				init_cmd_tab(t_env *env)
 	env->cmds[INCANT] = ft_strdup("incantation\n");
 	env->cmds[FORK] = ft_strdup("fork\n");
 	env->cmds[CON_NB] = ft_strdup("connect_nbr\n");
+
+	env->pid = getpid();
 	return (OK);
 }
 
@@ -54,7 +58,6 @@ t_env			*get_env(void)
 			error("Malloc Failed env");
 			return (NULL);
 		}
-		env->incantation = NULL;
 		env->addr = NULL;
 		env->port = 0;
 		env->dead = 0;

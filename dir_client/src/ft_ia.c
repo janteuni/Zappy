@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/16 15:59:22 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/17 19:40:48 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int					ft_ia(t_env *env)
 	if (env->laying)
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
 	ft_push_cmd(env, INVENT, NULL, RESP_INV);
-	ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
 	if (!env->forked && !env->laying)
 	{
 		printf("current connect_nb = %d\n",env->connect_nb );
@@ -153,6 +152,8 @@ int					ft_ia(t_env *env)
 		else
 			ft_find_stones(env);
 	}
+	ft_push_cmd(env, INVENT, NULL, RESP_INV);
+	ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
 	return (OK);
 }
 
