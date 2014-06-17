@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 17:45:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:43:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:15:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void			st_fill_inventory(int i, t_env *env, int cs)
 
 	line = NULL;
 	env->fd_socket[cs].inventory[i]++;
-	env->map[POSY(cs)][POSX(cs)][i] -= 1;
+	if (i != FOOD)
+		env->map[POSY(cs)][POSX(cs)][i] -= 1;
 	ft_reply_in_buff(env, cs, "ok");
 	ft_graphic_pgt(env, cs, i);
 	ft_graphic_reply(env, cs, ft_graphic_pin);
