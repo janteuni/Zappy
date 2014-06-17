@@ -6,13 +6,13 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 17:03:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 18:07:26 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-static void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
+static void			st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 {
 	pos->x = POSX(cs);
 	pos->y = POSY(cs);
@@ -78,7 +78,7 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 		while (j < (i * 2) + 1)
 		{
 			carre = ft_list_case(pos_case, env, cs, 0);
-			asprintf(&final, "%s%s, ",tmp, carre);
+			asprintf(&final, "%s%s, ", tmp, carre);
 			ft_memdel((void **)&tmp);
 			ft_memdel((void **)&carre);
 			tmp = final;

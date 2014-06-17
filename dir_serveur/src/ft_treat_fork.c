@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 12:10:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:47:43 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 18:08:20 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <time.h>
 #include "serveur.h"
 
-static t_egg			st_fill_egg(t_env *env, int cs)
+static t_egg		st_fill_egg(t_env *env, int cs)
 {
-	t_egg				new_egg;
+	t_egg			new_egg;
 
 	srand(time(0));
 	new_egg.num = env->count_egg;

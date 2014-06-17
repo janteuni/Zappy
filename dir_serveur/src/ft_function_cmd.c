@@ -6,16 +6,17 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:36:44 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 18:04:43 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-static void			st_assign_time(t_cmd cmds[])
+static void			st_assign_time(t_cmd cmds[], t_env *env)
 {
 	int				i;
 
+	(void)env;
 	i = 0;
 	while (i < 9)
 	{
@@ -29,7 +30,6 @@ static void			st_assign_time(t_cmd cmds[])
 
 static void			st_assign(t_cmd cmds[], t_env *env)
 {
-	(void)env;
 	cmds[0].fn = ft_treat_avance;
 	cmds[0].name = "avance";
 	cmds[1].fn = ft_treat_left;
@@ -54,7 +54,7 @@ static void			st_assign(t_cmd cmds[], t_env *env)
 	cmds[10].name = "fork";
 	cmds[11].fn = ft_treat_connect_nbr;
 	cmds[11].name = "connect_nbr";
-	st_assign_time(cmds);
+	st_assign_time(cmds, env);
 }
 
 int					ft_function_cmd(t_env *env, int cs, char *rcv)

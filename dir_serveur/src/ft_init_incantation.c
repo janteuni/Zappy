@@ -6,14 +6,14 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 14:44:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:40:09 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 18:05:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "serveur.h"
 
-static void			st_finish_init(t_env *env)
+static void				st_finish_init(t_env *env)
 {
 	env->incantation[5][SIBUR] = 2;
 	env->incantation[5][MENDIANE] = 0;
@@ -71,9 +71,9 @@ static void				st_init(t_env *env)
 	st_finish_init(env);
 }
 
-void				ft_init_incantation(t_env *env)
+void					ft_init_incantation(t_env *env)
 {
-	int				i;
+	int					i;
 
 	i = 0;
 	env->incantation = NULL;
@@ -87,4 +87,3 @@ void				ft_init_incantation(t_env *env)
 	}
 	st_init(env);
 }
-
