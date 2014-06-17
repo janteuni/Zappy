@@ -6,14 +6,14 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 14:44:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 12:02:55 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 18:05:18 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "serveur.h"
 
-static void			st_finish_init(t_env *env)
+static void				st_finish_init(t_env *env)
 {
 	env->incantation[5][SIBUR] = 2;
 	env->incantation[5][MENDIANE] = 0;
@@ -42,25 +42,8 @@ static void			st_finish_init(t_env *env)
 	env->incantation[8][THYSTAME] = 3;
 }
 
-static void			st_malloc_inc(t_env *env)
+static void				st_init(t_env *env)
 {
-	int				i;
-
-	i = 0;
-	env->incantation = NULL;
-	if (!(env->incantation = (int **)malloc(sizeof(int *) * NB_LEVEL)))
-		exit(0);
-	while (i < NB_LEVEL)
-	{
-		if (!(env->incantation[i] = (int *)malloc(sizeof(int) * NB_STUFF)))
-			exit(0);
-		i++;
-	}
-}
-
-void				ft_init_incantation(t_env *env)
-{
-	st_malloc_inc(env);
 	env->incantation[2][PLAYERS] = 1;
 	env->incantation[2][LINEMATE] = 1;
 	env->incantation[2][DERAUMERE] = 0;
@@ -86,4 +69,21 @@ void				ft_init_incantation(t_env *env)
 	env->incantation[5][LINEMATE] = 1;
 	env->incantation[5][DERAUMERE] = 1;
 	st_finish_init(env);
+}
+
+void					ft_init_incantation(t_env *env)
+{
+	int					i;
+
+	i = 0;
+	env->incantation = NULL;
+	if (!(env->incantation = (int **)malloc(sizeof(int *) * NB_LEVEL)))
+		exit(0);
+	while (i < NB_LEVEL)
+	{
+		if (!(env->incantation[i] = (int *)malloc(sizeof(int) * NB_STUFF)))
+			exit(0);
+		i++;
+	}
+	st_init(env);
 }

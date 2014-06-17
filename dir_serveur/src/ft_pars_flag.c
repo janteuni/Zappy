@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 12:10:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 12:02:05 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:41:05 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				ft_pars_flag(int *i, char **argv, int argc, t_env *env)
 	int			plus;
 
 	plus = 0;
-	if (argv[*i][1] == 'p' || argv[*i][1] == 'x' ||argv[*i][1] == 'y'
+	if (argv[*i][1] == 'p' || argv[*i][1] == 'x' || argv[*i][1] == 'y'
 			|| argv[*i][1] == 't' || argv[*i][1] == 'c')
 		st_valid_number(argv, i);
 	if (argv[*i][1] == 'p')

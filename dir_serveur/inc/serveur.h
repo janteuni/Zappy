@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:15:12 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 17:02:09 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,5 +315,6 @@ int					ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level);
 int					ft_calcul_nb(t_env *env, int cs);
 int					ft_utils_find_path(t_env *env, int cs, int i);
 void				ft_ctr_c(int i);
+char				*ft_list_case(t_pos pos, t_env *env, int cs, int i);
 
 #endif

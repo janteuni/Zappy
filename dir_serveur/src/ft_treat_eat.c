@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 18:36:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:36:39 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 19:14:33 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ static void			st_eggs_are_dead(t_env *env)
 	{
 		((t_egg *)list->content)->life -= 1;
 		if (((t_egg *)list->content)->state == BORN
-					&&((t_egg *)list->content)->life <= 0)
+					&& ((t_egg *)list->content)->life <= 0)
 		{
 			st_decrement_nb(env, ((t_egg *)list->content)->team);
-			ft_graphic_reply(env, ((t_egg *)list->content)->num, ft_graphic_edi);
+			ft_graphic_reply(env, ((t_egg *)list->content)->num,
+					ft_graphic_edi);
 			printf("egg die\n");
 			ft_del_elem(&env->eggs, list, ft_del_egg);
 		}
@@ -59,7 +60,7 @@ void				ft_treat_eat(t_env *env)
 			if (env->fd_socket[i].inventory[FOOD] <= 0)
 			{
 				printf("mort de %d\n", i);
-				send(i, "mort", 4, 0);
+				send(i, "mort\n", 5, 0);
 				ft_graphic_reply(env, i, ft_graphic_pdi);
 				clean_fd(&env->fd_socket[i]);
 			}

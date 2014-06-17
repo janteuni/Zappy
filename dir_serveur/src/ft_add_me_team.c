@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 18:40:38 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 14:16:37 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:31:04 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int					ft_add_me_team(t_env *env, int cs, char *rcv)
 {
 	int				i;
-	int				max;
 	t_player		player;
 
 	i = 0;
@@ -23,8 +22,7 @@ int					ft_add_me_team(t_env *env, int cs, char *rcv)
 	{
 		if (ft_strcmp(env->teams[i].name, rcv) == 0)
 		{
-			max = env->teams[i].max_player - env->teams[i].nb_player;
-			if (max > 0)
+			if (env->teams[i].max_player - env->teams[i].nb_player > 0)
 			{
 				env->teams[i].nb_player++;
 				player.sock = cs;

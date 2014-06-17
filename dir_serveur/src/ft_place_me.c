@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:05:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:46:03 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:41:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <time.h>
 #include "serveur.h"
 
-int			ft_calcul_nb(t_env *env, int cs)
+int				ft_calcul_nb(t_env *env, int cs)
 {
 	int			ret;
 	int			i;

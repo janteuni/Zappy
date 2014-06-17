@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 17:03:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 17:18:02 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 19:21:47 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void					ft_init_map(t_env *env)
 			k = 0;
 			env->map[i][j][INCANT] = NO;
 			while (k < 7)
-				env->map[i][j][k++] = rand() % 8;
+				env->map[i][j][k++] = rand() % 3;
 			j++;
 		}
 		i++;

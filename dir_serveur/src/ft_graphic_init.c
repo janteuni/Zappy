@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/10 15:36:37 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 11:10:11 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:38:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void			st_all_eggs(t_env *env)
 	while (list)
 	{
 		str = ft_graphic_enw(env, ((t_egg *)list->content)->father,
-			   	((t_egg *)list->content)->num);
+				((t_egg *)list->content)->num);
 		ft_reply_in_buff(env, env->graphic, str);
 		ft_memdel((void **)&str);
 		list = list->next;

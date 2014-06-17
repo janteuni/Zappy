@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 13:35:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:33:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:41:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static void					st_place_stones(t_env *env, int level)
 {
-	char			*line;
-	int				i;
-	t_pos			pos;
+	char					*line;
+	int						i;
+	t_pos					pos;
 
 	i = 1;
 	srand(time(0));
@@ -40,9 +40,9 @@ static void					st_place_stones(t_env *env, int level)
 	}
 }
 
-void					ft_reject_stones(t_env *env, int level, t_pos pos)
+void						ft_reject_stones(t_env *env, int level, t_pos pos)
 {
-	char			*line;
+	char					*line;
 
 	env->map[pos.y][pos.x][LINEMATE] -= TOTEM[level][LINEMATE];
 	env->map[pos.y][pos.x][DERAUMERE] -= TOTEM[level][DERAUMERE];
