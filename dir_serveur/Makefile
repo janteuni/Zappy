@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/17 11:21:08 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/17 16:09:39 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/ft_treat_pin.c \
 					  $(DIR_SRC)/ft_treat_sgt.c \
 					  $(DIR_SRC)/ft_treat_sst.c \
+					  $(DIR_SRC)/signal.c \
 					  $(DIR_SRC)/ft_treat_dead_all.c \
 
 # ---------------------------------------------------------------------------- #

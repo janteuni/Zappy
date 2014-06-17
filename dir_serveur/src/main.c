@@ -6,11 +6,12 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:27:08 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:10:52 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <signal.h>
 #include <sys/resource.h>
 #include <unistd.h>
 #include "serveur.h"
@@ -92,6 +93,8 @@ int				main(int argc, char **argv)
 		return (ERR);
 	print_params(env);
 	if (create_server(env) == ERR)
+		return (ERR);
+	if ((signal(SIGINT, ft_ctr_c) == SIG_ERR))
 		return (ERR);
 	ft_init_map(env);
 	ft_max_players_in_team(env);

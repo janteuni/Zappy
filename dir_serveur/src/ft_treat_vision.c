@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 12:27:22 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 15:59:56 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,15 @@ static t_pos		st_reoriente_pos(t_pos pos_case, t_env *env, int cs)
 	return (pos_case);
 }
 
+void				st_reply_final_str(t_env *env, int cs, char *tmp, char *r)
+{
+	(void)r;
+	tmp[ft_strlen(tmp) - 1] = '\0';
+	tmp[ft_strlen(tmp) - 1] = '}';
+	ft_reply_in_buff(env, cs, tmp);
+	ft_memdel((void **)&tmp);
+}
+
 void				ft_treat_vision(t_env *env, int cs, char *rcv)
 {
 	t_pos			pos_case;
@@ -115,7 +124,6 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 	char			*tmp;
 
 	i = 0;
-	(void)rcv;
 	tmp = ft_strdup("{");
 	while (i <= LEVEL(cs))
 	{
@@ -123,23 +131,15 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 		j = 0;
 		while (j < (i * 2) + 1)
 		{
-			printf("CASE: %d %d\n", pos_case.x, pos_case.y);
 			carre = ft_list_case(pos_case, env, cs, 0);
 			asprintf(&final, "%s%s, ",tmp, carre);
-		/*	final = ft_strjoin(tmp, carre);*/
-			if (tmp)
-				ft_memdel((void **)&tmp);
+			ft_memdel((void **)&tmp);
 			ft_memdel((void **)&carre);
-/*			tmp = ft_strjoin(final, ", ");*/
 			tmp = final;
-/*			ft_memdel((void **)&final);*/
 			pos_case = st_reoriente_pos(pos_case, env, cs);
 			j++;
 		}
 		i++;
 	}
-	tmp[ft_strlen(tmp) - 1] = '\0';
-	tmp[ft_strlen(tmp) - 1] = '}';
-	ft_reply_in_buff(env, cs, tmp);
-	ft_memdel((void **)&tmp);
+	st_reply_final_str(env, cs, tmp, rcv);
 }

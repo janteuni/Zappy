@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_treat_dead_all.c                                :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/16 19:01:40 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:02:55 by janteuni         ###   ########.fr       */
+/*   Created: 2014/06/17 16:00:48 by janteuni          #+#    #+#             */
+/*   Updated: 2014/06/17 16:10:50 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <sys/socket.h>
 #include "serveur.h"
 
-void				ft_treat_dead_all(t_env *env)
+void				ft_ctr_c(int i)
 {
-	int				i;
+	t_env		*env;
 
-	i = 0;
-	while (i < env->max_fd)
-	{
-		if (env->fd_socket[i].type == CLIENT)
-		{
-			printf("mort de %d\n", i);
-			send(i, "mort", 4, 0);
-			ft_graphic_reply(env, i, ft_graphic_pdi);
-			clean_fd(&env->fd_socket[i]);
-		}
-		i++;
-	}
+	(void)i;
+	env = get_env();
+	ft_treat_dead_all(env);
+	if (env->graphic != -1)
+		send(env->graphic, "seg CTR-C\n", 10, 0);
+	exit (0);
 }
