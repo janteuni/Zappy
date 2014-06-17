@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 17:23:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:42:42 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int					st_check_eggs(t_env *env, int cs)
 			POSX(cs) = ((t_egg *)eggs->content)->pos.x;
 			POSY(cs) = ((t_egg *)eggs->content)->pos.y;
 			OR(cs) = ((t_egg *)eggs->content)->pos.o;
-			ft_graphic_reply(env, ((t_egg *)eggs->content)->num, ft_graphic_ebo);
+			ft_graphic_reply(env, ((t_egg *)eggs->content)->num,
+					ft_graphic_ebo);
 			ft_del_elem(&env->eggs, eggs, ft_del_egg);
 			return (YES);
 		}

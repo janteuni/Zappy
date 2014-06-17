@@ -6,14 +6,14 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 15:40:17 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:20:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:43:24 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include "serveur.h"
 
-static t_list			*st_egg_birth(t_env *env, char *rcv)
+static t_list		*st_egg_birth(t_env *env, char *rcv)
 {
 	t_list			*eggs;
 	int				egg_num;

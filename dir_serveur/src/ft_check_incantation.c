@@ -6,13 +6,14 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 15:44:09 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:31:57 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 
-static int			st_incantation_succeed(t_env *env, t_pos pos, int level, t_list *list)
+static int			st_incantation_succeed(t_env *env, t_pos pos,
+		int level, t_list *list)
 {
 	t_list			*players;
 	t_list			*my_list;
@@ -25,7 +26,8 @@ static int			st_incantation_succeed(t_env *env, t_pos pos, int level, t_list *li
 		return (ERR);
 	}
 	ft_lstdel(&players, ft_del);
-	if (ft_compare_stuff(env, ((t_snapshot *)list->content)->stuff, level + 1) == OK)
+	if (ft_compare_stuff(env, ((t_snapshot *)list->content)->stuff, level + 1)
+			== OK)
 		return (OK);
 	return (ERR);
 }
@@ -52,7 +54,8 @@ static void			st_inform_end(t_env *env, t_list *players, int level)
 	}
 }
 
-static void		st_incantation_terminate(t_env *env, t_pos pos, int level, t_list *list)
+static void			st_incantation_terminate(t_env *env, t_pos pos,
+		int level, t_list *list)
 {
 	int				result;
 

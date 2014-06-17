@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 15:59:56 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 17:03:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,60 +36,6 @@ static void				st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 		pos->y = pos->y - i < 0 ? HEIGHT - i : pos->y - i;
 		pos->x = pos->x + i > WIDTH - i ? 0 : pos->x + i;
 	}
-}
-
-static char			*st_list_player(t_pos pos, t_env *env, int cs, char **final)
-{
-	char			*ret;
-	char			*tmp;
-	int				i;
-
-	i = 0;
-	tmp = *final;
-	ret = NULL;
-	while (i < env->max_fd)
-	{
-		if (env->fd_socket[i].type == CLIENT && i != cs)
-		{
-			if (POSY(i) == pos.y && POSX(i) == pos.x)
-			{
-				asprintf(&ret, "%sjoueur \n", tmp);
-				if (tmp)
-					ft_memdel((void **)&tmp);
-				tmp = ret;
-			}
-		}
-		i++;
-	}
-	return (tmp);
-}
-
-static char				*ft_list_case(t_pos pos, t_env *env, int cs, int i)
-{
-	int				j;
-	int				nb;
-	char			*ret;
-	char			*tmp;
-
-	ret = NULL;
-	tmp = NULL;
-	while (i < NB_STUFF)
-	{
-		nb = env->map[pos.y][pos.x][i];
-		j = 0;
-		while (j < nb)
-		{
-			tmp = ft_strjoin(ret, env->stuff[i]);
-			ft_memdel((void **)&ret);
-			ret = ft_strjoin(tmp, " ");
-			ft_memdel((void **)&tmp);
-			j++;
-		}
-		i++;
-	}
-	tmp = st_list_player(pos, env, cs, &ret);
-	tmp[ft_strlen(tmp) - 1] = '\0';
-	return (tmp);
 }
 
 static t_pos		st_reoriente_pos(t_pos pos_case, t_env *env, int cs)

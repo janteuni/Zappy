@@ -6,12 +6,11 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 17:54:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 12:56:55 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:37:03 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
-
 
 t_list				*ft_get_players_from_case(t_env *env, t_pos pos)
 {

@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 12:10:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 17:46:05 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:47:43 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,11 @@
 #include <time.h>
 #include "serveur.h"
 
-void				ft_treat_fork(t_env *env, int cs, char *rcv)
+static t_egg			st_fill_egg(t_env *env, int cs)
 {
-	t_egg			new_egg;
-	char			*line;
-	char			*itoa;
+	t_egg				new_egg;
 
-	(void)rcv;
-	line = NULL;
 	srand(time(0));
-	env->count_egg += 1;
-	itoa = ft_itoa(env->count_egg);
-	ft_action_tm(-1, 600, ft_treat_egg, itoa);
-	ft_memdel((void **)&itoa);
 	new_egg.num = env->count_egg;
 	new_egg.state = GESTATION;
 	new_egg.father = cs;
@@ -37,6 +29,22 @@ void				ft_treat_fork(t_env *env, int cs, char *rcv)
 	if (new_egg.pos.o < 1)
 		new_egg.pos.o = 1;
 	new_egg.team = ft_strdup(env->fd_socket[cs].my_team);
+	return (new_egg);
+}
+
+void				ft_treat_fork(t_env *env, int cs, char *rcv)
+{
+	t_egg			new_egg;
+	char			*line;
+	char			*itoa;
+
+	(void)rcv;
+	line = NULL;
+	env->count_egg += 1;
+	itoa = ft_itoa(env->count_egg);
+	ft_action_tm(-1, 600, ft_treat_egg, itoa);
+	ft_memdel((void **)&itoa);
+	new_egg = st_fill_egg(env, cs);
 	ft_lstpush(&env->eggs, ft_lstnew(&new_egg, sizeof(new_egg)));
 	line = ft_graphic_enw(env, cs, env->count_egg);
 	if (env->graphic != -1)

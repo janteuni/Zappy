@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 19:54:54 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/17 16:18:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void			st_check_max_player(t_env *env, int i)
 
 static void			st_del_me(t_fd *fd)
 {
-	t_env		*env;
-	t_list		*players;
-	int			i;
+	t_env			*env;
+	t_list			*players;
+	int				i;
 
 	env = get_env();
 	i = 0;
@@ -50,8 +50,8 @@ static void			st_del_me(t_fd *fd)
 
 static void			st_del_action(t_fd *fd)
 {
-	t_env		*env;
-	t_list		*act;
+	t_env			*env;
+	t_list			*act;
 
 	env = get_env();
 	act = env->actions;
@@ -68,7 +68,7 @@ static void			st_del_action(t_fd *fd)
 	}
 }
 
-void			clean_fd(t_fd *fd)
+void				clean_fd(t_fd *fd)
 {
 	if (fd->my_team)
 	{
