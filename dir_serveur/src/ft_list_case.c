@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/17 17:01:06 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 14:57:29 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 18:11:13 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char			*st_list_player(t_pos pos, t_env *env, int cs, char **final)
 		{
 			if (POSY(i) == pos.y && POSX(i) == pos.x)
 			{
-				asprintf(&ret, "%sjoueur ", tmp);
+				ret = ft_strjoin(tmp, "joueur ");
 				if (tmp)
 					ft_memdel((void **)&tmp);
 				tmp = ret;
@@ -62,6 +62,7 @@ char				*ft_list_case(t_pos pos, t_env *env, int cs, int i)
 		i++;
 	}
 	tmp = st_list_player(pos, env, cs, &ret);
-	tmp[ft_strlen(tmp) - 1] = '\0';
+	if (tmp)
+		tmp[ft_strlen(tmp) - 1] = '\0';
 	return (tmp);
 }
