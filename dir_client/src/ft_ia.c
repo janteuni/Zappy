@@ -6,28 +6,11 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 19:40:48 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 15:17:52 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
-/*
-int					ft_set_cmd(t_cmd *cmd, int cmd_num, int resp, t_env *env)
-{
-	cmd->cmd = env->cmds[cmd_num];
-	cmd->opt = NULL;
-	cmd->resp = resp;
-	return (OK);
-}
-
-int					ft_set_cmd_opt(t_cmd *cmd, int cmd_num, char *opt,
-		t_env *env)
-{
-	cmd->cmd = env->cmds[cmd_num];
-	cmd->opt = opt;
-	cmd->resp = RESP_OK;
-	return (OK);
-}*/
 
 int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp)
 {
@@ -39,34 +22,6 @@ int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp)
 	ft_lstpush(&env->moves, ft_lstnew(&cmd, sizeof(t_cmd)));
 	return (OK);
 }
-
-/*int					ft_find_food(t_env *env)
-{
-	int				i;
-	int				c;
-
-	c = -1;
-	i = 1;
-	if (env->view[0][FOOD] == 0)
-	{
-		while (i < (env->level + 1) * (env->level + 1))
-		{
-			if (env->view[i][FOOD] > 0
-					&& (c < 0 || env->view[c][DIST] > env->view[i][DIST]))
-				c = i;
-			++i;
-		}
-		if (c > 0)
-			ft_get_route(env, c);
-		else
-		{
-			ft_push_cmd(env, DROITE, NULL, RESP_OK);
-			return (OK);
-		}
-	}
-	ft_push_cmd(env, PREND, ft_strdup("nourriture\n"), RESP_OK);
-	return (OK);
-}*/
 
 int					ft_take_all(t_env *env)
 {
@@ -105,9 +60,9 @@ int					ft_find(t_env *env, int obj)
 			return (OK);
 		}
 	}
-	if (obj == FOOD)
+/*	if (obj == FOOD)
 		ft_take_all(env);
-	else
+	else*/
 		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(obj)), RESP_OK);
 	return (OK);
 }
@@ -118,7 +73,7 @@ int					ft_ia(t_env *env)
 	if (env->laying)
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
 	ft_push_cmd(env, INVENT, NULL, RESP_INV);
-	if (!env->forked && !env->laying)
+	if (/*!env->forked &&*/ !env->laying)
 	{
 		printf("current connect_nb = %d\n",env->connect_nb );
 		if (env->connect_nb < 0)
@@ -131,9 +86,9 @@ int					ft_ia(t_env *env)
 		else
 			ft_find(env, FOOD);
 	}
-	else if (env->laying && !env->forked)
-		ft_find(env, FOOD);
-	else if (env->forked && env->inv[FOOD] < 8)
+/*	else if (env->laying && !env->forked)
+		ft_find(env, FOOD);*/
+	else if (/*env->forked*/ env->laying && env->inv[FOOD] < 8)
 	{
 		ft_find(env, FOOD);
 	}

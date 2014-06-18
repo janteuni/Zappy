@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:50:07 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 21:34:47 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 15:43:44 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int					ft_get_people_here(t_env *env)
 	else
 	{
 		printf("THERE ARE NOT ENOUGH PLAYERS TO ELEVATE - SENDING MESSAGE\n");
-		asprintf(&msg, "%s %d", env->team, env->level);
+		asprintf(&msg, "%s %d\n", env->team, env->level);
 		ft_push_cmd(env, BROAD, ft_strdup(msg), RESP_OK);
 		free(msg);
 	}
