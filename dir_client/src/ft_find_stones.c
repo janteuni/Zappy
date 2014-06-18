@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:26:04 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/14 18:18:44 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 21:30:06 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int					ft_find_stones(t_env *env)
 	int				to_take;
 
 	stone = 1;
-	while (env->incantation[env->level + 1][stone] <= env->inv[stone]
+	while (env->inv[stone] >= env->incantation[env->level + 1][stone]
 			&& stone <= NB_STONES)
 		++stone; //to get to the first stone that you dont have enough of
+	printf("LOOKING FOR STONE [%d]\n",stone );
 	need = env->incantation[env->level + 1][stone] - env->inv[stone];
 	if (need > 0)
 	{

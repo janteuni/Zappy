@@ -6,32 +6,13 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 18:16:42 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 20:45:23 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
 #include <stdlib.h>
 #include "client.h"
-
-/*int                 ft_place_random(t_env *env)
-{
-    int             rand_x;
-    int             rand_y;
-
-    rand_x = -1;
-    rand_y = -1;
-    srand(time(NULL));
-    while ((rand_x < 0 && rand_y < 0) || BOARD[rand_y][rand_x] != 0)
-    {
-        rand_x = rand() % WIDTH;
-        rand_y = rand() % HEIGHT;
-    }
-    BOARD[rand_y][rand_x] = (char)env->team;
-    env->posx = rand_x;
-    env->posy = rand_y;
-    return (0);
-}*/
 
 int					ft_random(t_env *env)
 {
@@ -66,7 +47,7 @@ int					ft_take_all(t_env *env)
 	int				i;
 
 	i = 0;
-	while (i < env->view[0][FOOD] && i < 8)
+	while (/*i < env->view[0][FOOD] &&*/ i < 5)
 	{
 		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(FOOD)), RESP_OK);
 		++i;
@@ -110,53 +91,77 @@ int					ft_find(t_env *env, int obj)
 			return (OK);
 		}
 	}
-	/*	if (obj == FOOD)
+	if (obj == FOOD)
 		ft_take_all(env);
-		else*/
-	ft_push_cmd(env, PREND, ft_strdup(ft_get_str(obj)), RESP_OK);
+	else
+		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(obj)), RESP_OK);
 	return (OK);
 }
 
 int					ft_ia(t_env *env)
 {
-	printf("IA IS STARTING\n");
+	printf("WELCOME TO THE IA \n");
 	if (env->laying)
-		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
-	if (env->inv[0] < 0)
-		ft_push_cmd(env, INVENT, NULL, RESP_INV);
-	if (/*!env->forked &&*/ !env->laying)
 	{
-		printf("current connect_nb = %d\n",env->connect_nb );
+		printf("i am laying so push connect_nb\n");
+		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
+	}
+	if (env->inv[0] < 0)
+	{
+		printf("not yet gt inventory - push inventory\n");
+		ft_push_cmd(env, INVENT, NULL, RESP_INV);
+		return (OK);
+	}
+	if (env->inv[FOOD] < 2)
+	{
+		printf("Food is less than 2 - find food\n");
+		ft_find(env, FOOD);
+	}
+	else if (!env->forked && !env->laying)
+	{
 		if (env->connect_nb < 0)
+		{
+			printf("not got a connect number - push connect_nb\n");
 			ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
+		}
 		else if (ft_enough_food(env))
 		{
+			printf("push fork\n");
 			ft_push_cmd(env, FORK, NULL, RESP_OK);
 			env->laying = 1;
 		}
 		else
+		{
+			printf("find food so can fork\n");
 			ft_find(env, FOOD);
+		}
 	}
 	/*	else if (env->laying && !env->forked)
 		ft_find(env, FOOD);*/
-	else if (/*env->forked*/ env->laying && env->inv[FOOD] < 8)
+	else if (!env->forked && env->laying && env->inv[FOOD] < 8)
 	{
+		printf("layed egg but not yet forked - finding food to get at least 8\n");
 		ft_find(env, FOOD);
 	}
-	else
+	else /* have forked, food > 2, im free to do an incantation */
 	{
 		//COLLECT STONES & DO INCANTATION
 		if (ft_check_squ_stones(env))
 		{
+			printf("the stones are on the square - broadcast message\n");
 			ft_get_people_here(env);
 		}
 		else if (ft_check_inv_stones(env))
 		{
+			printf("the stones are in my inventory - putting them down and then broadcasting\n");
 			ft_putdown_stones(env);
 			ft_get_people_here(env);
 		}
 		else
+		{
+			printf("have not got the stones I need - going to find them\n");
 			ft_find_stones(env);
+		}
 	}
 	ft_push_cmd(env, INVENT, NULL, RESP_INV);
 	ft_push_cmd(env, VOIR, NULL, RESP_VIEW);

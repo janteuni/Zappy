@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 20:58:40 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 21:44:02 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 22:31:59 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ void				ft_print_inv(t_env *env)
 	}
 }
 
+void				ft_print_split(char **s)
+{
+	int				i;
+
+	i = 0;
+	while (s[i])
+	{
+		printf("s[%d] = (%s)\n",i, s[i]);
+		++i;
+	}
+	printf("END OF SPLIT\n");
+}
+
 static int			ft_get_nb(char *line)
 {
 	char			**split;
@@ -43,17 +56,17 @@ void				ft_read_inventory(t_env *env, char **s, int i)
 	{
 		if (!ft_strncmp("nourriture", s[i], 10))
 			env->inv[FOOD] = ft_get_nb(s[i]);
-		else if (ft_strlen(s[i]) > 8 && !ft_strncmp("linemate", s[i], 8))
+		else if (!ft_strncmp(STONE_1, s[i], ft_strlen(STONE_1)))
 			env->inv[LINEMATE] = ft_get_nb(s[i]);
-		else if (ft_strlen(s[i]) > 9 && !ft_strncmp("deraumere", s[i], 9))
+		else if (!ft_strncmp(STONE_2, s[i], ft_strlen(STONE_2)))
 			env->inv[DERAUMERE] = ft_get_nb(s[i]);
-		else if (ft_strlen(s[i]) > 5 && !ft_strncmp("sibur", s[i], 5))
+		else if (!ft_strncmp(STONE_3, s[i], ft_strlen(STONE_3)))
 			env->inv[SIBUR] = ft_get_nb(s[i]);
-		else if (ft_strlen(s[i]) > 8 && !ft_strncmp("mendiane", s[i], 8))
+		else if (!ft_strncmp(STONE_4, s[i], ft_strlen(STONE_4)))
 			env->inv[MENDIANE] = ft_get_nb(s[i]);
-		else if (ft_strlen(s[i]) > 6 && !ft_strncmp("phiras", s[i], 6))
+		else if (!ft_strncmp(STONE_5, s[i], ft_strlen(STONE_5)))
 			env->inv[PHIRAS] = ft_get_nb(s[i]);
-		else if (ft_strlen(s[i]) > 8 && !ft_strncmp("thystame", s[i], 8))
+		else if (!ft_strncmp(STONE_6, s[i], ft_strlen(STONE_6)))
 			env->inv[THYSTAME] = ft_get_nb(s[i]);
 		++i;
 	}

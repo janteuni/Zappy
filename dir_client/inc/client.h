@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 18:08:32 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 21:40:19 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@
 # define THYSTAME	6
 # define PLAYERS	7
 # define DIST		8
+# define STONE_1	" linemate"
+# define STONE_2	" deraumere"
+# define STONE_3	" sibur"
+# define STONE_4	" mendiane"
+# define STONE_5	" phiras"
+# define STONE_6	" thystame"
+
 
 # define NB_CMDS	12
 # define AVANCE		0

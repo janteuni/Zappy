@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 19:25:39 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 22:02:10 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 19:30:54 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int					ft_fork(t_env *env)
 		printf("STR SO FAR [%s]\n",str );
 		args = ft_strsplit(str, ' ');
 		execve(env->path, args, env->envp);
+		ft_free_tab((void ***)&args);
+		ft_strdel(&str);
 		ft_putendl("Failed to execute program - exiting");
 		ft_free_and_quit(env);
 	}

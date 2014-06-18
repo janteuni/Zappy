@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 18:15:52 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 21:48:50 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int					ft_connect_nb(t_env *env, char *buf)
 	new = ft_atoi(buf);
 	printf("RECIEVED CONNECT_NB [%s]\n",buf );
 	if (!env->laying)
-	{
-		printf("geting new connect nb - NOT YET LAYING\n");
 		env->connect_nb = new;
-	}
 	else if (new > env->connect_nb)
 	{
 		printf("connect nb is higher!! time to fork\n");
@@ -43,10 +40,11 @@ int					ft_read_list(t_env *env, char *buf)
 	char			*sp;
 
 	(void)env;
-	list = ft_strsub(buf, 1, ft_strlen(buf) - 3);
+	list = ft_strsub(buf, 1, ft_strlen(buf) - 2);
+	printf("LIST AFTER SUB (%s)\n",list );
 	split = ft_strsplit(list, ',');
 	sp = ft_strchr(split[0], ' ');
-	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))/*in case of "linemate, nourriture...*/
+	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))
 	{
 		ft_read_inventory(env, split, 0);
 		ft_print_inv(env);
@@ -65,7 +63,7 @@ int					ft_read_list(t_env *env, char *buf)
 int					ft_read_line(t_env *env, char *line)
 {
 	printf("BUFFER [%s]\n",line );
-	if ((line[0] == 'o') || (line[0] == 'k'))// OK / KO
+	if ((line[0] == 'o') || (line[0] == 'k')) // OK / KO
 	{
 		if (line[0] == 'k' && env->resp[RESP_OK] == 0 && env->elevating == 1)
 			ft_elev_failed(env);
@@ -74,9 +72,9 @@ int					ft_read_line(t_env *env, char *line)
 		printf("OK\n");
 		return (OK);
 	}
-	if (line[0] == '{')// {...}
+	if (line[0] == '{') // {...}
 		return (ft_read_list(env, line));
-	if (line[0] == 'e')// elevation en cours
+	if (line[0] == 'e') // elevation en cours
 		return (ft_begin_elev(env, line));
 	if (line[0] == 'n') // niveau actuel
 		return (ft_end_elev(env, line));
@@ -89,11 +87,7 @@ int					ft_read_line(t_env *env, char *line)
 	if (ft_isdigit(line[0])) // CONNECT_NB
 		return (ft_connect_nb(env, line));
 	else
-	{
-		ft_putstr("recevied reply from server I don't understand : '");
-		ft_putstr(line);
-		ft_putendl("'");
-	}
+		printf("I do not understand '%s'\n", line);
 	return (OK);
 }
 
