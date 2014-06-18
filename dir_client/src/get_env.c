@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 16:30:55 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 18:22:29 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_env			*get_env(void)
 		env->elevating = 0;
 		env->moved = 0;
 		env->dir_msg = -1;
-		env->dir_msg = 0;
+		env->dir_chg = 0;
 		env->forked = 0;
 		env->laying = 0;
 		env->connect_nb = -1;
