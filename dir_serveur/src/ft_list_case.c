@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/17 17:01:06 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 17:03:34 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 14:57:29 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char			*st_list_player(t_pos pos, t_env *env, int cs, char **final)
 		{
 			if (POSY(i) == pos.y && POSX(i) == pos.x)
 			{
-				asprintf(&ret, "%sjoueur \n", tmp);
+				asprintf(&ret, "%sjoueur ", tmp);
 				if (tmp)
 					ft_memdel((void **)&tmp);
 				tmp = ret;
