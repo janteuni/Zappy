@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/21 10:17:34 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 13:05:51 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 14:13:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ static void		st_loop(char *buffer, char *amsg, char **ptr, int *offset)
 	int			i;
 
 	i = 0;
-	printf("OFFSET : %d\n", *offset);
-	printf("PTR : [%s]\n", *ptr);
-
 	while (buffer + i != *ptr)
 	{
 		amsg[i] = buffer[i];
@@ -52,7 +49,6 @@ static void		st_loop(char *buffer, char *amsg, char **ptr, int *offset)
 		(i)++;
 	}
 	*offset = (i);
-	printf("i: %d, BUFFER: %s\n", i, buffer);
 }
 
 void			control_receive(char *buffer, char *amsg, int *offset, int cs)
@@ -87,14 +83,9 @@ int				ft_receive(t_env *env, int cs)
 	if (msg[0] != MSG_NULL)
 	{
 		i = 0;
-		printf("RECEIVE :%s\n", msg);
 		ft_treat_msg(env, cs, msg);
 	}
-	printf("END OF BUFFER: [%s]\n",env->fd_socket[cs].buf_read);
 	if (special_strchr(env->fd_socket[cs].buf_read, '\n', BUF_SIZE) != NULL)
-	{
-		printf("FIND END OF LINE\n");
 		ft_receive(env, cs);
-	}
 	return (OK);
 }
