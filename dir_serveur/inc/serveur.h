@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 17:02:09 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 14:13:53 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define FREE		2
 # define GRAPHIC	3
 
-# define BUF_SIZE	4096
+# define BUF_SIZE	1024
 # define BUF_NAME	10
 # define MAX(a,b)	((a > b) ? a : b)
 # define MSG_NULL	-1

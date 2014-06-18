@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/21 10:17:34 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 18:58:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 14:13:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ static void		st_loop(char *buffer, char *amsg, char **ptr, int *offset)
 		(i)++;
 	}
 	amsg[i] = '\0';
-	*ptr += ft_strlen("\n");
+	*ptr += 1;
 	i = 0;
 	while ((*ptr) + (i) < buffer + *offset)
 	{
-		buffer[i] = buffer[(*ptr) - buffer + (i)];
+		/*buffer[i] = buffer[(*ptr) - buffer + (i)];*/
+		buffer[i] = (*ptr)[i];
 		(i)++;
 	}
 	*offset = (i);

@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 18:12:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 18:58:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 14:13:07 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void				client_read(t_env *env, int cs)
 {
-	env->fd_socket[cs].buf_offset = read(cs, env->fd_socket[cs].buf_read
+	env->fd_socket[cs].buf_offset += read(cs, env->fd_socket[cs].buf_read
 			+ env->fd_socket[cs].buf_offset,
 			BUF_SIZE - env->fd_socket[cs].buf_offset);
 	if (env->fd_socket[cs].buf_offset <= 0)
