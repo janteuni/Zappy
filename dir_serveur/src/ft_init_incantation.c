@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 14:44:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 18:05:18 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 16:13:35 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void					ft_init_incantation(t_env *env)
 	i = 0;
 	env->incantation = NULL;
 	if (!(env->incantation = (int **)malloc(sizeof(int *) * NB_LEVEL)))
-		exit(0);
+		ft_exit("incation init fail.");
 	while (i < NB_LEVEL)
 	{
 		if (!(env->incantation[i] = (int *)malloc(sizeof(int) * NB_STUFF)))
-			exit(0);
+			ft_exit("incation init fail.");
 		i++;
 	}
 	st_init(env);

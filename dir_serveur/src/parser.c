@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:51:20 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 15:12:55 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/06/18 16:15:57 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int					st_wrong_params(void)
 {
 	ft_putstr_fd("Usage: ./serveur -p <port> -x <width> -y <height> -n ", 2);
 	ft_putendl_fd("<team> [<team>] [<team>] ... -c <nb> -t <t>", 2);
-	exit (-1);
+	ft_exit("Pars Error.");
+	return (ERR);
 }
 
 int					st_valid_flag(char *arg)

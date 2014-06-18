@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:42:42 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 15:52:53 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void			st_first_response(t_env *env, int cs)
 
 void				ft_treat_cmd(char *rcv, t_env *env, int cs)
 {
-	printf(" SERVER RECEIVE CMD: %s\n", rcv);
+	printf("RECEIVE FROM %d: %s\n", cs, rcv);
 	if (env->fd_socket[cs].type == GRAPHIC)
 	{
 		if (ft_graphic_function(env, cs, rcv) == ERR)

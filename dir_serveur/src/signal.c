@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/17 16:00:48 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:10:50 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 16:15:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void				ft_ctr_c(int i)
 	ft_treat_dead_all(env);
 	if (env->graphic != -1)
 		send(env->graphic, "seg CTR-C\n", 10, 0);
-	exit (0);
+	ft_exit("ctr c signal");
 }

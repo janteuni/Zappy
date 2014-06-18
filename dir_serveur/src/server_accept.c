@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:30:04 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/14 17:09:17 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 16:14:48 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void					server_accept(t_env *env)
 	csin_len = sizeof(csin);
 	cs = accept(env->sock_server, (struct sockaddr*)&csin, &csin_len);
 	if (cs == -1)
-		exit(0);
+		ft_exit("server accept");
 	ft_putendl("NEW CLIENT IS CONNECTED..");
 	clean_fd(&env->fd_socket[cs]);
 	env->fd_socket[cs].type = CLIENT;
