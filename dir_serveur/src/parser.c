@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:51:20 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 12:02:06 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 15:12:55 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int					all_options_are_set(t_env *env)
 	if (env->max_team != 0 && env->width != 0 && env->height != 0
 			&& env->time != 0 && env->nb_player != 0 && env->port != 0)
 		return (OK);
-	ft_putstr_fd("All parameters are required", 2);
-	ft_putendl_fd("and have to be numeric except team_name", 2);
+	ft_putstr_fd("Usage: ./serveur -p <port> -x <width> -y <height> -n ", 2);
+	ft_putendl_fd("<team> [<team>] [<team>] ... -c <nb> -t <t>", 2);
 	return (ERR);
 }
 
