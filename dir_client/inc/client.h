@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 21:51:22 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 18:08:32 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct		s_env
 	int				pid;
 	char			**envp;
 	char			*path;
+	int				dir_chg;
 }					t_env;
 
 t_env				*get_env(void);
@@ -244,4 +245,6 @@ int					ft_find_stones(t_env *env);
 **			ft_follow_msg.c
 */
 int					ft_follow_msg(t_env *env);
+void				ft_dir_left(t_env *env, int dir);
+void				ft_dir_right(t_env *env, int dir);
 #endif

@@ -6,11 +6,49 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 15:17:52 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 18:16:42 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <time.h>
+#include <stdlib.h>
 #include "client.h"
+
+/*int                 ft_place_random(t_env *env)
+{
+    int             rand_x;
+    int             rand_y;
+
+    rand_x = -1;
+    rand_y = -1;
+    srand(time(NULL));
+    while ((rand_x < 0 && rand_y < 0) || BOARD[rand_y][rand_x] != 0)
+    {
+        rand_x = rand() % WIDTH;
+        rand_y = rand() % HEIGHT;
+    }
+    BOARD[rand_y][rand_x] = (char)env->team;
+    env->posx = rand_x;
+    env->posy = rand_y;
+    return (0);
+}*/
+
+int					ft_random(t_env *env)
+{
+	int				n;
+
+    srand(time(NULL));
+	n = rand() % 8;
+	if (n == 1 || n == 0)
+		ft_push_cmd(env, AVANCE, NULL, RESP_OK);
+	else if (n < 6)
+		ft_dir_left(env, n);
+	else
+		ft_dir_right(env, n);
+	env->dir_chg = 0;
+	printf("RANDOM MOVE [%d]\n", n);
+	return (OK);
+}
 
 int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp)
 {
@@ -53,17 +91,29 @@ int					ft_find(t_env *env, int obj)
 			++i;
 		}
 		if (c > 0)
+		{
+			env->dir_chg = 0;
 			ft_get_route(env, c);
+		}
 		else
 		{
-			ft_push_cmd(env, DROITE, NULL, RESP_OK);
+			if (env->dir_chg < 4)
+			{
+				ft_push_cmd(env, DROITE, NULL, RESP_OK);
+				env->dir_chg++;
+			}
+			else
+			{
+				env->dir_chg = 0;
+				ft_random(env);
+			}
 			return (OK);
 		}
 	}
-/*	if (obj == FOOD)
+	/*	if (obj == FOOD)
 		ft_take_all(env);
-	else*/
-		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(obj)), RESP_OK);
+		else*/
+	ft_push_cmd(env, PREND, ft_strdup(ft_get_str(obj)), RESP_OK);
 	return (OK);
 }
 
@@ -72,7 +122,8 @@ int					ft_ia(t_env *env)
 	printf("IA IS STARTING\n");
 	if (env->laying)
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
-	ft_push_cmd(env, INVENT, NULL, RESP_INV);
+	if (env->inv[0] < 0)
+		ft_push_cmd(env, INVENT, NULL, RESP_INV);
 	if (/*!env->forked &&*/ !env->laying)
 	{
 		printf("current connect_nb = %d\n",env->connect_nb );
@@ -86,7 +137,7 @@ int					ft_ia(t_env *env)
 		else
 			ft_find(env, FOOD);
 	}
-/*	else if (env->laying && !env->forked)
+	/*	else if (env->laying && !env->forked)
 		ft_find(env, FOOD);*/
 	else if (/*env->forked*/ env->laying && env->inv[FOOD] < 8)
 	{
