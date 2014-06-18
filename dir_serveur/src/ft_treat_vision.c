@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 11:26:57 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 18:16:27 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 	char			*tmp;
 
 	i = 0;
+	carre = NULL;
 	tmp = ft_strdup("{");
 	while (i <= LEVEL(cs))
 	{
@@ -77,10 +78,14 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 		j = 0;
 		while (j < (i * 2) + 1)
 		{
-			carre = ft_list_case(pos_case, env, cs, 0);
-			asprintf(&final, "%s%s, ", tmp, carre);
+			if ((carre = ft_list_case(pos_case, env, cs, 0)) != NULL)
+			{
+				asprintf(&final, "%s%s, ", tmp, carre);
+				ft_memdel((void **)&carre);
+			}
+			else
+				asprintf(&final, "%s, ", tmp);
 			ft_memdel((void **)&tmp);
-			ft_memdel((void **)&carre);
 			tmp = final;
 			pos_case = st_reoriente_pos(pos_case, env, cs);
 			j++;

@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 10:30:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 16:10:45 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 19:28:29 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void				ft_loop(t_env *env)
 			gettimeofday(&tv, NULL);
 			tmp = 1000000 * tv.tv_sec + tv.tv_usec;
 		}
-		ft_actions_select(env);
 		init_fd(env);
 		do_select(env);
 		check_fd(env);
+		ft_actions_select(env);
 		if (env->end == YES)
 			break ;
 	}
