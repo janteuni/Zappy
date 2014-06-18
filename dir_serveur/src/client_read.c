@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 18:12:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/10 18:58:28 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/18 12:39:13 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void				client_read(t_env *env, int cs)
 	}
 	else
 	{
+		printf("READ : [%s]\n", env->fd_socket[cs].buf_read);
 		ft_receive(env, cs);
 	}
 }
