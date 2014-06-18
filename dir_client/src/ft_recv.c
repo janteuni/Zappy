@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 21:32:32 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 18:15:52 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int					ft_read_list(t_env *env, char *buf)
 	list = ft_strsub(buf, 1, ft_strlen(buf) - 3);
 	split = ft_strsplit(list, ',');
 	sp = ft_strchr(split[0], ' ');
-	if (sp[0] && sp[1] && ft_isdigit(sp[1]))/*in case of "linemate, nourriture...*/
+	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))/*in case of "linemate, nourriture...*/
 	{
 		ft_read_inventory(env, split, 0);
 		ft_print_inv(env);
