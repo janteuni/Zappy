@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 14:49:52 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 15:36:28 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/18 18:48:51 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int					ft_end_elev(t_env *env, char *buf)
 	ptr = ft_strchr(buf, ':');
 	new_level = 0;
 	env->elevating = 0;
-	if (ptr[0] && ptr[1] && ptr[2])
+	if (ptr && ptr[0] && ptr[1] && ptr[2])
 		new_level = ft_atoi(&ptr[2]);
 	else
 		printf("I don't understand '%s'\n", buf);
@@ -49,8 +49,8 @@ int					ft_end_elev(t_env *env, char *buf)
 		return (ERR);
 	if (new_level != env->level)
 	{
-		env->forked = 0;
-		env->laying = 0;
+	/*	env->forked = 0;
+		env->laying = 0;*/
 		env->dir_msg = -1;
 	}
 	env->level = new_level;
