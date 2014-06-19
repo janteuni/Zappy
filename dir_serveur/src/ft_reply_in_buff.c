@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 12:24:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 15:03:31 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/19 12:35:08 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void				ft_reply_in_buff(t_env *env, int cs, char *msg)
 	char			*tmp;
 
 	res = ft_strdup(msg);
+	if (env->fd_socket[cs].type == FREE)
+		return ;
 	if (res && res[ft_strlen(res) - 1] != '\n')
 	{
 		tmp = ft_strjoin(res, "\n");

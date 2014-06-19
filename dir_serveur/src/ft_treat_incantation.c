@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/19 11:59:31 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/19 12:06:38 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 
 	(void)rcv;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
-	printf("INCANTATION\n PLAYER %d LEVEL %d\n INCANTATION %d \n value of my pos_incantation x:%d y:%d\n", cs, env->fd_socket[cs].level, env->map[POSY(cs)][POSX(cs)][INCANT], TOTX(cs), TOTY(cs));
-	printf("CASE %d %d :\nplayers: [%d]\nlinemate: [%d]\nderaumere: [%d]\nsibur: [%d]\nmendiane: [%d]\nphiras: [%d]\nthystame: [%d]\n", POSX(cs), POSY(cs), tab_case[PLAYERS], tab_case[LINEMATE], tab_case[DERAUMERE], tab_case[SIBUR], tab_case[MENDIANE], tab_case[PHIRAS], tab_case[THYSTAME]);
 	if (env->fd_socket[cs].level < 8 &&
 			env->map[POSY(cs)][POSX(cs)][INCANT] == NO
 			&& TOTX(cs) == -1 && TOTY(cs) == -1
