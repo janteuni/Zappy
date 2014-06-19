@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:32:10 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/16 11:53:51 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/19 11:41:36 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int						ft_utils_find_path(t_env *env, int cs, int i)
 		new = st_find_vector(env, rcv, me);
 		ret = st_define_angle(new, me);
 		ret = st_reoriente(ret, env, i);
-		printf("MSG COME FROM  %d\n", ret);
 	}
 	return (ret);
 }

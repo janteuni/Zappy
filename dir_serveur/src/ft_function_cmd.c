@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 18:04:43 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/19 12:02:05 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int					ft_function_cmd(t_env *env, int cs, char *rcv)
 		if (0 == ft_strcmp(cmds[i].name, split[0]))
 		{
 			if (i == 9)
-				cmds[i].fn(env, cs, rcv);
+				ft_action_add(cs, 0, cmds[i].fn, rcv);
 			else
 				ft_action_add(cs, cmds[i].t, cmds[i].fn, rcv);
 			if (i == 10)

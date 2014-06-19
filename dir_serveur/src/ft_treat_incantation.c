@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 19:17:11 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/19 11:59:31 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,23 @@ int				ft_compare_stuff(t_env *env, int tab[NB_STUFF], int level)
 	return (ERR);
 }
 
+static void		st_reply_echec(t_env *env, int cs)
+{
+	char			*str;
+
+	asprintf(&str, "niveau actuel : %d\n",env->fd_socket[cs].level);
+	ft_reply_in_buff(env, cs, str);
+	ft_memdel((void **)&str);
+}
+
 void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 {
 	int			tab_case[NB_STUFF];
 
 	(void)rcv;
 	st_get_infos(env->fd_socket[cs].pos, env, cs, tab_case);
+	printf("INCANTATION\n PLAYER %d LEVEL %d\n INCANTATION %d \n value of my pos_incantation x:%d y:%d\n", cs, env->fd_socket[cs].level, env->map[POSY(cs)][POSX(cs)][INCANT], TOTX(cs), TOTY(cs));
+	printf("CASE %d %d :\nplayers: [%d]\nlinemate: [%d]\nderaumere: [%d]\nsibur: [%d]\nmendiane: [%d]\nphiras: [%d]\nthystame: [%d]\n", POSX(cs), POSY(cs), tab_case[PLAYERS], tab_case[LINEMATE], tab_case[DERAUMERE], tab_case[SIBUR], tab_case[MENDIANE], tab_case[PHIRAS], tab_case[THYSTAME]);
 	if (env->fd_socket[cs].level < 8 &&
 			env->map[POSY(cs)][POSX(cs)][INCANT] == NO
 			&& TOTX(cs) == -1 && TOTY(cs) == -1
@@ -82,6 +93,6 @@ void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 	else
 	{
 		printf("elevation NO\n\n");
-		ft_reply_in_buff(env, cs, "ko");
+		st_reply_echec(env, cs);
 	}
 }
