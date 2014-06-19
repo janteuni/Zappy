@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/17 19:25:31 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 15:46:13 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,14 @@ int					ft_takemove(t_env *env)
 		printf("TAKEMOVE - waiting to elevate or for a response\n");
 		return (OK);
 	}
-	else if (!env->elevating && env->dir_msg >= 0)
-	{
-		printf("RECEIVED A MSG - ON MY WAAAAAAAY :)\n");
-		ft_follow_msg(env);
-		ft_send_moves(env);
-	}
 	else
 	{
-		if (!env->moves)
+		if (!env->elevating && env->dir_msg >= 0)
+		{
+			printf("RECEIVED A MSG - ON MY WAAAAAAAY :)\n");
+			ft_follow_msg(env);
+		}
+		else if (!env->moves)
 		{
 			printf("I DONT HAVE ANY MOVES\n");
 			ft_ia(env);
@@ -157,7 +156,7 @@ int					ft_loop(t_env *env)
 	ft_look(env);
 	while (!env->dead)
 	{
-/*		print_moves(env);*/
+		/*		print_moves(env);*/
 		ft_recv(env);
 		if (!env->dead)
 			ft_takemove(env);

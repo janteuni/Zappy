@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 16:44:15 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 22:04:28 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 15:50:21 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int					ft_message(t_env *env, char *buf)
 	str = NULL;
 	ptr = ft_strchr(buf, ' ');
 	if (ptr && ptr[0] && ptr[1])
-		dir = (int)ptr[1] + '0';
+		dir = (int)ptr[1] - '0';
 	else
 	{
 		printf("Received a response I don't understand '%s'\n", buf);
@@ -77,5 +77,7 @@ int					ft_message(t_env *env, char *buf)
 		else
 			printf("NOT MY LEVEL (%d) - CANT HELP\n", env->level);
 	}
+	else
+		printf("NOT MY TEAM (%s) - [%s]\n", env->team, str );
 	return (OK);
 }

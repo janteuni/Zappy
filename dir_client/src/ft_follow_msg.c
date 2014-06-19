@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/16 17:13:07 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 18:17:27 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 15:13:16 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void				ft_dir_left(t_env *env, int dir)
 int					ft_follow_msg(t_env *env)
 {
 	/*delete previous moves?*/
+	printf("IN FOLLOW MSG - following direction [%d]\n", env->dir_msg);
 	ft_lstdel(&env->moves, ft_del_cmd_lst);
 	env->moves = NULL;
 	/* go to correct squ*/

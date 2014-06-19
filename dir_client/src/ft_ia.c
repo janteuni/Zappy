@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 20:45:23 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 15:01:48 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp)
 {
 	t_cmd			cmd;
 
+	printf("PUSH COMMAND [%s]\n", env->cmds[cmd_num] );
 	cmd.cmd = ft_strdup(env->cmds[cmd_num]);
 	cmd.opt = opt;
 	cmd.resp = resp;
