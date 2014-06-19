@@ -6,10 +6,11 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 18:29:25 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/13 16:16:40 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 12:00:56 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "math.h"
 #include "client.h"
 
 /* YANNS SUPER FORMULA
@@ -32,7 +33,7 @@
         j++;
     }
 */
-
+/*
 int					ft_calc_level(int squ)
 {
 	int				l;
@@ -41,7 +42,7 @@ int					ft_calc_level(int squ)
 	while (l * l <= squ)
 		++l;
 	return (l - 1);
-}
+}*/
 
 int					ft_calc_dist(int squ)
 {
@@ -51,7 +52,8 @@ int					ft_calc_dist(int squ)
 	int				row_mid;
 	int				dist;
 
-	level_nb = ft_calc_level(squ);
+	/*level_nb = ft_calc_level(squ);*/
+	level_nb = (int)sqrt(squ);
 	dist = 0;
 	row_start = level_nb * level_nb;
 	row_len = (level_nb * 2) + 1;
