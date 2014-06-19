@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 16:37:24 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 20:13:04 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,16 @@ int					ft_connect_nb(t_env *env, char *buf)
 	int				new;
 
 	new = ft_atoi(buf);
-	printf("RECIEVED CONNECT_NB [%s]\n",buf );
 	if (!env->laying)
 		env->connect_nb = new;
 	else if (new > env->connect_nb)
 	{
 		printf("connect nb is higher!! time to fork\n");
 		env->connect_nb = new;
-	/*	ft_fork(env);*/
-		env->laying = 0;
-		env->forked = 1;
+		ft_fork(env);
+		/*env->laying = 0;
+		env->forked = 1; - for when i took out fork*/
 	}
-	printf("AM STILL LAYING, nb is not yet higher\n");
 	env->resp[RESP_VAL]--;
 	return (OK);
 }
@@ -43,13 +41,12 @@ int					ft_read_list(t_env *env, char *buf)
 
 	(void)env;
 	list = ft_strsub(buf, 1, ft_strlen(buf) - 2);
-	printf("LIST AFTER SUB (%s)\n",list );
 	split = ft_strsplit(list, ',');
 	sp = ft_strchr(split[0], ' ');
 	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))
 	{
 		ft_read_inventory(env, split, 0);
-		ft_print_inv(env);
+		/*ft_print_inv(env);*/
 		env->resp[RESP_INV]--;
 	}
 	else
@@ -64,14 +61,13 @@ int					ft_read_list(t_env *env, char *buf)
 
 int					ft_read_line(t_env *env, char *line)
 {
-	printf("BUFFER [%s]\n",line );
+	printf("[%d]\tRECEIVED [%s]\n",env->pid,line );
 	if ((line[0] == 'o') || (line[0] == 'k')) // OK / KO
 	{
 		if (line[0] == 'k' && env->resp[RESP_OK] == 0 && env->elevating == 1)
 			ft_elev_failed(env);
 		else
 			env->resp[RESP_OK]--;
-		printf("OK\n");
 		return (OK);
 	}
 	if (line[0] == '{') // {...}
@@ -89,7 +85,7 @@ int					ft_read_line(t_env *env, char *line)
 	if (ft_isdigit(line[0])) // CONNECT_NB
 		return (ft_connect_nb(env, line));
 	else
-		printf("I do not understand '%s'\n", line);
+		printf("[%d]\tI do not understand '%s'\n", env->pid,line);
 	return (OK);
 }
 

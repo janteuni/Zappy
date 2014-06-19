@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 19:06:02 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 19:47:49 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,8 @@ int					ft_avance(t_env *env, int num);
 **			ft_fork.c
 */
 int					ft_fork(t_env *env);
-int					ft_connect_egg(t_env *env);
-int					ft_reset_env(t_env *env);
+/*int					ft_connect_egg(t_env *env);
+int					ft_reset_env(t_env *env);*/
 
 /*
 **			ft_check.c

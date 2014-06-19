@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:50:07 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 15:43:44 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 19:58:04 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,13 @@ int					ft_get_people_here(t_env *env)
 {
 	char			*msg;
 
-	printf("IN FT_GET_PEOPLE\n");
 	if (env->view[0][PLAYERS] >= env->incantation[env->level + 1][PLAYERS])
 	{
-		printf("THERE ARE ENOUGH PLAYERS TO ELEVATE\n");
 		ft_push_cmd(env, INCANT, NULL, NO_RESP);
 		env->elevating = 1;
 	}
 	else
 	{
-		printf("THERE ARE NOT ENOUGH PLAYERS TO ELEVATE - SENDING MESSAGE\n");
 		asprintf(&msg, "%s %d\n", env->team, env->level);
 		ft_push_cmd(env, BROAD, ft_strdup(msg), RESP_OK);
 		free(msg);

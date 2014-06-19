@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 19:25:39 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 19:30:54 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 19:47:33 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include "client.h"
-
+/*
 int					ft_reset_env(t_env *env)
 {
 	env->dead = 0;
@@ -49,7 +49,7 @@ int					ft_connect_egg(t_env *env)
 		++i;
 	}
 	return (ERR);
-}
+}*/
 
 int					ft_fork(t_env *env)
 {
@@ -57,20 +57,11 @@ int					ft_fork(t_env *env)
 	char			*str;
 	char			**args;
 
-	printf("GOING TO FORK\n");
 	if ((father = fork()) == -1)
 		return (error("Failed to fork"));
 	if (!father)
 	{
-	/*	ft_reset_env(env);
-		if (ft_connect_egg(env) == ERR)
-		{
-		ft_putendl("Egg failed to connect to server - exiting");
-		ft_free_and_quit(env);
-		}
-		env->pid = getpid();*/
 		asprintf(&str, "%s -n %s -p %d -h %s", env->path, env->team, env->port, env->addr);
-		printf("STR SO FAR [%s]\n",str );
 		args = ft_strsplit(str, ' ');
 		execve(env->path, args, env->envp);
 		ft_free_tab((void ***)&args);

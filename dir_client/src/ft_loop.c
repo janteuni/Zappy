@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 16:05:31 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 20:14:22 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ int					ft_expecting_resp(t_env *env)
 	{
 		if (env->resp[i] > 0)
 		{
-			printf("EXPECTING A RESPONSE\n");
+			printf("[%d]\twaiting for a response\n", env->pid);
 			return (YES);
 		}
 		++i;
 	}
-	printf("NOT WAITING FOR A RESPONSE\n");
 	return (NO);
 }
 
@@ -63,7 +62,7 @@ int					ft_print_responsetab(t_env *env)
 			str = "INVENTORY";
 		else
 			str = "VALUE";
-		printf("EXPECTING %d RESPONSE[%s]\n", env->resp[i], str );
+		printf("[%d]\tEXPECTING %d RESPONSE[%s]\n",env->pid, env->resp[i], str );
 		++i;
 	}
 	return (OK);
@@ -76,14 +75,12 @@ int					ft_send_moves(t_env *env)
 	int				i;
 	char			*str;
 
-	printf("IN SEND MOVES\n");
 	i = 0;
 	ptr = env->moves;
 	str = NULL;
 	while (ptr && i < 10)
 	{
 		str = ft_strjoin(CMD(ptr)->cmd, CMD(ptr)->opt);
-		printf("STR IS [%s]\n",str );
 		ft_send_cmd(env, str, CMD(ptr)->resp);
 		free(str);
 		ptr = ptr->next;
@@ -91,7 +88,6 @@ int					ft_send_moves(t_env *env)
 	}
 	if (ptr)
 	{
-		printf("sent 10 commands but still have some in list\n");
 		while (env->moves != ptr)
 		{
 			tmp = env->moves;
@@ -101,7 +97,6 @@ int					ft_send_moves(t_env *env)
 	}
 	else if (env->moves)
 	{
-		printf("DELETING SENT MOVES\n");
 		ft_lstdel(&env->moves, ft_del_cmd_lst);
 		env->moves = NULL;
 	}
@@ -110,23 +105,19 @@ int					ft_send_moves(t_env *env)
 
 int					ft_takemove(t_env *env)
 {
-	printf("IN TAKEMOVE\n");
-	ft_print_responsetab(env);
+	/*ft_print_responsetab(env);*/
 	if (env->elevating || ft_expecting_resp(env))
 	{
-		printf("TAKEMOVE - waiting to elevate or for a response\n");
 		return (OK);
 	}
 	else
 	{
 		if (!env->elevating && env->dir_msg >= 0)
 		{
-			printf("RECEIVED A MSG - ON MY WAAAAAAAY :)\n");
 			ft_follow_msg(env);
 		}
 		else if (!env->moves)
 		{
-			printf("I DONT HAVE ANY MOVES\n");
 			ft_ia(env);
 		}
 		ft_send_moves(env);

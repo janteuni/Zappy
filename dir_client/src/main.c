@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 22:02:40 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 20:12:31 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int			ft_treat_msg(t_env *env, char *buf)
 	char			**msgs;
 	char			**coords;
 
-	printf("RECV %s\n",buf );
 	msgs = ft_strsplit(buf, '\n');
 	if (ft_tab_len(msgs) < 2)
 		return (error(msgs[0]));
@@ -31,7 +30,7 @@ static int			ft_treat_msg(t_env *env, char *buf)
 		return (error("Failed to receive coordinates"));
 	env->x = ft_atoi(coords[0]);
 	env->y = ft_atoi(coords[1]);
-	printf("connect_nb %d, x %d y %d\n",env->connect_nb, env->x, env->y );
+	printf("[%d]\tconnect_nb %d, x %d y %d\n",env->pid,env->connect_nb, env->x, env->y );
 	ft_free_tab((void ***)&msgs);
 	ft_free_tab((void ***)&coords);
 	return (OK);
@@ -45,7 +44,7 @@ int					ft_confirm_connection(t_env *env)
 
 	ft_bzero(buf, BUF_SIZE + 1);
 	recv(env->socket, buf, BUF_SIZE, 0);
-	printf("FIRST BUFFER [%s]\n",buf );
+	printf("[%d]\tFIRST BUFFER [%s]\n",env->pid, buf );
 	if (ft_strcmp("BIENVENUE\n", buf))
 		return (ERR);
 	str = ft_strjoin(env->team, "\n");
@@ -66,7 +65,8 @@ int					main(int ac, char **av, char **envp)
 	if (!(env = get_env()))
 		return (ERR);
 	env->path = av[0];
-	printf("PATH IS %s\n",env->path );
+	env->pid = getpid();
+	printf("[%d]\tPATH IS %s\n",env->pid,env->path );
 	env->envp = envp;
 	if (ft_setup_signal() == ERR)
 		return (error("Failed to setup signals"));
@@ -77,7 +77,7 @@ int					main(int ac, char **av, char **envp)
 	if (ft_confirm_connection(env) == ERR)
 		return (error("Failed to connect"));
 	ft_loop(env);
-	printf("OUT OF LOOP - closing\n");
+	printf("[%d]\tOUT OF LOOP - closing\n", env->pid);
 	close(env->socket);
 	return (OK);
 }
