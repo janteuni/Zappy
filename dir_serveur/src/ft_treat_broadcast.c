@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:42:49 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 15:59:10 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/19 12:55:17 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void			st_contact_all(char *rcv, int i, t_env *env, int cs)
 		if (env->fd_socket[j].type == CLIENT && cs != j && env->fd_socket[j].my_team != NULL)
 		{
 			ret = ft_utils_find_path(env, cs, j);
-			asprintf(&msg, "message %d, %s\n", ret, rcv + i);
+			asprintf(&msg, "message %d,%s\n", ret, rcv + i);
 			ft_reply_in_buff(env, j, msg);
 			ft_memdel((void **)&msg);
 		}
