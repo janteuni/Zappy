@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 21:48:50 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 16:37:24 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int					ft_connect_nb(t_env *env, char *buf)
 	{
 		printf("connect nb is higher!! time to fork\n");
 		env->connect_nb = new;
-		ft_fork(env);
+	/*	ft_fork(env);*/
+		env->laying = 0;
+		env->forked = 1;
 	}
 	printf("AM STILL LAYING, nb is not yet higher\n");
 	env->resp[RESP_VAL]--;

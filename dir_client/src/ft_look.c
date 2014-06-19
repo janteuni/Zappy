@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 20:17:32 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 19:14:02 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int					**ft_malloc_view(t_env *env)
 		ft_free_tab((void ***)&env->view);
 	if (!(env->view = (int **)malloc((nb + 1) * sizeof(int *))))
 		return (NULL);
+	env->view_size = nb;
 	env->view[nb] = NULL;
 	while (i < nb)
 	{

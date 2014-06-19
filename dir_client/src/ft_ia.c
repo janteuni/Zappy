@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 15:01:48 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 19:17:22 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,15 @@ int					ft_find(t_env *env, int obj)
 
 	c = -1;
 	i = 1;
+	if (env->view_size < ((env->level + 1) * (env->level + 1)))
+	{
+		printf("MY VIEW IS NOT UP TO DATE\n");
+		ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
+		return (OK);
+	}
 	if (env->view[0][obj] == 0)
 	{
-		while (i < (env->level + 1) * (env->level + 1))
+		while (i < env->view_size /*(env->level + 1) * (env->level + 1)*/)
 		{
 			if (env->view[i][obj] > 0
 					&& (c < 0 || env->view[c][DIST] > env->view[i][DIST]))
@@ -128,7 +134,8 @@ int					ft_ia(t_env *env)
 		else if (ft_enough_food(env))
 		{
 			printf("push fork\n");
-			ft_push_cmd(env, FORK, NULL, RESP_OK);
+/*			ft_push_cmd(env, FORK, NULL, RESP_OK);*/
+			ft_push_cmd(env, AVANCE, NULL, RESP_OK);
 			env->laying = 1;
 		}
 		else

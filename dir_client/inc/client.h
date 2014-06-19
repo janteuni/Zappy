@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 21:40:19 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/19 19:06:02 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 # define STONE_4	" mendiane"
 # define STONE_5	" phiras"
 # define STONE_6	" thystame"
-
 
 # define NB_CMDS	12
 # define AVANCE		0
@@ -106,6 +105,7 @@ typedef struct		s_env
 	int				y;
 	int				inv[INV_SIZE];
 	int				**view;
+	int				view_size;
 	t_list			*moves;
 	int				elevating;
 	int				forked;
