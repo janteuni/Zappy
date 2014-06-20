@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 17:46:47 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 18:28:01 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 
 	i = 0;
 	carre = NULL;
-	tmp = ft_strdup("{");
+	tmp = ft_strdup("{ ");
 	while (i <= LEVEL(cs))
 	{
 		st_find_begin(&pos_case, cs, env, i);
