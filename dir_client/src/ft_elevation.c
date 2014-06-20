@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 14:49:52 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 19:29:18 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 14:55:24 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int					ft_end_elev(t_env *env, char *buf)
 		new_level = ft_atoi(&ptr[2]);
 	else
 	{
-		printf("I don't understand '%s'\n", buf);
+		dprintf( env->aff, "I don't understand '%s'\n", buf);
 		return (ERR);
 	}
 	env->elevating = 0;

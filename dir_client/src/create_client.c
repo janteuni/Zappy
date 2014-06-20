@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:30:52 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/07 21:05:31 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:10:07 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int						ft_get_hostbyname(t_env *env)
 	char				*tmp;
 
 	addr_list = NULL;
-	printf("can't parse IP address %s\n", env->addr);
+	dprintf(env->aff, "can't parse IP address %s\n", env->addr);
 	if ((hp = gethostbyname(env->addr)) == NULL)
 	{
-		printf("no name associated with %s", env->addr);
+		dprintf(env->aff, "no name associated with %s", env->addr);
 		return (ERR);
 	}
 	addr_list = (struct in_addr **)hp->h_addr_list;
@@ -47,7 +47,7 @@ int						create_client(t_env *env)
 		if (ft_get_hostbyname(env) < 0)
 			return (ERR);
 	}
-	printf("GOING TO CONNECT:\nPORT [%d] ADDR [%s] \n", env->port, env->addr);
+	dprintf(env->aff, "GOING TO CONNECT:\nPORT [%d] ADDR [%s] \n", env->port, env->addr);
 	proto = getprotobyname("tcp");
 	if (!proto)
 		return (error("Proto error"));

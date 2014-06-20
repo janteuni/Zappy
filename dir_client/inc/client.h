@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 19:47:49 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 13:20:22 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct		s_env
 	char			**envp;
 	char			*path;
 	int				dir_chg;
+	int				aff;
 }					t_env;
 
 t_env				*get_env(void);

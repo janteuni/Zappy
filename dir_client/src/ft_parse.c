@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:41:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/07 13:07:08 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:05:12 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -72,6 +72,6 @@ int					ft_parse(int ac, char **av, t_env *env)
 		i +=2;
 	}
 	env->addr = (!env->addr ? ft_strdup("localhost") : env->addr);
-	printf("TEAM = [%s]\nPORT = [%d]\nADDR = [%s] \n",env->team, env->port, env->addr );
+	dprintf(env->aff, "TEAM = [%s]\nPORT = [%d]\nADDR = [%s] \n",env->team, env->port, env->addr );
 	return (0);
 }

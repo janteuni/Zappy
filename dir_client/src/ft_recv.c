@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 20:13:04 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:06:05 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int					ft_connect_nb(t_env *env, char *buf)
 		env->connect_nb = new;
 	else if (new > env->connect_nb)
 	{
-		printf("connect nb is higher!! time to fork\n");
+		dprintf(env->aff, "connect nb is higher!! time to fork\n");
 		env->connect_nb = new;
 		ft_fork(env);
 		/*env->laying = 0;
@@ -46,7 +46,7 @@ int					ft_read_list(t_env *env, char *buf)
 	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))
 	{
 		ft_read_inventory(env, split, 0);
-		/*ft_print_inv(env);*/
+		ft_print_inv(env);
 		env->resp[RESP_INV]--;
 	}
 	else
@@ -61,7 +61,7 @@ int					ft_read_list(t_env *env, char *buf)
 
 int					ft_read_line(t_env *env, char *line)
 {
-	printf("[%d]\tRECEIVED [%s]\n",env->pid,line );
+	dprintf(env->aff, "[%d]\tRECEIVED [%s]\n",env->pid,line );
 	if ((line[0] == 'o') || (line[0] == 'k')) // OK / KO
 	{
 		if (line[0] == 'k' && env->resp[RESP_OK] == 0 && env->elevating == 1)
@@ -85,7 +85,7 @@ int					ft_read_line(t_env *env, char *line)
 	if (ft_isdigit(line[0])) // CONNECT_NB
 		return (ft_connect_nb(env, line));
 	else
-		printf("[%d]\tI do not understand '%s'\n", env->pid,line);
+		dprintf(env->aff, "[%d]\tI do not understand '%s'\n", env->pid,line);
 	return (OK);
 }
 

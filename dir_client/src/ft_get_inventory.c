@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 20:58:40 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/18 22:31:59 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:08:43 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void				ft_print_inv(t_env *env)
 	i = 0;
 	while (i < INV_SIZE)
 	{
-		printf("INVENTORY[%d] has %d\n",i, env->inv[i] );
+		dprintf(env->aff, "INVENTORY[%d] has %d\n",i, env->inv[i] );
 		++i;
 	}
 }
-
+/*
 void				ft_print_split(char **s)
 {
 	int				i;
@@ -33,11 +33,11 @@ void				ft_print_split(char **s)
 	i = 0;
 	while (s[i])
 	{
-		printf("s[%d] = (%s)\n",i, s[i]);
+		dprintf(env->aff, "s[%d] = (%s)\n",i, s[i]);
 		++i;
 	}
-	printf("END OF SPLIT\n");
-}
+	dprintf(env->aff, "END OF SPLIT\n");
+}*/
 
 static int			ft_get_nb(char *line)
 {
@@ -82,7 +82,7 @@ int					ft_get_inventory(t_env *env)
 	str = ft_strjoin("inventaire", "\n");
 	/*env->cmds[INVENT]++;
 	env->replies[FAIL] = NULL;*/
-	printf("SEND COMMAND : INVENTORY\n");
+	dprintf(env->aff, "SEND COMMAND : INVENTORY\n");
 	if ((n = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));
 	env->resp[RESP_INV]++;

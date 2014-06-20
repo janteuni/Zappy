@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 15:06:57 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 20:20:51 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:06:34 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int					ft_send_cmd(t_env *env, char *cmd, int i)
 {
-	printf("[%d]\tSENDING COMMAND: %s",env->pid, cmd);
+	dprintf(env->aff, "[%d]\tSENDING COMMAND: %s",env->pid, cmd);
 	if (i >= 0)
 		env->resp[i]++;
 	if ((send(env->socket, cmd, ft_strlen(cmd), 0)) < 0)
 	{
-		printf("[%d]\tSEND WAS UNSUCCESSFUL - return -1\n", env->pid);
+		dprintf(env->aff, "[%d]\tSEND WAS UNSUCCESSFUL - return -1\n", env->pid);
 		if (i >= 0)
 			env->resp[i]--;
 		return (error("Failed to send command"));

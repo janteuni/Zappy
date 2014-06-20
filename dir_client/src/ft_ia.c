@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 20:13:23 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:02:35 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int					ft_find(t_env *env, int obj)
 	i = 1;
 	if (env->view_size < ((env->level + 1) * (env->level + 1)))
 	{
-		printf("[%d]\tMY VIEW IS NOT UP TO DATE\n",env->pid);
+		dprintf(env->aff, "[%d]\tMY VIEW IS NOT UP TO DATE\n",env->pid);
 		ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
 		return (OK);
 	}

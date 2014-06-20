@@ -6,9 +6,11 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/19 20:12:31 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:16:16 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+     #include <fcntl.h>
 
 #include <sys/socket.h>
 #include <stdlib.h>
@@ -30,7 +32,7 @@ static int			ft_treat_msg(t_env *env, char *buf)
 		return (error("Failed to receive coordinates"));
 	env->x = ft_atoi(coords[0]);
 	env->y = ft_atoi(coords[1]);
-	printf("[%d]\tconnect_nb %d, x %d y %d\n",env->pid,env->connect_nb, env->x, env->y );
+	dprintf(env->aff, "[%d]\tconnect_nb %d, x %d y %d\n",env->pid,env->connect_nb, env->x, env->y );
 	ft_free_tab((void ***)&msgs);
 	ft_free_tab((void ***)&coords);
 	return (OK);
@@ -44,7 +46,7 @@ int					ft_confirm_connection(t_env *env)
 
 	ft_bzero(buf, BUF_SIZE + 1);
 	recv(env->socket, buf, BUF_SIZE, 0);
-	printf("[%d]\tFIRST BUFFER [%s]\n",env->pid, buf );
+	dprintf(env->aff, "[%d]\tFIRST BUFFER [%s]\n",env->pid, buf );
 	if (ft_strcmp("BIENVENUE\n", buf))
 		return (ERR);
 	str = ft_strjoin(env->team, "\n");
@@ -66,7 +68,13 @@ int					main(int ac, char **av, char **envp)
 		return (ERR);
 	env->path = av[0];
 	env->pid = getpid();
-	printf("[%d]\tPATH IS %s\n",env->pid,env->path );
+
+	if ((env->aff = open(ft_itoa(env->pid), O_WRONLY | O_CREAT)) < 0)
+	{
+		printf("CANT OPEN FILE\n");
+		return (ERR);
+	}
+	dprintf(env->aff, "[%d]\tPATH IS %s\n",env->pid,env->path );
 	env->envp = envp;
 	if (ft_setup_signal() == ERR)
 		return (error("Failed to setup signals"));
@@ -77,7 +85,7 @@ int					main(int ac, char **av, char **envp)
 	if (ft_confirm_connection(env) == ERR)
 		return (error("Failed to connect"));
 	ft_loop(env);
-	printf("[%d]\tOUT OF LOOP - closing\n", env->pid);
+	dprintf(env->aff,"[%d]\tOUT OF LOOP - closing\n", env->pid);
 	close(env->socket);
 	return (OK);
 }

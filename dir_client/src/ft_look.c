@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 19:14:02 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 15:11:59 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void				ft_print_view(t_env *env, int **view)
 	i = 0;
 	while (i < ((env->level + 1) * (env->level + 1)))
 	{
-		printf("VIEW SQR %d:\n",i );
+		dprintf(env->aff, "VIEW SQR %d:\n",i );
 		n = 0;
 		while (n < SEE_SIZE)
 		{
@@ -102,7 +102,7 @@ void				ft_print_view(t_env *env, int **view)
 			else
 				str = "dunno";
 
-			printf("    nb of %-10s [%d]\n",str, view[i][n] );
+			dprintf(env->aff, "    nb of %-10s [%d]\n",str, view[i][n] );
 			++n;
 		}
 		++i;
@@ -121,7 +121,7 @@ int					ft_read_view(t_env *env, char **split)
 		env->view[i][DIST] = (i == 0 ? 0 : ft_calc_dist(i));
 		++i;
 	}
-	/*ft_print_view(env, env->view);*/
+	ft_print_view(env, env->view);
 	return (OK);
 }
 
@@ -133,7 +133,7 @@ int					ft_look(t_env *env)
 
 	ft_bzero(buf, BIG_BUF + 1);
 	str = ft_strdup(VIEW);
-	printf("SEND COMMAND : VOIR\n");
+	dprintf(env->aff, "SEND COMMAND : VOIR\n");
 	if ((i = send(env->socket, str, ft_strlen(str), 0)) < 0)
 		return (error("Failed to send command"));
 	env->resp[RESP_VIEW]++;
