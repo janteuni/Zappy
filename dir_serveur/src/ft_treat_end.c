@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:09:52 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 11:03:52 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 11:42:48 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int				st_all_players_level_max(t_env *env, int i)
 	while (list)
 	{
 		cs = ((t_player *)list->content)->sock;
-		if (env->fd_socket[cs].type == CLIENT && env->fd_socket[cs].level == 6)
+		if (env->fd_socket[cs].type == CLIENT && env->fd_socket[cs].level == 8)
 			nb++;
 		list = list->next;
 	}
