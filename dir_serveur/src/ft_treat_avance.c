@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:48:16 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/13 11:16:26 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 12:53:46 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void				ft_treat_avance(t_env *env, int cs, char *rcv)
 		new_pos.x = new_pos.x == WIDTH - 1 ? 0 : new_pos.x + 1;
 	POSX(cs) = new_pos.x;
 	POSY(cs) = new_pos.y;
-	printf("new pos: %d %d\n", new_pos.x, new_pos.y);
 	ft_reply_in_buff(env, cs, "ok");
 	ft_graphic_reply(env, cs, ft_graphic_ppo);
 }

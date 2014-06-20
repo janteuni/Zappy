@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 13:35:41 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:41:49 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 12:55:21 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static void					st_place_stones(t_env *env, int level)
 
 	i = 1;
 	srand(time(0));
-	printf("level = %d\n", level);
 	while (i < NB_STUFF)
 	{
 		if (TOTEM[level][i] > 0)
 		{
-			printf("place stone	\n");
 			pos.x = rand() % WIDTH;
 			pos.y = rand() % HEIGHT;
 			env->map[pos.y][pos.x][i] += TOTEM[level][i];
