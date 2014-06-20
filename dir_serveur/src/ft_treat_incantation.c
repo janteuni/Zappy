@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:45:33 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 12:54:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 15:57:42 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			ft_treat_incantation(t_env *env, int cs, char *rcv)
 			&& ft_compare_stuff(env, tab_case, env->fd_socket[cs].level + 1)
 			== OK)
 	{
-/*		printf("elevation OK\n");*/
+		printf("elevation OK [%d] [%d]\n", POSX(cs), POSY(cs));
 		env->map[POSY(cs)][POSX(cs)][INCANT] = YES;
 		ft_snapshot(env, cs, tab_case);
 		ft_graphic_reply(env, cs, ft_graphic_pic);

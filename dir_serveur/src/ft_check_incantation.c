@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 15:32:43 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 16:15:19 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void			st_inform_end(t_env *env, t_list *players, int level)
 			ft_reply_in_buff(env, cs, str);
 			ft_memdel((void **)&str);
 			ft_graphic_reply(env, cs, ft_graphic_plv);
-			players = players->next;
 		}
+		players = players->next;
 	}
 }
 
@@ -98,4 +98,5 @@ void				ft_check_incantation(t_env *env, int cs, char *rcv)
 		list = list->next;
 	}
 	ft_free_tab((void ***)&split);
+	printf("fin incantation\n");
 }
