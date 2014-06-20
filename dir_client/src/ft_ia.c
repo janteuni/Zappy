@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 15:02:35 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 17:48:00 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int					ft_random(t_env *env)
 {
 	int				n;
 
+	printf("IN FT RANDOM _ WHAAT\n");
     srand(time(NULL));
 	n = rand() % 8;
 	if (n == 1 || n == 0)
@@ -109,15 +110,11 @@ int					ft_ia(t_env *env)
 	{
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
 	}
-	if (env->inv[0] < 0)
+	/*if (env->inv[0] < 0)
 	{
 		ft_push_cmd(env, INVENT, NULL, RESP_INV);
 		return (OK);
-	}
-	if (env->inv[FOOD] < 2)
-	{
-		ft_find(env, FOOD);
-	}
+	}*/
 	else if (!env->forked && !env->laying)
 	{
 		if (env->connect_nb < 0)
@@ -126,6 +123,8 @@ int					ft_ia(t_env *env)
 		}
 		else if (ft_enough_food(env))
 		{
+			ft_random(env);
+/*			ft_push_cmd(env, AVANCE, NULL, RESP_OK); so as not to lay on the same squ each time*/
 			ft_push_cmd(env, FORK, NULL, RESP_OK);
 			ft_push_cmd(env, AVANCE, NULL, RESP_OK);
 			env->laying = 1;
@@ -156,8 +155,6 @@ int					ft_ia(t_env *env)
 			ft_find_stones(env);
 		}
 	}
-	ft_push_cmd(env, INVENT, NULL, RESP_INV);
-	ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
 	return (OK);
 }
 

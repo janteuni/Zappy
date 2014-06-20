@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 15:04:42 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 17:37:52 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,12 @@ int					ft_takemove(t_env *env)
 	}
 	else
 	{
+		if (env->moves)
+			dprintf(env->aff, "[%d]\tI ALREADY HAVE SOME MOVES?!?\n", env->pid);
+		if (/*env->inv[0] != -1 &&*/ env->inv[FOOD] < 3)
+		{
+			ft_find(env, FOOD);
+		}
 		if (!env->elevating && env->dir_msg >= 0)
 		{
 			ft_follow_msg(env);
@@ -120,6 +126,8 @@ int					ft_takemove(t_env *env)
 		{
 			ft_ia(env);
 		}
+		ft_push_cmd(env, INVENT, NULL, RESP_INV);
+		ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
 		ft_send_moves(env);
 	}
 	return (OK);
@@ -144,7 +152,10 @@ void				print_moves(t_env *env)
 
 int					ft_loop(t_env *env)
 {
-	ft_look(env);
+	/*ft_look(env);*/
+		ft_push_cmd(env, INVENT, NULL, RESP_INV);
+		ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
+		ft_send_moves(env);
 	while (!env->dead)
 	{
 		/*		print_moves(env);*/
