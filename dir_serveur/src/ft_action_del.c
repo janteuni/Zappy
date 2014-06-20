@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 10:59:43 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/11 11:14:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 15:54:13 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void				ft_action_del(t_env *env, t_list *to_del)
 
 	cs = ((t_action *)to_del->content)->cs;
 	rcv = ((t_action *)to_del->content)->rcv;
+	printf("rcv: ACTIONS [%s] [%d]\n", rcv, cs);
 	((t_action *)to_del->content)->fn(env, cs, rcv);
 	ft_del_elem(&env->actions, to_del, ft_del_action);
 }

@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/22 14:26:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 15:26:11 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 15:48:09 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void				ft_treat_cmd(char *rcv, t_env *env, int cs)
 		}
 	}
 	else if (ft_function_cmd(env, cs, rcv) == ERR)
+	{
+		printf("BAD CMD\n");
 		ft_reply_in_buff(env, cs, "ko");
+	}
 }
