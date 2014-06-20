@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 17:48:00 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 20:16:16 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int					ft_random(t_env *env)
 {
 	int				n;
 
-	printf("IN FT RANDOM _ WHAAT\n");
     srand(time(NULL));
 	n = rand() % 8;
 	if (n == 1 || n == 0)
@@ -47,7 +46,7 @@ int					ft_take_all(t_env *env)
 	int				i;
 
 	i = 0;
-	while (/*i < env->view[0][FOOD] &&*/ i < 5)
+	while (/*i < env->view[0][FOOD] &&*/ i < 8)
 	{
 		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(FOOD)), RESP_OK);
 		++i;
@@ -123,8 +122,7 @@ int					ft_ia(t_env *env)
 		}
 		else if (ft_enough_food(env))
 		{
-			ft_random(env);
-/*			ft_push_cmd(env, AVANCE, NULL, RESP_OK); so as not to lay on the same squ each time*/
+			ft_push_cmd(env, AVANCE, NULL, RESP_OK);/* so as not to lay on the same squ each time*/
 			ft_push_cmd(env, FORK, NULL, RESP_OK);
 			ft_push_cmd(env, AVANCE, NULL, RESP_OK);
 			env->laying = 1;
@@ -141,14 +139,19 @@ int					ft_ia(t_env *env)
 	else /* have forked, food > 2, im free to do an incantation */
 	{
 		//COLLECT STONES & DO INCANTATION
-		if (ft_check_squ_stones(env))
+		if (env->view[0][FOOD] > 0 && ft_check_squ_stones(env))
 		{
 			ft_get_people_here(env);
 		}
 		else if (ft_check_inv_stones(env))
 		{
-			ft_putdown_stones(env);
-			ft_get_people_here(env);
+			if (env->view[0][FOOD] == 0)
+				ft_find(env, FOOD);
+			else
+			{
+				ft_putdown_stones(env);
+				ft_get_people_here(env);
+			}
 		}
 		else
 		{

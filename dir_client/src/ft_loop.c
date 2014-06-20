@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 19:39:44 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 17:37:52 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 19:24:01 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int					ft_expecting_resp(t_env *env)
 	{
 		if (env->resp[i] > 0)
 		{
-			dprintf(env->aff, "[%d]\twaiting for a response\n", env->pid);
+	/*		dprintf(env->aff, "[%d]\twaiting for a response\n", env->pid);*/
 			return (YES);
 		}
 		++i;
@@ -105,7 +105,7 @@ int					ft_send_moves(t_env *env)
 
 int					ft_takemove(t_env *env)
 {
-	ft_print_responsetab(env);
+	/*ft_print_responsetab(env);*/
 	if (env->elevating || ft_expecting_resp(env))
 	{
 		return (OK);
@@ -114,11 +114,11 @@ int					ft_takemove(t_env *env)
 	{
 		if (env->moves)
 			dprintf(env->aff, "[%d]\tI ALREADY HAVE SOME MOVES?!?\n", env->pid);
-		if (/*env->inv[0] != -1 &&*/ env->inv[FOOD] < 3)
+		if (/*env->inv[0] != -1 &&*/ env->inv[FOOD] < 8)
 		{
 			ft_find(env, FOOD);
 		}
-		if (!env->elevating && env->dir_msg >= 0)
+		else if (!env->elevating && env->dir_msg >= 0)
 		{
 			ft_follow_msg(env);
 		}

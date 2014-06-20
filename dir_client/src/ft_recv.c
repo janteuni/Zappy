@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 15:06:05 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 19:11:02 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int					ft_read_list(t_env *env, char *buf)
 	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))
 	{
 		ft_read_inventory(env, split, 0);
-		ft_print_inv(env);
+		/*ft_print_inv(env);*/
 		env->resp[RESP_INV]--;
 	}
 	else

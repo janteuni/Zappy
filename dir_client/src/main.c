@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 15:16:16 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 18:30:07 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int					main(int ac, char **av, char **envp)
 	env->path = av[0];
 	env->pid = getpid();
 
-	if ((env->aff = open(ft_itoa(env->pid), O_WRONLY | O_CREAT)) < 0)
+	if ((env->aff = open(ft_itoa(env->pid), O_RDWR | O_CREAT | 0666)) < 0)
 	{
 		printf("CANT OPEN FILE\n");
 		return (ERR);

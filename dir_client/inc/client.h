@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 13:20:22 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 20:17:14 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,12 @@ typedef struct		s_env
 	int				laying;
 	int				moved;
 	int				dir_msg;
-	int				pid;
 	char			**envp;
 	char			*path;
 	int				dir_chg;
+	int				my_incant;
+	int				just_brdcast;
+	int				pid;
 	int				aff;
 }					t_env;
 

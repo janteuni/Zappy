@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/08 12:32:31 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 15:11:59 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 18:47:32 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int					ft_read_view(t_env *env, char **split)
 		env->view[i][DIST] = (i == 0 ? 0 : ft_calc_dist(i));
 		++i;
 	}
-	ft_print_view(env, env->view);
+	/*ft_print_view(env, env->view);*/
 	return (OK);
 }
 

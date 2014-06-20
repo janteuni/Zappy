@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 16:44:15 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 15:11:09 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/20 18:51:33 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int					ft_message(t_env *env, char *buf)
 	}
 	if (!ft_strncmp(str, env->team, ft_strlen(env->team)))
 	{
-		dprintf(env->aff, "[%d]\tRECEIVED MSG FROM MY TEAM\n",env->pid);
+/*		dprintf(env->aff, "[%d]\tRECEIVED MSG FROM MY TEAM\n",env->pid);*/
 		if (ft_same_level(env, str))
 		{
 			dprintf(env->aff, "[%d]\tITS MY LEVEL - I'm GOING!\n",env->pid);
