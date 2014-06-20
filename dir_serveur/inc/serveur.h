@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:21:03 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 13:08:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 17:40:58 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,8 @@ t_list				*ft_get_players_same_level(t_env *env, int cs);
 void				ft_reject_stones(t_env *env, int level, t_pos pos);
 t_list				*ft_get_players_from_case(t_env *env, t_pos pos);
 void				ft_action_special(int cs, int t, void (*fn)(), char *rcv);
+void				ft_action_incantation(int cs, int t,
+		void (*fn)(), char *rcv);
 
 /*
 ** ACTION LIST

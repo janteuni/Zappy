@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 10:49:51 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 16:15:19 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 17:49:01 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,4 @@ void				ft_check_incantation(t_env *env, int cs, char *rcv)
 		list = list->next;
 	}
 	ft_free_tab((void ***)&split);
-	printf("fin incantation\n");
 }
