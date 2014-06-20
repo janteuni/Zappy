@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 19:05:00 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 14:39:46 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 12:53:10 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ int				ft_place_me(t_env *env, int cs)
 	env->fd_socket[cs].pos.o = rand() % 4;
 	if (env->fd_socket[cs].pos.o < 1)
 		env->fd_socket[cs].pos.o = 1;
-	printf("ORIENTATION : %d\n", OR(cs));
 	return (OK);
 }

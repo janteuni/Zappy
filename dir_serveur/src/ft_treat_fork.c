@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 12:10:25 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 18:08:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 12:53:59 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ void				ft_treat_fork(t_env *env, int cs, char *rcv)
 	if (env->graphic != -1)
 		ft_reply_in_buff(env, env->graphic, line);
 	ft_memdel((void **)&line);
-	printf("x: %d y: %d\n", new_egg.pos.x, new_egg.pos.y);
 	ft_reply_in_buff(env, cs, "ok");
 }

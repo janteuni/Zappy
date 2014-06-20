@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 18:15:48 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/19 12:24:58 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/20 15:26:00 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void			client_write(t_env *env, int cs)
 	}
 	else
 		tmp = ft_strdup(env->fd_socket[cs].buf_write);
-	send(cs, tmp, ft_strlen(tmp), 0);
+	printf("SEND TO [%d] : [%s]\n", cs, tmp);
+	if (send(cs, tmp, ft_strlen(tmp), 0) == -1)
+		printf("pb send socket [%d]\n", cs);
 	ft_lstdel(&env->fd_socket[cs].line, ft_del);
 	ft_memdel((void **)&tmp);
 	ft_bzero(env->fd_socket[cs].buf_write, BUF_SIZE);
