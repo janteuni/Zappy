@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 15:40:17 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 13:23:20 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/21 15:58:42 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void				ft_treat_egg(t_env *env, int cs, char *rcv)
 	i = 0;
 	(void)cs;
 	egg = NULL;
-/*	printf("EGG IS OK - wait a connection\n");*/
 	egg = st_egg_birth(env, rcv);
 	while (i < env->max_team)
 	{
