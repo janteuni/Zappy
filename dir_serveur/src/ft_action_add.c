@@ -6,15 +6,15 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 10:50:28 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 17:45:55 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/21 16:46:33 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include "serveur.h"
 
-
-void				ft_action_incantation(int cs, int t, void (*fn)(), char *rcv)
+void				ft_action_incantation(int cs, int t,
+		void (*fn)(), char *rcv)
 {
 	t_action		new_action;
 	long int		tstmp;
