@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 20:17:14 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/22 20:39:09 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define BUF_SIZE	50
 # define INV_BUF	1024
 # define BIG_BUF	4095
+# define RECV_BUF	100
 
 # define NB_STONES	6
 # define INV_SIZE	7
@@ -117,6 +118,8 @@ typedef struct		s_env
 	int				dir_chg;
 	int				my_incant;
 	int				just_brdcast;
+	t_list			*buffer;
+
 	int				pid;
 	int				aff;
 }					t_env;

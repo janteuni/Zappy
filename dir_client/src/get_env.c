@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 20:17:43 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/22 20:39:21 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_env			*get_env(void)
 		env->team = NULL;
 		env->view = NULL;
 		env->moves = NULL;
+		env->buffer = NULL;
 		env->inv[0] = -1;
 		ft_init_incantation(env);
 		/*ft_bzero(env->inv, sizeof(int) * INV_SIZE);*/

@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 19:11:02 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/22 20:34:43 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int					ft_read_line(t_env *env, char *line)
 		dprintf(env->aff, "[%d]\tI do not understand '%s'\n", env->pid,line);
 	return (OK);
 }
-
+/*
 int					ft_recv(t_env *env)
 {
 	char			buf[BIG_BUF + 1];
@@ -101,5 +101,91 @@ int					ft_recv(t_env *env)
 	i = -1;
 	while (lines[++i])
 		ft_read_line(env, lines[i]);
+	return (OK);
+}*/
+
+char			*ft_join_str(t_env *env, char *str)
+{
+	t_list		*ptr;
+	int			len;
+	char		*line;
+	int			i;
+
+	if (!env->buffer)
+		return (ft_strdup(str));
+	ptr = env->buffer;
+	len = ft_strlen(str);
+	while (ptr)
+	{
+		len += ft_strlen((char *)ptr->content);
+		ptr = ptr->next;
+	}
+	line = ft_strnew(len);
+	ptr = env->buffer;
+	i = 0;
+	while (ptr)
+	{
+		/*printf("STRING IN LIST IS [%s]\n", (char *)ptr->content );*/
+		len = ft_strlen((char *)ptr->content);
+		ft_memcpy(&line[i], (char *)ptr->content, len);
+		i += (len);
+		/*printf("i = %d, line so far ... [%s]\n",i, line );*/
+		ptr = ptr->next;
+	}
+	ft_memcpy(&line[i], str, ft_strlen(str) + 1);
+	ft_lstdel(&env->buffer, ft_lstdel_elem);
+	env->buffer = NULL;
+	return (line);
+}
+
+int					ft_read_buffer(t_env *env, char *buf, int l, int start)
+{
+	char			*ptr;
+	char			*str;
+	char			*line;
+
+	if ((ptr = ft_memchr(buf + start, '\n', RECV_BUF - start)))
+	{
+		if ((str = ft_strsub(buf, start, ptr - (buf + start))))
+		{
+			line = ft_join_str(env, str);
+			/*printf("CONCATENATED STR THAT IM SENDING TO READ LINE [%s]\n",line );*/
+			ft_read_line(env, line);
+			free(str);
+			free(line);
+		}
+		if (ptr < &buf[l - 1])
+			ft_read_buffer(env, buf, l, (&ptr[1] - buf));
+	}
+	else
+	{
+		if (start < (l - 1))
+		{
+			str = ft_strsub(buf, start, l - start);
+			ft_lstpush(&env->buffer, ft_lstnew(str, ft_strlen(str) + 1));
+		}
+		ft_recv(env);
+	}
+	return (OK);
+
+}
+
+int					ft_recv(t_env *env)
+{
+	char			buf[RECV_BUF];
+	/*char			**lines;
+	int				i;*/
+	int				l;
+
+	ft_bzero(buf, RECV_BUF);
+	/*env->buf_offset += recv(env->socket, buf + env->buf_offset,
+			RECV_BUF - env->buf_offset, 0);*/
+	l = recv(env->socket, buf, RECV_BUF, 0);
+	if (l)
+		ft_read_buffer(env, buf, l, 0);
+/*	lines = ft_strsplit(buf, '\n');
+	i = -1;
+	while (lines[++i])
+		ft_read_line(env, lines[i]);*/
 	return (OK);
 }
