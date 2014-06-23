@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/20 20:16:16 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/23 19:18:16 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ int					ft_find(t_env *env, int obj)
 		{
 			if (env->view[i][obj] > 0
 					&& (c < 0 || env->view[c][DIST] > env->view[i][DIST]))
-				c = i;
+			{
+				if (obj == FOOD || env->view[i][PLAYERS] < 4)
+					c = i;
+			}
 			++i;
 		}
 		if (c > 0)
@@ -114,7 +117,7 @@ int					ft_ia(t_env *env)
 		ft_push_cmd(env, INVENT, NULL, RESP_INV);
 		return (OK);
 	}*/
-	else if (!env->forked && !env->laying)
+	if (!env->forked && !env->laying)
 	{
 		if (env->connect_nb < 0)
 		{
@@ -136,7 +139,7 @@ int					ft_ia(t_env *env)
 	{
 		ft_find(env, FOOD);
 	}
-	else /* have forked, food > 2, im free to do an incantation */
+	else /* have forked, food > 8, im free to do an incantation */
 	{
 		//COLLECT STONES & DO INCANTATION
 		if (env->view[0][FOOD] > 0 && ft_check_squ_stones(env))

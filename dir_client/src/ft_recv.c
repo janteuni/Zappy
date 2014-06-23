@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/22 20:34:43 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/23 18:32:54 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int					ft_read_list(t_env *env, char *buf)
 	if (sp && sp[0] && sp[1] && ft_isdigit(sp[1]))
 	{
 		ft_read_inventory(env, split, 0);
-		/*ft_print_inv(env);*/
+		ft_print_inv(env);
 		env->resp[RESP_INV]--;
 	}
 	else
@@ -149,7 +149,7 @@ int					ft_read_buffer(t_env *env, char *buf, int l, int start)
 		if ((str = ft_strsub(buf, start, ptr - (buf + start))))
 		{
 			line = ft_join_str(env, str);
-			/*printf("CONCATENATED STR THAT IM SENDING TO READ LINE [%s]\n",line );*/
+			dprintf(env->aff, "CONCATENATED STR THAT IM SENDING TO READ LINE [%s]\n", line );
 			ft_read_line(env, line);
 			free(str);
 			free(line);
@@ -159,7 +159,7 @@ int					ft_read_buffer(t_env *env, char *buf, int l, int start)
 	}
 	else
 	{
-		if (start < (l - 1))
+		if (start < l)
 		{
 			str = ft_strsub(buf, start, l - start);
 			ft_lstpush(&env->buffer, ft_lstnew(str, ft_strlen(str) + 1));
@@ -181,6 +181,7 @@ int					ft_recv(t_env *env)
 	/*env->buf_offset += recv(env->socket, buf + env->buf_offset,
 			RECV_BUF - env->buf_offset, 0);*/
 	l = recv(env->socket, buf, RECV_BUF, 0);
+	dprintf(env->aff, "--------------------------------------in my buffer [%s] for %d chars\n", buf, l );
 	if (l)
 		ft_read_buffer(env, buf, l, 0);
 /*	lines = ft_strsplit(buf, '\n');
