@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 18:28:01 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/23 12:38:08 by mpillet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,40 @@ void				st_reply_final_str(t_env *env, int cs, char *tmp, char *r)
 	ft_memdel((void **)&tmp);
 }
 
+static void			st_loop(t_env *env, int cs, t_pos *pos_case, char **tmp)
+{
+	char			*carre;
+	char			*final;
+
+	carre = NULL;
+	final = NULL;
+	if ((carre = ft_list_case(*pos_case, env, cs, 0)) != NULL)
+	{
+		asprintf(&final, "%s%s, ", *tmp, carre);
+		ft_memdel((void **)&carre);
+	}
+	else
+		asprintf(&final, "%s, ", *tmp);
+	ft_memdel((void **)tmp);
+	*tmp = final;
+	*pos_case = st_reoriente_pos(*pos_case, env, cs);
+}
+
 void				ft_treat_vision(t_env *env, int cs, char *rcv)
 {
 	t_pos			pos_case;
 	int				i;
 	int				j;
-	char			*carre;
-	char			*final;
 	char			*tmp;
 
-	i = 0;
-	carre = NULL;
+	i = -1;
 	tmp = ft_strdup("{ ");
-	while (i <= LEVEL(cs))
+	while (++i <= LEVEL(cs))
 	{
 		st_find_begin(&pos_case, cs, env, i);
-		j = 0;
-		while (j < (i * 2) + 1)
-		{
-			if ((carre = ft_list_case(pos_case, env, cs, 0)) != NULL)
-			{
-				asprintf(&final, "%s%s, ", tmp, carre);
-				ft_memdel((void **)&carre);
-			}
-			else
-				asprintf(&final, "%s, ", tmp);
-			ft_memdel((void **)&tmp);
-			tmp = final;
-			pos_case = st_reoriente_pos(pos_case, env, cs);
-			j++;
-		}
-		i++;
+		j = -1;
+		while (++j < (i * 2) + 1)
+			st_loop(env, cs, &pos_case, &tmp);
 	}
 	st_reply_final_str(env, cs, tmp, rcv);
 }
