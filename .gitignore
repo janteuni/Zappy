@@ -3,3 +3,4 @@ dir_client/client
 dir_client/src/ft_select.c
 client
 serveur
+.obj/
