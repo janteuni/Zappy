@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 11:20:23 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/17 16:15:15 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/23 12:29:58 by mpillet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,11 @@ void			print_params(t_env *env)
 	int	i;
 
 	i = 0;
-	printf("port : %d\nwidth: %d\nheight: %d\n", env->port, env->width, env->height);
+	printf("port : %d\nwidth: %d\n", env->port, env->width);
+	printf("height: %d\n", env->height);
 	printf("time : %d\n", env->time);
 	printf("nb_player : %d\n", env->nb_player);
-	printf("--------------------TEANS-------------------\n");
+	printf("--------------------TEAMS-------------------\n");
 	printf("max_team: %d\n", env->max_team);
 	while (i < env->max_team)
 	{
