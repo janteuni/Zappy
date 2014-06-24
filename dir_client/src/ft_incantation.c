@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:50:07 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/24 11:47:36 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 20:55:11 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,12 @@ int					ft_get_people_here(t_env *env)
 	{
 		ft_push_cmd(env, INCANT, NULL, NO_RESP);
 		env->elevating = 1;
-		/*env->just_brdcast = 0;*/
 	}
-	else /*if (!env->just_brdcast)*/
+	else
 	{
 		asprintf(&msg, "%s %d\n", env->team, env->level);
 		ft_push_cmd(env, BROAD, ft_strdup(msg), RESP_OK);
 		free(msg);
-		/*env->just_brdcast = 1;*/
 	}
-	/*else
-	{
-		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(FOOD)), RESP_OK);
-		env->just_brdcast = 0;
-	}*/
 	return (OK);
 }

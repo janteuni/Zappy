@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/24 17:49:57 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 22:50:58 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,22 +118,15 @@ typedef struct		s_env
 	char			*path;
 	int				dir_chg;
 	int				my_incant;
-	int				just_brdcast;
 	t_list			*buffer;
-
-	int				pid;
-	int				aff;
 }					t_env;
 
 t_env				*get_env(void);
 int					create_client(t_env *env);
 int					ft_confirm_connection(t_env *env);
-void				ft_init_incantation(t_env *env);
-
-/*
-**			error.c
-*/
+int					ft_init_incantation(t_env *env);
 int					error(char *err);
+int					ft_setup_signal(void);
 
 /*
 **			ft_free.c
@@ -141,47 +134,46 @@ int					error(char *err);
 void				ft_free_env(t_env **env);
 void				ft_free_and_quit(t_env *env);
 
-
-/*
-**			ft_signal.c
-*/
-int					ft_setup_signal(void);
-
 /*
 **			ft_parse.c
 */
 int					ft_parse(int ac, char **av, t_env *env);
 
 /*
+**			ft_send_moves.c
+*/
+void				ft_del_cmd_lst(void *content, size_t content_size);
+int					ft_send_moves(t_env *env);
+
+/*
 **			ft_loop.c
 */
 int					ft_loop(t_env *env);
-int					ft_expecting_resp(t_env *env);
 int					ft_takemove(t_env *env);
-void				ft_del_cmd_lst(void *content, size_t content_size);
 
 /*
-**			ft_get_inventory.c
+**			ft_read_inventory.c
 */
-int					ft_get_inventory(t_env *env);
 void				ft_read_inventory(t_env *env, char **s, int i);
-void				ft_print_inv(t_env *env); //TAKE OUT!!!
 
 /*
-**			ft_look.c
+**			ft_read_view.c
 */
-int					ft_look(t_env *env);
 int					ft_read_view(t_env *env, char **split);
 
 /*
 **			ft_recv.c
 */
 int					ft_recv(t_env *env);
+char				*ft_join_str(t_env *env, char *str);
+void				ft_read_buffer(t_env *env, char *buf, int l, int start);
 
 /*
-**			ft_send_cmd.c
+**			ft_read_line.c
 */
-int					ft_send_cmd(t_env *env, char *cmd, int i);
+int					ft_read_line(t_env *env, char *line);
+int					ft_read_list(t_env *env, char *buf);
+int					ft_connect_nb(t_env *env, char *buf);
 
 /*
 **			ft_elevation.c
@@ -207,15 +199,16 @@ int					ft_dead(t_env *env, char *buf);
 int					ft_message(t_env *env, char *buf);
 
 /*
+**			ft_find.c
+*/
+int					ft_find(t_env *env, int obj);
+int					ft_random(t_env *env);
+
+/*
 **			ft_ia.c
 */
-/*int					ft_set_cmd(t_cmd *cmd, int cmd_num, int resp, t_env *env);
-int					ft_set_cmd_opt(t_cmd *cmd, int cmd_num, char *opt,
-		t_env *env);*/
-int					ft_ia(t_env *env);
-int					ft_find(t_env *env, int obj);
-/*int					ft_find_food(t_env *env);*/
 int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp);
+int					ft_ia(t_env *env);
 
 /*
 **			ft_calc_dist.c
@@ -233,8 +226,6 @@ int					ft_avance(t_env *env, int num);
 **			ft_fork.c
 */
 int					ft_fork(t_env *env);
-/*int					ft_connect_egg(t_env *env);
-int					ft_reset_env(t_env *env);*/
 
 /*
 **			ft_check.c
@@ -251,9 +242,9 @@ int					ft_putdown_stones(t_env *env);
 int					ft_get_people_here(t_env *env);
 
 /*
-**			ft_find_stones.c
+**			ft_collect_stones.c
 */
-int					ft_find_stones(t_env *env);
+void				ft_collect_stones(t_env *env);
 
 /*
 **			ft_follow_msg.c
@@ -261,4 +252,5 @@ int					ft_find_stones(t_env *env);
 int					ft_follow_msg(t_env *env);
 void				ft_dir_left(t_env *env, int dir);
 void				ft_dir_right(t_env *env, int dir);
+
 #endif

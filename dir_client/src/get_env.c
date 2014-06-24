@@ -6,16 +6,16 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/24 17:50:19 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 22:51:17 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include <unistd.h>
 
 #include <stdlib.h>
 #include "client.h"
 
-int				init_cmd_tab(t_env *env)
+int					init_cmd_tab(t_env *env)
 {
 	if (!(env->cmds = (char **)malloc((NB_CMDS + 1) * sizeof(char *))))
 		return (ERR);
@@ -32,20 +32,18 @@ int				init_cmd_tab(t_env *env)
 	env->cmds[INCANT] = ft_strdup("incantation\n");
 	env->cmds[FORK] = ft_strdup("fork\n");
 	env->cmds[CON_NB] = ft_strdup("connect_nbr\n");
-
-	env->pid = getpid();
 	return (OK);
 }
 
-int				init_responces(t_env *env)
+int					init_responces(t_env *env)
 {
 	if (!(env->resp = (int *)malloc(NB_RESP * sizeof(int))))
 		return (ERR);
 	ft_bzero(env->resp, (NB_RESP * sizeof(int)));
-   return (OK);
+	return (OK);
 }
 
-t_env			*get_env(void)
+t_env				*get_env(void)
 {
 	static t_env	*env = NULL;
 
@@ -53,7 +51,8 @@ t_env			*get_env(void)
 	{
 		if (!(env = (t_env *)malloc(sizeof(t_env)))
 				|| (init_cmd_tab(env) == ERR)
-				|| (init_responces(env) == ERR))
+				|| (init_responces(env) == ERR)
+				|| (ft_init_incantation(env) == ERR))
 		{
 			error("Malloc Failed env");
 			return (NULL);
@@ -68,7 +67,6 @@ t_env			*get_env(void)
 		env->forked = 0;
 		env->laying = 0;
 		env->my_incant = 0;
-		env->just_brdcast = 0;
 		env->connect_nb = -1;
 		env->expul = 0;
 		env->level = 1;
@@ -77,8 +75,6 @@ t_env			*get_env(void)
 		env->moves = NULL;
 		env->buffer = NULL;
 		env->inv[0] = -1;
-		ft_init_incantation(env);
-		/*ft_bzero(env->inv, sizeof(int) * INV_SIZE);*/
 	}
 	return (env);
 }
