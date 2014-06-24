@@ -1,0 +1,216 @@
+@import 'compass/css3';
+@import 'compass/reset';
+@import 'compass/css3/transition';
+@import url('fonts/raleway.woff');
+
+* {
+	outline: none;
+	box-sizing: border-box;
+}
+
+html, body {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	background-color: #000000;
+	@include user-select(none);
+	font-family: 'Raleway', sans-serif;
+}
+
+input, select, textarea, button {
+	@include user-select(text);
+	font-family: 'Raleway', sans-serif;
+}
+
+button, input[type="range"], input[type="button"], input[type="submit"] {
+	cursor: pointer;
+}
+
+button.danger {
+	background: rgba(255, 16, 16, .7);
+	border: 1px solid rgb(165, 0, 0);
+	padding: 5px 10px;
+	border-radius: 2px;
+	color: white;
+	&:hover {
+		background-color: rgba(255, 16, 16, .8);
+	}
+}
+
+.drag {
+	-webkit-app-region: drag;
+}
+
+.nodrag {
+	-webkit-app-region: no-drag;
+}
+
+.flex {
+	display: flex;
+	&.centered-items {
+		align-items: center;
+	}
+}
+
+.full-height {
+	height: 100%;
+}
+
+.intro {
+	background: url('../img/back.jpg');
+	background-size: cover;
+}
+
+body {
+	margin: 0;
+	> nav {
+		position: fixed;
+	}
+	> section {
+		color: white;
+		canvas {
+			height: 100%;
+		}
+		form {
+			padding: 20px;
+			margin: 0 auto;
+			width: 300px;
+			input {
+				width: 100%;
+				background-color: rgba(black, .6);
+				color: white;
+				border: 1px solid rgba(white, .3);
+				padding: 10px 10px;
+				@include border-radius(2px);
+				&[type="submit"] {
+					&:hover {
+						background-color: rgba(70, 70, 177, .5);;
+					}
+				}
+				&:hover {
+					border-color: rgba(white, .6);
+				}
+			}
+			p {
+				text-align: center;
+				font-size: 13px;
+				padding: 10px;
+			}
+		}
+	}
+}
+
+/* Infobox */
+.infos {
+	position: absolute;
+	background-color: rgba(black, .6);
+	padding: 20px;
+	top: 20px;
+	left: 20px;
+	font-size: 13px;
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+	section {
+		&:first-child {
+			input[type="range"], p:first-child {
+				display: block;
+				margin-bottom: 10px;
+			}
+		}
+		&:nth-child(2) {
+			> * {
+				margin-bottom : 10px;
+			}
+			ul {
+				padding-top: 5px;
+			}
+		}
+		&:last-child {
+			.teams {
+				.team {
+					min-width: 50px;
+					margin-bottom: 5px;
+					> * {
+						margin-right: 5px;
+					}
+					.color {
+						width: 15px;
+						height: 15px;
+						border: 1px solid rgba(white, .3);
+					}
+				}
+			}
+		}
+		&.borded {
+			padding-right: 20px;
+			border-right: 1px solid rgba(white, .2);
+		}
+		&.marged {
+			margin-right: 20px;
+		}
+	}
+}
+
+/* Navbar with buttons */
+nav {
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 25px;
+	opacity: 0.6;
+	background: -webkit-gradient(linear, left top, left 25, from(rgba(black, .2)), to(rgba(white, 0)));
+	@include transition(all .3s);
+	&:hover {
+		opacity: 1.0;
+	}
+	a {
+		z-index: 2000;
+		content: '';
+		border: 0;
+		background-color: rgba(gray, .7);
+		padding: 0;
+		width: 10px;
+		height: 10px;
+		line-height: 3px;
+		top: 8px;
+		right: 8px;
+		overflow: hidden;
+		position: absolute;
+		cursor: pointer;
+		@include border-radius(50%);
+		@include transition(background-color .3s);
+		color: #CCC;
+		opacity: 0.6;
+		&.hide {
+			right: 32px	;
+			&:hover {
+				background-color: #d0a00f;
+			}
+		}
+		&.resize {
+			right: 20px;
+			&:hover {
+				background-color: #0fb00f;
+			}
+		}
+		&.close {
+			&:hover {
+				background-color: #b00f0f;
+			}
+		}
+		&:hover {
+			opacity: 1.0;
+		}
+	}
+}
+
+/* Stats */
+#stats {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
