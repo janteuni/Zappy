@@ -6,7 +6,7 @@
 #    By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/18 13:00:58 by bgronon           #+#    #+#              #
-#    Updated: 2014/06/18 15:01:20 by bgronon          ###   ########.fr        #
+#    Updated: 2014/06/24 19:17:04 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME_GFX = gfx
 
 DIR_SRV = dir_serveur
 DIR_CLI = dir_client
+DIR_GFX = dir_gfx
 
 all: $(NAME_SRV) $(NAME_CLI)
 
@@ -28,6 +29,13 @@ $(NAME_CLI):
 	make -C $(DIR_CLI)
 	/bin/rm -rf $(NAME_CLI)
 	ln -s $(DIR_CLI)/$(NAME_CLI) .
+
+$(NAME_GFX):
+	cd $(DIR_GFX) && \
+	npm install && \
+	$(PWD)/$(DIR_GFX)/node_modules/.bin/bower install && \
+	$(PWD)/$(DIR_GFX)/node_modules/.bin/grunt build && \
+	ln -s $(PWD)/$(DIR_GFX)/build/releases/Threepy.js/mac/Threepy.js.app $(PWD)/gfx.app
 
 clean :
 	$(MAKE) -C $(DIR_SRV) $@

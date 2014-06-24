@@ -4,3 +4,4 @@ dir_client/src/ft_select.c
 client
 serveur
 .obj/
+npm-debug.log
