@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 16:44:15 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/23 12:43:06 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 17:49:03 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ int					ft_message(t_env *env, char *buf)
 			dprintf(env->aff, "[%d]\tNOT MY LEVEL (%d) - CANT HELP\n",env->pid, env->level);
 	}
 	else
+	{
 		dprintf(env->aff, "[%d]\tNOT MY TEAM (%s) - [%s]\n",env->pid, env->team, str );
+		if (dir == 0)
+			env->expul = 1;
+	}
 	return (OK);
 }

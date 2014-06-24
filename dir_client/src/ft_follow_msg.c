@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/16 17:13:07 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/23 19:35:39 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 18:06:24 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int					ft_follow_msg(t_env *env)
 	{
 		/*dprintf(env->aff, "i am laying so push connect_nb\n");*/
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
+	}
+	if (env->expul)
+	{
+		ft_push_cmd(env, EXPUL, NULL, RESP_OK);
+		env->expul = 0;
 	}
 	if (env->dir_msg == 1)
 		ft_push_cmd(env, AVANCE, NULL, RESP_OK);

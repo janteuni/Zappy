@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/23 18:32:54 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 18:11:51 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int					ft_connect_nb(t_env *env, char *buf)
 		dprintf(env->aff, "connect nb is higher!! time to fork\n");
 		env->connect_nb = new;
 		ft_fork(env);
-		/*env->laying = 0;
-		env->forked = 1; - for when i took out fork*/
 	}
 	env->resp[RESP_VAL]--;
 	return (OK);
@@ -64,7 +62,7 @@ int					ft_read_line(t_env *env, char *line)
 	dprintf(env->aff, "[%d]\tRECEIVED [%s]\n",env->pid,line );
 	if ((line[0] == 'o') || (line[0] == 'k')) // OK / KO
 	{
-		if (line[0] == 'k' && env->resp[RESP_OK] == 0 && env->elevating == 1)
+		if (env->resp[RESP_OK] == 0 && env->elevating == 1)
 			ft_elev_failed(env);
 		else
 			env->resp[RESP_OK]--;

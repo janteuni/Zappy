@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/22 20:39:09 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 17:49:57 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define BUF_SIZE	50
 # define INV_BUF	1024
 # define BIG_BUF	4095
-# define RECV_BUF	100
+# define RECV_BUF	1000
 
 # define NB_STONES	6
 # define INV_SIZE	7
@@ -109,10 +109,11 @@ typedef struct		s_env
 	int				view_size;
 	t_list			*moves;
 	int				elevating;
+	int				moved;
 	int				forked;
 	int				laying;
-	int				moved;
 	int				dir_msg;
+	int				expul;
 	char			**envp;
 	char			*path;
 	int				dir_chg;

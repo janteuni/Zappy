@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/22 20:39:21 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 17:50:19 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_env			*get_env(void)
 		env->my_incant = 0;
 		env->just_brdcast = 0;
 		env->connect_nb = -1;
+		env->expul = 0;
 		env->level = 1;
 		env->team = NULL;
 		env->view = NULL;

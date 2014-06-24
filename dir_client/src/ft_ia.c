@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/23 19:18:16 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 18:10:47 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,11 @@ int					ft_ia(t_env *env)
 	{
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
 	}
-	/*if (env->inv[0] < 0)
+	if (env->expul)
 	{
-		ft_push_cmd(env, INVENT, NULL, RESP_INV);
-		return (OK);
-	}*/
+			ft_push_cmd(env, EXPUL, NULL, RESP_OK);
+			env->expul = 0;
+	}
 	if (!env->forked && !env->laying)
 	{
 		if (env->connect_nb < 0)
@@ -125,7 +125,7 @@ int					ft_ia(t_env *env)
 		}
 		else if (ft_enough_food(env))
 		{
-			ft_push_cmd(env, AVANCE, NULL, RESP_OK);/* so as not to lay on the same squ each time*/
+			ft_push_cmd(env, AVANCE, NULL, RESP_OK);
 			ft_push_cmd(env, FORK, NULL, RESP_OK);
 			ft_push_cmd(env, AVANCE, NULL, RESP_OK);
 			env->laying = 1;
@@ -135,11 +135,11 @@ int					ft_ia(t_env *env)
 			ft_find(env, FOOD);
 		}
 	}
-	else if (!env->forked && env->laying && env->inv[FOOD] < 8)
+	else if (!env->forked && env->laying && env->inv[FOOD] < 12)
 	{
 		ft_find(env, FOOD);
 	}
-	else /* have forked, food > 8, im free to do an incantation */
+	else
 	{
 		//COLLECT STONES & DO INCANTATION
 		if (env->view[0][FOOD] > 0 && ft_check_squ_stones(env))
