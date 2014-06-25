@@ -6,7 +6,7 @@
 #    By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/18 13:00:58 by bgronon           #+#    #+#              #
-#    Updated: 2014/06/25 17:48:22 by bgronon          ###   ########.fr        #
+#    Updated: 2014/06/25 18:55:44 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_SRV = dir_serveur
 DIR_CLI = dir_client
 DIR_GFX = dir_gfx
 
-all: $(NAME_SRV) $(NAME_CLI)
+all: $(NAME_SRV) $(NAME_CLI) $(NAME_GFX)
 
 $(NAME_SRV):
 	make -C $(DIR_SRV)
