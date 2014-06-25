@@ -6,14 +6,13 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/24 22:50:58 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 18:02:57 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_H
 # define CLIENT_H
 
-# include <sys/select.h>
 # include <stdio.h>
 # include "libft.h"
 # include "zappy.h"
@@ -24,8 +23,6 @@
 # define MAX(a,b)	((a > b) ? a : b)
 # define ABS(a,b)	((a - b > 0) ? a - b : b - a)
 # define BUF_SIZE	50
-# define INV_BUF	1024
-# define BIG_BUF	4095
 # define RECV_BUF	1000
 
 # define NB_STONES	6
@@ -68,20 +65,10 @@
 # define RESP_VAL	3
 # define NB_RESP	4
 
-# define FORW		"avance\n"
-# define RIGHT		"droite\n"
-# define LEFT		"gauche\n"
-# define INV		"inventaire\n"
-# define VIEW		"voir\n"
 # define CMD(X)		((t_cmd *)X->content)
 
 # define DEAD		"mort"
-# define MOVE		"deplacement"
 # define MSG		"message"
-# define ELEV		"elevation en cours"
-# define ELEV_END	"niveau actuel"
-# define KO			"ko"
-# define LIST		"{"
 
 typedef struct		s_cmd
 {
@@ -121,62 +108,48 @@ typedef struct		s_env
 	t_list			*buffer;
 }					t_env;
 
+/*
+**			STARTUP AND CREATE CONNECTION
+*/
 t_env				*get_env(void);
+int					ft_parse(int ac, char **av, t_env *env);
 int					create_client(t_env *env);
 int					ft_confirm_connection(t_env *env);
 int					ft_init_incantation(t_env *env);
-int					error(char *err);
 int					ft_setup_signal(void);
 
 /*
-**			ft_free.c
+**			ERRORS AND FREE
 */
+int					error(char *err);
 void				ft_free_env(t_env **env);
 void				ft_free_and_quit(t_env *env);
 
 /*
-**			ft_parse.c
-*/
-int					ft_parse(int ac, char **av, t_env *env);
-
-/*
-**			ft_send_moves.c
+**			THE LOOP
 */
 void				ft_del_cmd_lst(void *content, size_t content_size);
 int					ft_send_moves(t_env *env);
-
-/*
-**			ft_loop.c
-*/
 int					ft_loop(t_env *env);
 int					ft_takemove(t_env *env);
 
 /*
-**			ft_read_inventory.c
-*/
-void				ft_read_inventory(t_env *env, char **s, int i);
-
-/*
-**			ft_read_view.c
-*/
-int					ft_read_view(t_env *env, char **split);
-
-/*
-**			ft_recv.c
+**			RECV THINGS
 */
 int					ft_recv(t_env *env);
 char				*ft_join_str(t_env *env, char *str);
 void				ft_read_buffer(t_env *env, char *buf, int l, int start);
-
-/*
-**			ft_read_line.c
-*/
 int					ft_read_line(t_env *env, char *line);
 int					ft_read_list(t_env *env, char *buf);
 int					ft_connect_nb(t_env *env, char *buf);
+void				ft_read_inventory(t_env *env, char **s, int i);
+int					ft_read_view(t_env *env, char **split);
+int					ft_message(t_env *env, char *buf);
+int					ft_move(t_env *env, char *buf);
+int					ft_dead(t_env *env, char *buf);
 
 /*
-**			ft_elevation.c
+**			ELEVATION
 */
 int					ft_enough_food(t_env *env);
 int					ft_begin_elev(t_env *env, char *buf);
@@ -184,70 +157,35 @@ int					ft_end_elev(t_env *env, char *buf);
 int					ft_elev_failed(t_env *env);
 
 /*
-**			ft_move.c
-*/
-int					ft_move(t_env *env, char *buf);
-
-/*
-**			ft_dead.c
-*/
-int					ft_dead(t_env *env, char *buf);
-
-/*
-**			ft_message.c
-*/
-int					ft_message(t_env *env, char *buf);
-
-/*
-**			ft_find.c
-*/
-int					ft_find(t_env *env, int obj);
-int					ft_random(t_env *env);
-
-/*
-**			ft_ia.c
+**			ARTIFICIAL INTELLIGENCE
 */
 int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp);
 int					ft_ia(t_env *env);
-
-/*
-**			ft_calc_dist.c
-*/
+int					ft_find(t_env *env, int obj);
+int					ft_random(t_env *env);
 int					ft_calc_dist(int squ);
 int					ft_calc_level(int squ);
-
-/*
-**			ft_get_route.c
-*/
 int					ft_get_route(t_env *env, int squ);
 int					ft_avance(t_env *env, int num);
 
 /*
-**			ft_fork.c
+**			FORK
 */
 int					ft_fork(t_env *env);
 
 /*
-**			ft_check.c
-*/
-int					ft_check_inv_stones(t_env *env);
-int					ft_check_squ_stones(t_env *env);
-
-/*
-**			ft_incantation.c
+**			INCANTATION
 */
 char				*ft_get_str(int obj);
 int					ft_putdown(t_env *env, int stone);
 int					ft_putdown_stones(t_env *env);
 int					ft_get_people_here(t_env *env);
-
-/*
-**			ft_collect_stones.c
-*/
+int					ft_check_inv_stones(t_env *env);
+int					ft_check_squ_stones(t_env *env);
 void				ft_collect_stones(t_env *env);
 
 /*
-**			ft_follow_msg.c
+**			FOLLOW MESSAGE
 */
 int					ft_follow_msg(t_env *env);
 void				ft_dir_left(t_env *env, int dir);
