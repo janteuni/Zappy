@@ -58,7 +58,7 @@ angular.module('threepyApp', [])
 						if (!socket.connected) {
 							$scope.disconnect('Lost connection with the server !');
 						}
-					}, 100);
+					}, 250);
 				}
 				else {
 					$scope.ui.msg = 'Error during server connection.';
