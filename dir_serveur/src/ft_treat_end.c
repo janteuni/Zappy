@@ -6,20 +6,24 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:09:52 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/20 11:42:48 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/25 14:53:34 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/socket.h>
 #include "serveur.h"
 
 static void				st_end_of_game(t_env *env, int i)
 {
 	t_list				*list;
 	int					cs;
+	char				*str;
 
 	list = env->teams[i].players;
 	cs = ((t_player *)list->content)->sock;
-	ft_graphic_reply(env, cs, ft_graphic_seg);
+	str = ft_graphic_seg(env, cs);
+	send(env->graphic, str, ft_strlen(str), 0);
+	ft_memdel((void **)&str);
 	printf("---------------TEAM %s WIN-----------------\n", env->teams[i].name);
 }
 

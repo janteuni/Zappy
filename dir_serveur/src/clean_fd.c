@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 17:23:45 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/25 12:37:04 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/25 14:56:01 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,27 @@ static void			st_del_action(t_fd *fd)
 	}
 }
 
+static void			st_empty_bag(t_fd *fd)
+{
+	t_env		*env;
+	int			i;
+	int			nb;
+
+	env = get_env();
+	i = 0;
+	if (fd->my_cs == env->graphic)
+		return ;
+	while (i < NB_STUFF)
+	{
+		if ((nb = fd->inventory[i]) > 0)
+			env->map[fd->pos.y][fd->pos.x][i] += nb;
+		i++;
+	}
+}
+
 void				clean_fd(t_fd *fd)
 {
+	st_empty_bag(fd);
 	if (fd->my_team)
 	{
 		st_del_me(fd);
