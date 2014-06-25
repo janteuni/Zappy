@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/24 21:48:52 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/24 21:48:57 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 18:51:53 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int			**ft_malloc_view(t_env *env)
 	env->view[nb] = NULL;
 	while (i < nb)
 	{
-		env->view[i] = (int *)malloc(sizeof(int) * (SEE_SIZE + 1));
-		ft_bzero((void *)env->view[i], sizeof(int) * SEE_SIZE);
+		env->view[i] = (int *)malloc(sizeof(int) * (VIEW_SIZE + 1));
+		ft_bzero((void *)env->view[i], sizeof(int) * VIEW_SIZE);
 		++i;
 	}
 	return (env->view);

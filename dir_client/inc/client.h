@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:37:54 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/25 18:02:57 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 18:46:17 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # define NB_STONES	6
 # define INV_SIZE	7
-# define SEE_SIZE	9
+# define VIEW_SIZE	9
 # define FOOD		0
 # define LINEMATE	1
 # define DERAUMERE	2
