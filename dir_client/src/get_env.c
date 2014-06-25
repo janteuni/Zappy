@@ -6,16 +6,24 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/06 16:40:35 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/25 17:50:28 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 18:15:58 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "client.h"
 
-static int			init_cmd_tab(t_env *env)
+static int			ft_init_resp(t_env *env)
 {
-	if (!(env->cmds = (char **)malloc((NB_CMDS + 1) * sizeof(char *))))
+	if (!(env->resp = (int *)malloc(sizeof(int) * NB_RESP)))
+		return (ERR);
+	ft_bzero(env->resp, (NB_RESP * sizeof(int)));
+	return (OK);
+}
+
+static int			ft_init_cmd_tab(t_env *env)
+{
+	if (!(env->cmds = (char **)malloc(sizeof(char *) * (NB_CMDS + 1))))
 		return (ERR);
 	env->cmds[NB_CMDS] = NULL;
 	env->cmds[AVANCE] = ft_strdup("avance\n");
@@ -30,14 +38,6 @@ static int			init_cmd_tab(t_env *env)
 	env->cmds[INCANT] = ft_strdup("incantation\n");
 	env->cmds[FORK] = ft_strdup("fork\n");
 	env->cmds[CON_NB] = ft_strdup("connect_nbr\n");
-	return (OK);
-}
-
-static int			init_responces(t_env *env)
-{
-	if (!(env->resp = (int *)malloc(NB_RESP * sizeof(int))))
-		return (ERR);
-	ft_bzero(env->resp, (NB_RESP * sizeof(int)));
 	return (OK);
 }
 
@@ -63,7 +63,6 @@ static void			ft_set_env(t_env *env)
 	env->inv[0] = -1;
 }
 
-
 t_env				*get_env(void)
 {
 	static t_env	*env = NULL;
@@ -71,11 +70,11 @@ t_env				*get_env(void)
 	if (!env)
 	{
 		if (!(env = (t_env *)malloc(sizeof(t_env)))
-				|| (init_cmd_tab(env) == ERR)
-				|| (init_responces(env) == ERR)
+				|| (ft_init_cmd_tab(env) == ERR)
+				|| (ft_init_resp(env) == ERR)
 				|| (ft_init_incantation(env) == ERR))
 		{
-			error("Malloc Failed env");
+			error("Failed to malloc env");
 			return (NULL);
 		}
 		ft_set_env(env);
