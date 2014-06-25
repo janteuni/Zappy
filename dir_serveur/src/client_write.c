@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 18:15:48 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/23 12:33:00 by mpillet          ###   ########.fr       */
+/*   Updated: 2014/06/25 16:58:28 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ static void		st_loop(char **join, char **tmp, t_list *list)
 
 static void		st_clean(t_env *env, char *tmp, int cs)
 {
+	if (cs == env->graphic && ft_strstr(tmp, "seg ") != NULL)
+		env->end = YES;
 	ft_lstdel(&(env->fd_socket[cs].line), ft_del);
-	ft_memdel((void **)&tmp);
 	ft_bzero(env->fd_socket[cs].buf_write, BUF_SIZE);
+	if (env->fd_socket[cs].type == CLIENT && ft_strstr(tmp, "mort\n") != NULL)
+		clean_fd(&env->fd_socket[cs]);
+	ft_memdel((void **)&tmp);
 }
 
 void			client_write(t_env *env, int cs)
