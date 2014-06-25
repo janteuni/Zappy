@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/24 22:52:05 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 20:39:53 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void				ft_read_buffer(t_env *env, char *buf, int l, int start)
 		{
 			str = ft_strsub(buf, start, l - start);
 			ft_lstpush(&env->buffer, ft_lstnew(str, ft_strlen(str) + 1));
+			free(str);
 		}
 		ft_recv(env);
 	}
@@ -89,7 +90,7 @@ int					ft_recv(t_env *env)
 	int				l;
 
 	l = recv(env->socket, buf, RECV_BUF, 0);
-	if (l)
+	if (l > 0)
 		ft_read_buffer(env, buf, l, 0);
 	return (OK);
 }
