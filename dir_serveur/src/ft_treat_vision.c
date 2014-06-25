@@ -6,10 +6,11 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/07 12:30:22 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/23 12:38:08 by mpillet          ###   ########.fr       */
+/*   Updated: 2014/06/25 13:51:29 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "serveur.h"
 
 static void			st_find_begin(t_pos *pos, int cs, t_env *env, int i)
@@ -20,21 +21,37 @@ static void			st_find_begin(t_pos *pos, int cs, t_env *env, int i)
 	{
 		pos->y = pos->y - i < 0 ? HEIGHT - i : pos->y - i;
 		pos->x = pos->x - i < 0 ? WIDTH - i : pos->x - i;
+		while (pos->y < 0)
+			pos->y = HEIGHT - abs(pos->y);
+		while (pos->x < 0)
+			pos->x = WIDTH - abs(pos->x);
 	}
 	else if (OR(cs) == S)
 	{
-		pos->y = pos->y + i > HEIGHT - 1 ? 0 : pos->y + i;
-		pos->x = pos->x + i > WIDTH - 1 ? 0 : pos->x + i;
+		pos->y = pos->y + i > HEIGHT - 1 ? ((pos->y + i) - (HEIGHT - 1)) - 1 : pos->y + i;
+		pos->x = pos->x + i > WIDTH - 1 ? ((pos->x + i) - (WIDTH - 1)) - 1 : pos->x + i;
+		while (pos->y > HEIGHT - 1)
+			pos->y = (pos->y - (HEIGHT - 1)) - 1;
+		while (pos->x > WIDTH - 1)
+			pos->x = (pos->x - (WIDTH - 1)) - 1;
 	}
 	else if (OR(cs) == O)
 	{
-		pos->y = pos->y + i > HEIGHT - 1 ? 0 : pos->y + i;
+		pos->y = pos->y + i > HEIGHT - 1 ? ((pos->y + i) - (HEIGHT - 1)) - 1 : pos->y + i;
 		pos->x = pos->x - i < 0 ? WIDTH - i : pos->x - i;
+		while (pos->y > HEIGHT - 1)
+			pos->y = (pos->y - (HEIGHT - 1)) - 1;
+		while (pos->x < 0)
+			pos->x = WIDTH - abs(pos->x);
 	}
 	else if (OR(cs) == E)
 	{
 		pos->y = pos->y - i < 0 ? HEIGHT - i : pos->y - i;
-		pos->x = pos->x + i > WIDTH - i ? 0 : pos->x + i;
+		pos->x = pos->x + i > WIDTH - 1 ? ((pos->x + i) - (WIDTH - 1)) - 1 : pos->x + i;
+		while (pos->y < 0)
+			pos->y = HEIGHT - abs(pos->y);
+		while (pos->x > WIDTH - 1)
+			pos->x = (pos->x - (WIDTH - 1)) - 1;
 	}
 }
 
@@ -86,14 +103,15 @@ void				ft_treat_vision(t_env *env, int cs, char *rcv)
 	int				j;
 	char			*tmp;
 
-	i = -1;
+	i = 0;
 	tmp = ft_strdup("{ ");
-	while (++i <= LEVEL(cs))
+	while (i <= LEVEL(cs))
 	{
 		st_find_begin(&pos_case, cs, env, i);
 		j = -1;
 		while (++j < (i * 2) + 1)
 			st_loop(env, cs, &pos_case, &tmp);
+		i++;
 	}
 	st_reply_final_str(env, cs, tmp, rcv);
 }
