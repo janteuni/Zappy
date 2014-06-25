@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/25 21:32:06 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 21:39:06 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ char				*ft_join_str(t_env *env, char *str)
 	return (line);
 }
 
-static void			ft_stock_line(et_env *env, char *buf, int l, int start)
+static void			ft_stock_line(t_env *env, char *buf, int l, int start)
 {
+	char			*str;
+
 	if (start < l)
 	{
 		str = ft_strsub(buf, start, l - start);
