@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/06 15:41:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/24 21:27:27 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 14:57:31 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ int					ft_parse(int ac, char **av, t_env *env)
 			return (ERR);
 		i += 2;
 	}
-	env->addr = (!env->addr ? ft_strdup("localhost") : env->addr);
+	env->addr = (!env->addr ? ft_strdup("localhost") : ft_strdup(env->addr));
 	return (0);
 }
