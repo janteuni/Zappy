@@ -6,7 +6,7 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/16 19:01:40 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/18 18:41:55 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/25 12:20:51 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void				ft_treat_dead_all(t_env *env)
 	i = 0;
 	while (i < env->max_fd)
 	{
-		if (env->fd_socket[i].type == CLIENT)
+		if (env->fd_socket[i].type == CLIENT && i != env->graphic)
 		{
 			printf("mort de %d LEVEL %d\n", i, env->fd_socket[i].level);
 			send(i, "mort\n", 5, 0);

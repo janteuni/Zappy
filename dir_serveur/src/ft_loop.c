@@ -6,7 +6,7 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 10:30:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/21 17:17:08 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/25 12:21:12 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ void				ft_loop(t_env *env)
 		check_fd(env);
 		if (env->end == YES)
 			break ;
+	}
+	while (1)
+	{
 	}
 }
