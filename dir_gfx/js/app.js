@@ -26,7 +26,8 @@ angular.module('threepyApp', [])
 			connectPort: 4040,
 			rangeSpeed : 50,
 			serverSpeed: 50,
-			msg        : ''
+			msg        : '',
+			win        : null
 		};
 
 		$scope.selectedInfos = null;
@@ -55,16 +56,20 @@ angular.module('threepyApp', [])
 						$scope.ui.serverSpeed = socket.speed;
 						$scope.selectedInfos = game.selected;
 						$scope.resume = game.resume;
+						$scope.ui.win = socket.win;
+						if ($scope.ui.win) {
+							$scope.disconnect();
+						}
 						if (!socket.connected) {
 							$scope.disconnect('Lost connection with the server !');
 						}
-					}, 250);
+					}, 100);
 				}
 				else {
 					$scope.ui.msg = 'Error during server connection.';
 				}
 
-			}, 100);
+			}, 1000);
 		};
 
 		$scope.$watch('ui.rangeSpeed', function (newVal) {
@@ -76,6 +81,8 @@ angular.module('threepyApp', [])
 		});
 
 		$scope.disconnect = function (msg) {
+
+			game.stop();
 			socket.client.destroy();
 
 			stats = new Stats();

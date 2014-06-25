@@ -6,7 +6,7 @@
 #    By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/18 13:00:58 by bgronon           #+#    #+#              #
-#    Updated: 2014/06/25 12:55:26 by bgronon          ###   ########.fr        #
+#    Updated: 2014/06/25 17:48:22 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME_GFX):
 	rm -rf ./build/releases && \
 	./node_modules/.bin/bower install && \
 	./node_modules/.bin/grunt build && \
-	ln -sF ./build/releases/Threepy.js/mac/Threepy.js.app ../gfx.app
+	ln -sF ./$(DIR_GFX)/build/releases/Threepy.js/mac/Threepy.js.app ../gfx.app
 
 clean :
 	$(MAKE) -C $(DIR_SRV) $@
