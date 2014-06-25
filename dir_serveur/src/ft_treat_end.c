@@ -6,24 +6,20 @@
 /*   By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:09:52 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/25 14:53:34 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/25 17:28:49 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/socket.h>
 #include "serveur.h"
 
 static void				st_end_of_game(t_env *env, int i)
 {
 	t_list				*list;
 	int					cs;
-	char				*str;
 
 	list = env->teams[i].players;
 	cs = ((t_player *)list->content)->sock;
-	str = ft_graphic_seg(env, cs);
-	send(env->graphic, str, ft_strlen(str), 0);
-	ft_memdel((void **)&str);
+	ft_graphic_reply(env, cs, ft_graphic_seg);
 	printf("---------------TEAM %s WIN-----------------\n", env->teams[i].name);
 }
 
@@ -59,7 +55,6 @@ int						ft_treat_end(t_env *env)
 			if (st_all_players_level_max(env, i) == YES)
 			{
 				st_end_of_game(env, i);
-				env->end = YES;
 				ft_treat_dead_all(env);
 				return (YES);
 			}
