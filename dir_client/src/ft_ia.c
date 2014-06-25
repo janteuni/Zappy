@@ -6,29 +6,11 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 12:00:55 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/23 19:18:16 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 22:16:20 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <time.h>
-#include <stdlib.h>
 #include "client.h"
-
-int					ft_random(t_env *env)
-{
-	int				n;
-
-    srand(time(NULL));
-	n = rand() % 8;
-	if (n == 1 || n == 0)
-		ft_push_cmd(env, AVANCE, NULL, RESP_OK);
-	else if (n < 6)
-		ft_dir_left(env, n);
-	else
-		ft_dir_right(env, n);
-	env->dir_chg = 0;
-	return (OK);
-}
 
 int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp)
 {
@@ -41,126 +23,53 @@ int					ft_push_cmd(t_env *env, int cmd_num, char *opt, int resp)
 	return (OK);
 }
 
-int					ft_take_all(t_env *env)
+static void			ft_lay_egg(t_env *env)
 {
-	int				i;
-
-	i = 0;
-	while (/*i < env->view[0][FOOD] &&*/ i < 8)
+	if (env->connect_nb < 0)
+		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
+	else if (ft_enough_food(env))
 	{
-		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(FOOD)), RESP_OK);
-		++i;
+		ft_push_cmd(env, AVANCE, NULL, RESP_OK);
+		ft_push_cmd(env, FORK, NULL, RESP_OK);
+		ft_push_cmd(env, AVANCE, NULL, RESP_OK);
+		env->laying = 1;
 	}
-	return (OK);
+	else
+		ft_find(env, FOOD);
 }
 
-int					ft_find(t_env *env, int obj)
+static void			ft_try_elevation(t_env *env)
 {
-	int				i;
-	int				c;
-
-	c = -1;
-	i = 1;
-	if (env->view_size < ((env->level + 1) * (env->level + 1)))
+	if (env->view[0][FOOD] > 0 && ft_check_squ_stones(env))
+		ft_get_people_here(env);
+	else if (ft_check_inv_stones(env))
 	{
-		dprintf(env->aff, "[%d]\tMY VIEW IS NOT UP TO DATE\n",env->pid);
-		ft_push_cmd(env, VOIR, NULL, RESP_VIEW);
-		return (OK);
-	}
-	if (env->view[0][obj] == 0)
-	{
-		while (i < env->view_size /*(env->level + 1) * (env->level + 1)*/)
-		{
-			if (env->view[i][obj] > 0
-					&& (c < 0 || env->view[c][DIST] > env->view[i][DIST]))
-			{
-				if (obj == FOOD || env->view[i][PLAYERS] < 4)
-					c = i;
-			}
-			++i;
-		}
-		if (c > 0)
-		{
-			env->dir_chg = 0;
-			ft_get_route(env, c);
-		}
+		if (env->view[0][FOOD] == 0)
+			ft_find(env, FOOD);
 		else
 		{
-			if (env->dir_chg < 4)
-			{
-				ft_push_cmd(env, DROITE, NULL, RESP_OK);
-				env->dir_chg++;
-			}
-			else
-			{
-				env->dir_chg = 0;
-				ft_random(env);
-			}
-			return (OK);
+			ft_putdown_stones(env);
+			ft_get_people_here(env);
 		}
 	}
-	if (obj == FOOD)
-		ft_take_all(env);
 	else
-		ft_push_cmd(env, PREND, ft_strdup(ft_get_str(obj)), RESP_OK);
-	return (OK);
+		ft_collect_stones(env);
 }
 
 int					ft_ia(t_env *env)
 {
 	if (env->laying)
-	{
 		ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
-	}
-	/*if (env->inv[0] < 0)
+	if (env->expul)
 	{
-		ft_push_cmd(env, INVENT, NULL, RESP_INV);
-		return (OK);
-	}*/
+		ft_push_cmd(env, EXPUL, NULL, RESP_OK);
+		env->expul = 0;
+	}
 	if (!env->forked && !env->laying)
-	{
-		if (env->connect_nb < 0)
-		{
-			ft_push_cmd(env, CON_NB, NULL, RESP_VAL);
-		}
-		else if (ft_enough_food(env))
-		{
-			ft_push_cmd(env, AVANCE, NULL, RESP_OK);/* so as not to lay on the same squ each time*/
-			ft_push_cmd(env, FORK, NULL, RESP_OK);
-			ft_push_cmd(env, AVANCE, NULL, RESP_OK);
-			env->laying = 1;
-		}
-		else
-		{
-			ft_find(env, FOOD);
-		}
-	}
-	else if (!env->forked && env->laying && env->inv[FOOD] < 8)
-	{
+		ft_lay_egg(env);
+	else if (!env->forked && env->laying && env->inv[FOOD] < 12)
 		ft_find(env, FOOD);
-	}
-	else /* have forked, food > 8, im free to do an incantation */
-	{
-		//COLLECT STONES & DO INCANTATION
-		if (env->view[0][FOOD] > 0 && ft_check_squ_stones(env))
-		{
-			ft_get_people_here(env);
-		}
-		else if (ft_check_inv_stones(env))
-		{
-			if (env->view[0][FOOD] == 0)
-				ft_find(env, FOOD);
-			else
-			{
-				ft_putdown_stones(env);
-				ft_get_people_here(env);
-			}
-		}
-		else
-		{
-			ft_find_stones(env);
-		}
-	}
+	else
+		ft_try_elevation(env);
 	return (OK);
 }
-

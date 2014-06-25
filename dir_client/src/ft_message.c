@@ -6,20 +6,13 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/11 16:44:15 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/23 12:43:06 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 21:24:55 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-/*int					ft_read_message(t_env *env, char *msg)
-{
-	(void)env;
-	(void)msg;
-	return (OK);
-}*/
-
-int					ft_same_level(t_env *env, char *str)
+static int			ft_same_level(t_env *env, char *str)
 {
 	char			*ptr;
 	int				level;
@@ -30,7 +23,6 @@ int					ft_same_level(t_env *env, char *str)
 	{
 		level = (int)ptr[1] - '0';
 	}
-	dprintf(env->aff, "[%d]\tlevel in msg [%d] my level [%d]\n",env->pid,level, env->level );
 	if (level == env->level)
 	{
 		return (YES);
@@ -38,41 +30,53 @@ int					ft_same_level(t_env *env, char *str)
 	return (NO);
 }
 
-int					ft_message(t_env *env, char *buf)
+static int			ft_get_dir(char *buf)
 {
 	char			*ptr;
+	int				dir;
+
+	ptr = ft_strchr(buf, ' ');
+	if (ptr && ptr[0] && ptr[1])
+	{
+		dir = (int)ptr[1] - '0';
+		return (dir);
+	}
+	return (ERR);
+}
+
+static char			*ft_get_msg(char *buf)
+{
+	char			*ptr;
+	char			*str;
+
+	ptr = ft_strchr(buf, ',');
+	if (ptr && ptr[0] && ptr[1])
+	{
+		str = &ptr[1];
+		return (str);
+	}
+	return (NULL);
+}
+
+int					ft_message(t_env *env, char *buf)
+{
 	char			*str;
 	int				dir;
 
 	str = NULL;
-	ptr = ft_strchr(buf, ' ');
-	if (ptr && ptr[0] && ptr[1])
-		dir = (int)ptr[1] - '0';
-	else
-	{
-		dprintf(env->aff, "[%d]\tReceived a response I don't understand '%s'\n",env->pid, buf);
+	if ((dir = ft_get_dir(buf)) < 0)
 		return (ERR);
-	}
-	ptr = ft_strchr(buf, ',');
-	if (ptr && ptr[0] && ptr[1])
-		str = &ptr[1];
-	else
-	{
-		dprintf(env->aff, "[%d]\tReceived a response I don't understand '%s'\n",env->pid, buf);
+	if (!(str = ft_get_msg(buf)))
 		return (ERR);
-	}
 	if (!ft_strncmp(str, env->team, ft_strlen(env->team)))
 	{
-/*		dprintf(env->aff, "[%d]\tRECEIVED MSG FROM MY TEAM\n",env->pid);*/
 		if (ft_same_level(env, str))
-		{
-			dprintf(env->aff, "[%d]\tITS MY LEVEL - I'm GOING! in direction %d\n",env->pid, dir);
 			env->dir_msg = dir;
-		}
-		else
-			dprintf(env->aff, "[%d]\tNOT MY LEVEL (%d) - CANT HELP\n",env->pid, env->level);
 	}
 	else
-		dprintf(env->aff, "[%d]\tNOT MY TEAM (%s) - [%s]\n",env->pid, env->team, str );
+	{
+		if (dir == 0)
+			env->expul = 1;
+	}
 	return (OK);
 }

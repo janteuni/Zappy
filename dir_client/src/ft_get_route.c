@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 16:09:08 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/19 12:02:08 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/24 20:09:23 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int					ft_get_route(t_env *env, int squ)
 	int				row_mid;
 
 	i = 0;
-/*	l = ft_calc_level(squ);*/
 	l = (int)sqrt(squ);
 	ft_avance(env, l);
 	row_mid = (l * l) + (((l * 2) + 1) / 2);

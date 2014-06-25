@@ -6,7 +6,7 @@
 #    By: fbeck <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/06 16:16:30 by fbeck             #+#    #+#              #
-#    Updated: 2014/06/17 17:55:37 by fbeck            ###   ########.fr        #
+#    Updated: 2014/06/24 22:14:16 by fbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,22 +23,24 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/get_env.c \
 					  $(DIR_SRC)/ft_parse.c \
 					  $(DIR_SRC)/ft_loop.c \
-					  $(DIR_SRC)/ft_look.c \
-					  $(DIR_SRC)/ft_get_inventory.c \
+					  $(DIR_SRC)/ft_send_moves.c \
+					  $(DIR_SRC)/ft_read_view.c \
+					  $(DIR_SRC)/ft_read_inventory.c \
 					  $(DIR_SRC)/ft_recv.c \
-					  $(DIR_SRC)/ft_send_cmd.c \
+					  $(DIR_SRC)/ft_read_line.c \
 					  $(DIR_SRC)/ft_elevation.c \
 					  $(DIR_SRC)/ft_move.c \
 					  $(DIR_SRC)/ft_dead.c \
 					  $(DIR_SRC)/ft_message.c \
 					  $(DIR_SRC)/ft_ia.c \
+					  $(DIR_SRC)/ft_find.c \
 					  $(DIR_SRC)/ft_calc_dist.c \
 					  $(DIR_SRC)/ft_get_route.c \
 					  $(DIR_SRC)/ft_fork.c \
 					  $(DIR_SRC)/ft_init_incantation.c \
 					  $(DIR_SRC)/ft_check.c \
 					  $(DIR_SRC)/ft_incantation.c \
-					  $(DIR_SRC)/ft_find_stones.c \
+					  $(DIR_SRC)/ft_collect_stones.c \
 					  $(DIR_SRC)/ft_follow_msg.c \
 					  $(DIR_SRC)/ft_signal.c \
 					  $(DIR_SRC)/ft_free.c \
