@@ -6,7 +6,7 @@
 /*   By: fbeck <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/09 16:22:18 by fbeck             #+#    #+#             */
-/*   Updated: 2014/06/25 20:39:53 by fbeck            ###   ########.fr       */
+/*   Updated: 2014/06/25 21:32:06 by fbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ char				*ft_join_str(t_env *env, char *str)
 	return (line);
 }
 
+static void			ft_stock_line(et_env *env, char *buf, int l, int start)
+{
+	if (start < l)
+	{
+		str = ft_strsub(buf, start, l - start);
+		ft_lstpush(&env->buffer, ft_lstnew(str, ft_strlen(str) + 1));
+		free(str);
+	}
+	ft_recv(env);
+}
+
 void				ft_read_buffer(t_env *env, char *buf, int l, int start)
 {
 	char			*ptr;
@@ -73,15 +84,7 @@ void				ft_read_buffer(t_env *env, char *buf, int l, int start)
 			ft_read_buffer(env, buf, l, (&ptr[1] - buf));
 	}
 	else
-	{
-		if (start < l)
-		{
-			str = ft_strsub(buf, start, l - start);
-			ft_lstpush(&env->buffer, ft_lstnew(str, ft_strlen(str) + 1));
-			free(str);
-		}
-		ft_recv(env);
-	}
+		ft_stock_line(env, buf, l, start);
 }
 
 int					ft_recv(t_env *env)
