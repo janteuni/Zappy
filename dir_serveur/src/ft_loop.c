@@ -6,12 +6,19 @@
 /*   By: janteuni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/20 10:30:27 by janteuni          #+#    #+#             */
-/*   Updated: 2014/06/25 12:21:12 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/06/25 17:40:07 by janteuni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include "serveur.h"
+
+static void			st_end_of_game(void)
+{
+	while (1)
+	{
+	}
+}
 
 void				ft_loop(t_env *env)
 {
@@ -39,7 +46,5 @@ void				ft_loop(t_env *env)
 		if (env->end == YES)
 			break ;
 	}
-	while (1)
-	{
-	}
+	st_end_of_game();
 }

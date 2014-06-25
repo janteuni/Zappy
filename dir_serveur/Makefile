@@ -6,7 +6,7 @@
 #    By: janteuni <janteuni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/04 11:33:55 by janteuni          #+#    #+#              #
-#    Updated: 2014/06/17 17:01:51 by janteuni         ###   ########.fr        #
+#    Updated: 2014/06/25 17:35:41 by janteuni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ SRC					= $(DIR_SRC)/main.c \
 					  $(DIR_SRC)/signal.c \
 					  $(DIR_SRC)/ft_treat_dead_all.c \
 					  $(DIR_SRC)/ft_list_case.c \
+					  $(DIR_SRC)/ft_reoriente_pos.c \
 
 # ---------------------------------------------------------------------------- #
 
