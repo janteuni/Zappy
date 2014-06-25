@@ -6,7 +6,7 @@
 #    By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/06/18 13:00:58 by bgronon           #+#    #+#              #
-#    Updated: 2014/06/24 19:20:52 by bgronon          ###   ########.fr        #
+#    Updated: 2014/06/25 12:55:26 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_SRV = dir_serveur
 DIR_CLI = dir_client
 DIR_GFX = dir_gfx
 
-all: $(NAME_SRV) $(NAME_CLI) $(NAME_GFX)
+all: $(NAME_SRV) $(NAME_CLI)
 
 $(NAME_SRV):
 	make -C $(DIR_SRV)
@@ -33,10 +33,10 @@ $(NAME_CLI):
 $(NAME_GFX):
 	cd $(DIR_GFX) && \
 	npm install && \
-	rm -rf $(PWD)/$(DIR_GFX)/build && \
-	$(PWD)/$(DIR_GFX)/node_modules/.bin/bower install && \
-	$(PWD)/$(DIR_GFX)/node_modules/.bin/grunt build && \
-	ln -s $(PWD)/$(DIR_GFX)/build/releases/Threepy.js/mac/Threepy.js.app $(PWD)/gfx.app
+	rm -rf ./build/releases && \
+	./node_modules/.bin/bower install && \
+	./node_modules/.bin/grunt build && \
+	ln -sF ./build/releases/Threepy.js/mac/Threepy.js.app ../gfx.app
 
 clean :
 	$(MAKE) -C $(DIR_SRV) $@
