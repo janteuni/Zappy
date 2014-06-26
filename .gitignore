@@ -1,0 +1,7 @@
+dir_serveur/serveur
+dir_client/client
+client
+serveur
+.obj/
+npm-debug.log
+gfx.app
